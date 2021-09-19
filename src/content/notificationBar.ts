@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', _ => {
     const inIframe = isInIframe();
     const inputSelector = 'input:not([type]),input[type="email"],input[type="password"],input[type="text"]';
     const oldPassRegex = /(?:existing|old|curr|former)(?=.*pass)|(?<=pass.*)(?:existing|old|curr|former)/;
+    const newPassRegex = /(?:new)(?=.*pass)|(?<=pass.*)(?:new)/;
     let activeIcons: {icon: HTMLElement, input: HTMLElement}[] = [];
     const activeOverlays: {overlay: HTMLElement, icon: {icon: HTMLElement, input: HTMLElement}}[] = [];
 
@@ -289,7 +290,7 @@ document.addEventListener('DOMContentLoaded', _ => {
                 const formInputs = Array.from(input.form.getElementsByTagName('input'));
                 const usernameFields = formInputs.filter(field => isUsernameField(field) && isValidField(field));
                 const passwordFields = formInputs.filter(field => field.type.toLowerCase() === 'password' && isValidField(field));
-                const newPwFields = passwordFields.filter(field => field.autocomplete.includes('new'));
+                const newPwFields = passwordFields.filter(field => field.autocomplete.includes('new') || field.id.match(newPassRegex));
 
                 if (input.type.toLowerCase() === 'text' && passwordFields.length === 0) return;
 
@@ -299,8 +300,8 @@ document.addEventListener('DOMContentLoaded', _ => {
                 if (!isSignupOrCpwForm) {
                     placeIcon(input, passwordFields.includes(input) ? 'password' : 'username');
                 } else {
-                    const oldPwFields = passwordFields.filter(field => field.autocomplete.includes('current') ||
-                        field.name.match(oldPassRegex) || field.id.match(oldPassRegex));
+                    const oldPwFields = passwordFields.filter(field => !newPwFields.includes(field) && (field.autocomplete.includes('current') ||
+                        field.name.match(oldPassRegex) || field.id.match(oldPassRegex)));
 
                     if (passwordFields.includes(input)) {
                         placeIcon(input, oldPwFields.includes(input) ? 'password' : 'newPassword');

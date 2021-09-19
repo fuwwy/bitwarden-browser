@@ -194,6 +194,14 @@ export default class RuntimeBackground {
                 this.platformUtilsService.copyToClipboard(msg.identifier, { window: window });
             case 'formSubmission':
                 this.handleFormSubmission(sender.tab, msg.data);
+            case 'requestAvailableCiphers':
+                const ciphers = await this.cipherService.getAllDecryptedForUrl(sender.tab.url);
+                await BrowserApi.tabSendMessageData(sender.tab, 'availableCiphers', {
+                    ciphers: ciphers.length,
+                    usernameCiphers: ciphers.filter(cipher => cipher.login && cipher.login.username).length,
+                    passwordCiphers: ciphers.filter(cipher => cipher.login && cipher.login.password).length,
+                });
+                break;
             default:
                 break;
         }

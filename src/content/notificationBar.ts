@@ -5,10 +5,14 @@ document.addEventListener('DOMContentLoaded', _ => {
 
     const inIframe = isInIframe();
     const inputSelector = 'input:not([type]),input[type="email"],input[type="password"],input[type="text"]';
+    const oldPassRegex = /(?:existing|old|curr|former)(?=.*pass)|(?<=pass.*)(?:existing|old|curr|former)/;
+    let activeIcons: {icon: HTMLElement, input: HTMLElement}[] = [];
+    const activeOverlays: {overlay: HTMLElement, icon: {icon: HTMLElement, input: HTMLElement}}[] = [];
 
     let barType: string = null;
     let disabledAddLoginNotification = false;
     let disabledChangedPasswordNotification = false;
+    let cipherData = { ciphers: 0, usernameCiphers: 0, passwordCiphers: 0 };
 
     chrome.storage.local.get('neverDomains', (ndObj: any) => {
         const domains = ndObj.neverDomains;
@@ -21,6 +25,7 @@ document.addEventListener('DOMContentLoaded', _ => {
             disabledChangedPasswordNotification = items.disableChangedPasswordNotification === true;
             if (!disabledAddLoginNotification || !disabledChangedPasswordNotification) {
                 startTrackingFormSubmissions();
+                sendPlatformMessage({command: 'requestAvailableCiphers'});
             }
         });
     });
@@ -51,6 +56,17 @@ document.addEventListener('DOMContentLoaded', _ => {
             adjustBar(msg.data);
             sendResponse();
             return true;
+        } else if (msg.command === 'closeOverlays') {
+            if (inIframe) {
+                return;
+            }
+            closeAllOverlays();
+        } else if (msg.command === 'availableCiphers') {
+            if (inIframe) {
+                return;
+            }
+            cipherData = msg.data;
+            startTrackingPageChanges();
         }
     }
 
@@ -211,6 +227,226 @@ document.addEventListener('DOMContentLoaded', _ => {
         };
         window.addEventListener('bw-request-start', eventListener);
         requestListeners.push(eventListener);
+    }
+
+    function startTrackingPageChanges() {
+        let formElementCount = document.querySelectorAll('form,input').length;
+        document.addEventListener('click', (e: MouseEvent) => {
+            const newFormElementCount = document.querySelectorAll('form,input').length;
+            if (formElementCount !== newFormElementCount) {
+                formElementCount = newFormElementCount;
+                setTimeout(() => createIcons(), 500);
+            }
+            if (activeOverlays.length > 0 && !(e.target as HTMLElement).classList.contains('bitwarden')) closeAllOverlays();
+        });
+
+        const mutationObserver = new window.MutationObserver(mutations => {
+            setTimeout(() => {
+                const haveInputsChanged = mutations.some(mutation => {
+                    return [...mutation.addedNodes, ...mutation.removedNodes].some(node => {
+                        const changedNode = node as HTMLElement;
+                        return changedNode.tagName && (changedNode.tagName === 'INPUT' || changedNode.getElementsByTagName('INPUT'));
+                    });
+                });
+                if (haveInputsChanged) createIcons();
+            });
+        });
+        mutationObserver.observe(document, {
+            childList: true,
+            subtree: true,
+        });
+
+        setTimeout(() => createIcons(), 100);
+        setInterval(() => checkPositions(), 200);
+    }
+
+    function hasAttribute(el: HTMLElement, attr: string) {
+        return Array.from(el.attributes).some(att => att.name.toLowerCase().includes(attr) || att.value.toLowerCase().includes(attr));
+    }
+
+    function isValidField(input: HTMLInputElement) {
+        if (!input || !input.type || !isVisible(input) || window.getComputedStyle(input).visibility === 'hidden') return false;
+
+        const fieldType = input.type.toLowerCase();
+        if (!['email', 'text', 'password'].some(type => fieldType.includes(type))) return false;
+
+        if (fieldType === 'search' || hasAttribute(input, 'search')) return false;
+        return true;
+    }
+
+    function isUsernameField(field: HTMLInputElement) {
+        const fieldType = field.type.toLowerCase();
+        return fieldType === 'email' || fieldType === 'text';
+    }
+
+    function createIcons() {
+        const inputs = Array.from(document.getElementsByTagName('input'));
+
+        inputs.filter(isValidField).forEach(input => {
+            if (input.form) {
+                if (hasAttribute(input.form, 'search')) return;
+
+                const formInputs = Array.from(input.form.getElementsByTagName('input'));
+                const usernameFields = formInputs.filter(field => isUsernameField(field) && isValidField(field));
+                const passwordFields = formInputs.filter(field => field.type.toLowerCase() === 'password' && isValidField(field));
+                const newPwFields = passwordFields.filter(field => field.autocomplete.includes('new'));
+
+                if (input.type.toLowerCase() === 'text' && passwordFields.length === 0) return;
+
+                const isSignupOrCpwForm = passwordFields.length > 1 || usernameFields.length > 1 || newPwFields.length > 0 ||
+                    hasAttribute(input, 'signup') || hasAttribute(input.form, 'signup');
+
+                if (!isSignupOrCpwForm) {
+                    placeIcon(input, passwordFields.includes(input) ? 'password' : 'username');
+                } else {
+                    const oldPwFields = passwordFields.filter(field => field.autocomplete.includes('current') ||
+                        field.name.match(oldPassRegex) || field.id.match(oldPassRegex));
+
+                    if (passwordFields.includes(input)) {
+                        placeIcon(input, oldPwFields.includes(input) ? 'password' : 'newPassword');
+                    } else {
+                        placeIcon(input, 'username');
+                    }
+                }
+            }
+            // TODO formless inputs
+        });
+    }
+
+    function calculateIconPos(input: HTMLElement, inputWidth = 16, inputHeight = 16, marginRight = 8) {
+        const inputPosition = input.getBoundingClientRect();
+        const parentPosition = input.offsetParent && input.offsetParent.tagName !== 'BODY' ?
+            input.offsetParent.getBoundingClientRect() : { left: 0, top: 0 };
+        if (!inputPosition) return;
+
+        return {left: inputPosition.left + inputPosition.width - inputWidth - marginRight - parentPosition.left,
+                top: inputPosition.top + (inputPosition.height - inputHeight) / 2 - parentPosition.top};
+    }
+
+    function checkPositions() {
+        activeIcons.forEach(icon => {
+            const iconElement = icon.icon;
+            if (document.body.contains(icon.input)) {
+                const position = calculateIconPos(icon.input);
+                if (position) {
+                    if (position.left !== parseInt(iconElement.style.left, 10)) iconElement.style.left = position.left + 'px';
+                    if (position.top !== parseInt(iconElement.style.top, 10)) iconElement.style.top = position.top + 'px';
+                }
+            } else {
+                iconElement.remove();
+                activeIcons = activeIcons.filter(iconData => iconData !== icon);
+            }
+        });
+
+        activeOverlays.forEach(overlay => {
+            const overlayElement = overlay.overlay;
+            if (document.body.contains(overlay.icon.icon)) {
+                const position = calcualteOverlayPos(overlay.icon.input);
+                if (position) {
+                    if (position.left !== parseInt(overlayElement.style.left, 10)) overlayElement.style.left = position.left + 'px';
+                    if (position.top !== parseInt(overlayElement.style.top, 10)) overlayElement.style.top = position.top + 'px';
+                    if (position.width !== parseInt(overlayElement.style.width, 10)) overlayElement.style.width = position.width + 'px';
+                    if (position.height !== parseInt(overlayElement.style.height, 10)) overlayElement.style.height = position.height + 'px';
+                }
+            } else {
+                closeAllOverlays();
+            }
+        });
+    }
+
+    function placeIcon(input: HTMLElement, type = 'username') {
+        if (activeIcons.some(icon => icon.input === input)) return;
+        const position = calculateIconPos(input);
+        if (!position) return;
+
+        const iconElement = document.createElement('span');
+        iconElement.className = 'bitwarden';
+        iconElement.style.setProperty('all', 'initial', '');
+
+        let imagePath = 'shield';
+        switch (type) {
+            case 'newPassword':
+                imagePath = 'refresh';
+                break;
+            case 'username':
+                if (cipherData.usernameCiphers > 0)
+                    imagePath = 'shield-blue';
+                break;
+            case 'password':
+                if (cipherData.passwordCiphers > 0)
+                    imagePath = 'shield-blue';
+                break;
+            default:
+                if (cipherData.ciphers > 0)
+                    imagePath = 'shield-blue';
+                break;
+        }
+
+        const styleOverrides: { [key: string]: string } = {
+            width: '16px',
+            minWidth: '16px',
+            height: '16px',
+            minHeight: '16px',
+            background: 'url(' + chrome.runtime.getURL(`images/${imagePath}.svg`) + ') center center / contain no-repeat',
+            position: 'absolute',
+            zIndex: window.getComputedStyle(input).zIndex || 'auto',
+            left: position.left + 'px',
+            top: position.top + 'px',
+            border: 'none',
+            display: 'inline',
+        };
+        Object.keys(styleOverrides).forEach(styleKey => {
+            iconElement.style[styleKey as any] = styleOverrides[styleKey];
+        });
+        iconElement.addEventListener('click', e => {
+            if (e.isTrusted) onIconClick({icon: iconElement, input: input}, type);
+        });
+        activeIcons.push({icon: iconElement, input: input});
+        input.parentElement.appendChild(iconElement);
+    }
+
+    function calcualteOverlayPos(input: HTMLElement, marginLeft = 0, marginTop = 5) {
+        const inputPosition = input.getBoundingClientRect();
+        if (!inputPosition) return;
+
+        return {left: window.pageXOffset + inputPosition.left + marginLeft,
+                top: window.pageYOffset + inputPosition.top + inputPosition.height + marginTop,
+                width: inputPosition.width,
+                height: 350};
+    }
+
+    function onIconClick(icon: {icon: HTMLElement, input: HTMLElement}, type: string) {
+        const isAlreadyOpen = activeOverlays.some(overlay => overlay.icon.icon === icon.icon);
+        closeAllOverlays();
+        if (isAlreadyOpen) return;
+
+        const position = calcualteOverlayPos(icon.input);
+        const overlayElement = document.createElement('iframe');
+        overlayElement.className = 'bitwarden';
+        overlayElement.style.setProperty('all', 'initial', '');
+        const styleOverrides: { [key: string]: string } = {
+            width: position.width + 'px',
+            minWidth: '300px',
+            height: position.height + 'px',
+            minHeight: '350px',
+            position: 'absolute',
+            zIndex: '2147483647',
+            left: position.left + 'px',
+            top: position.top + 'px',
+            border: 'none',
+            display: 'inline',
+        };
+        Object.keys(styleOverrides).forEach(styleKey => {
+            overlayElement.style[styleKey as any] = styleOverrides[styleKey];
+        });
+        activeOverlays.push({overlay: overlayElement, icon: icon});
+        document.body.appendChild(overlayElement);
+        overlayElement.contentWindow.location = chrome.extension.getURL('popup/index.html') + '?uilocation=overlay#/tabs/' +
+            (type === 'newPassword' ? 'generator' : 'current') as any;
+    }
+
+    function closeAllOverlays() {
+        while (activeOverlays.length) activeOverlays.pop().overlay.remove();
     }
 
     function isInIframe() {

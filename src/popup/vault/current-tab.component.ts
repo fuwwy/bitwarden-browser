@@ -49,7 +49,9 @@ export class CurrentTabComponent implements OnInit, OnDestroy {
     url: string;
     hostname: string;
     searchText: string;
+    tab: any;
     inSidebar = false;
+    inOverlay = false;
     searchTypeSearch = false;
     loaded = false;
 
@@ -70,6 +72,7 @@ export class CurrentTabComponent implements OnInit, OnDestroy {
     async ngOnInit() {
         this.searchTypeSearch = !this.platformUtilsService.isSafari();
         this.inSidebar = this.popupUtilsService.inSidebar(window);
+        this.inOverlay = this.popupUtilsService.inOverlay(window);
 
         this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
             this.ngZone.run(async () => {
@@ -150,13 +153,15 @@ export class CurrentTabComponent implements OnInit, OnDestroy {
                 cipher: cipher,
                 pageDetails: this.pageDetails,
                 doc: window.document,
-                fillNewPassword: true,
+                fillNewPassword: false,
             });
             if (this.totpCode != null) {
                 this.platformUtilsService.copyToClipboard(this.totpCode, { window: window });
             }
             if (this.popupUtilsService.inPopup(window)) {
                 BrowserApi.closePopup(window);
+            } else if (this.popupUtilsService.inOverlay(window) && this.tab) {
+                BrowserApi.tabSendMessageData(this.tab, 'closeOverlays');
             }
         } catch {
             this.ngZone.run(() => {
@@ -186,9 +191,9 @@ export class CurrentTabComponent implements OnInit, OnDestroy {
     }
 
     private async load() {
-        const tab = await BrowserApi.getTabFromCurrentWindow();
-        if (tab != null) {
-            this.url = tab.url;
+        this.tab = await BrowserApi.getTabFromCurrentWindow();
+        if (this.tab != null) {
+            this.url = this.tab.url;
         } else {
             this.loginCiphers = [];
             this.loaded = true;
@@ -197,9 +202,9 @@ export class CurrentTabComponent implements OnInit, OnDestroy {
 
         this.hostname = Utils.getHostname(this.url);
         this.pageDetails = [];
-        BrowserApi.tabSendMessage(tab, {
+        BrowserApi.tabSendMessage(this.tab, {
             command: 'collectPageDetails',
-            tab: tab,
+            tab: this.tab,
             sender: BroadcasterSubscriptionId,
         });
 

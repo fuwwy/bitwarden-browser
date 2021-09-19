@@ -20,6 +20,10 @@ export class PopupUtilsService {
         return win.location.search !== '' && win.location.search.indexOf('uilocation=popout') > -1;
     }
 
+    inOverlay(win: Window): boolean {
+        return win.location.search !== '' && win.location.search.indexOf('uilocation=overlay') > -1;
+    }
+
     inPopup(win: Window): boolean {
         return win.location.search === '' || win.location.search.indexOf('uilocation=') === -1 ||
             win.location.search.indexOf('uilocation=popup') > -1;
@@ -47,7 +51,8 @@ export class PopupUtilsService {
             if (href.indexOf('?uilocation=') > -1) {
                 href = href.replace('uilocation=popup', 'uilocation=popout')
                     .replace('uilocation=tab', 'uilocation=popout')
-                    .replace('uilocation=sidebar', 'uilocation=popout');
+                    .replace('uilocation=sidebar', 'uilocation=popout')
+                    .replace('uilocation=overlay', 'uilocation=popout');
             } else {
                 const hrefParts = href.split('#');
                 href = hrefParts[0] + '?uilocation=popout' + (hrefParts.length > 0 ? '#' + hrefParts[1] : '');
@@ -67,7 +72,8 @@ export class PopupUtilsService {
         } else if ((typeof chrome !== 'undefined') && chrome.tabs && chrome.tabs.create) {
             href = href.replace('uilocation=popup', 'uilocation=tab')
                 .replace('uilocation=popout', 'uilocation=tab')
-                .replace('uilocation=sidebar', 'uilocation=tab');
+                .replace('uilocation=sidebar', 'uilocation=tab')
+                .replace('uilocation=overlay', 'uilocation=tab');
             chrome.tabs.create({
                 url: href,
             });

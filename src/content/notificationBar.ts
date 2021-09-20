@@ -282,32 +282,44 @@ document.addEventListener('DOMContentLoaded', _ => {
 
     function createIcons() {
         const inputs = Array.from(document.getElementsByTagName('input'));
+        const validInputs = inputs.filter(isValidField);
 
-        inputs.filter(isValidField).forEach(input => {
-            if (input.form) {
-                if (hasAttribute(input.form, 'search')) return;
-
-                const formInputs = Array.from(input.form.getElementsByTagName('input'));
-                const usernameFields = formInputs.filter(field => isUsernameField(field) && isValidField(field));
-                const passwordFields = formInputs.filter(field => field.type.toLowerCase() === 'password' && isValidField(field));
-                const newPwFields = passwordFields.filter(field => field.autocomplete.includes('new') || field.id.match(newPassRegex));
-
-                if (input.type.toLowerCase() === 'text' && passwordFields.length === 0) return;
-
-                const isSignupOrCpwForm = passwordFields.length > 1 || usernameFields.length > 1 || newPwFields.length > 0 ||
-                    hasAttribute(input, 'signup') || hasAttribute(input.form, 'signup');
-
-                if (!isSignupOrCpwForm) {
-                    placeIcon(input, passwordFields.includes(input) ? 'password' : 'username');
-                } else {
-                    const oldPwFields = passwordFields.filter(field => !newPwFields.includes(field) && (field.autocomplete.includes('current') ||
-                        field.name.match(oldPassRegex) || field.id.match(oldPassRegex)));
-
-                    if (passwordFields.includes(input)) {
-                        placeIcon(input, oldPwFields.includes(input) ? 'password' : 'newPassword');
-                    } else {
-                        placeIcon(input, 'username');
+        validInputs.forEach(input => {
+            let form = input.form as HTMLElement;
+            if (!form) {
+                let e = input as HTMLElement;
+                while (e.parentElement) {
+                    e = e.parentElement;
+                    const validFormInputs = Array.from(e.querySelectorAll('input')).filter(isValidField);
+                    if (validInputs.every(formInput => validFormInputs.includes(formInput))) {
+                        form = e;
+                        break;
                     }
+                }
+                if (!form) return;
+            }
+            if (hasAttribute(form, 'search')) return;
+
+            const formInputs = Array.from(form.getElementsByTagName('input'));
+            const usernameFields = formInputs.filter(field => isUsernameField(field) && isValidField(field));
+            const passwordFields = formInputs.filter(field => field.type.toLowerCase() === 'password' && isValidField(field));
+            const newPwFields = passwordFields.filter(field => field.autocomplete.includes('new') || field.id.match(newPassRegex));
+
+            if (input.type.toLowerCase() === 'text' && passwordFields.length === 0) return;
+
+            const isSignupOrCpwForm = passwordFields.length > 1 || usernameFields.length > 1 || newPwFields.length > 0 ||
+                hasAttribute(input, 'signup') || hasAttribute(form, 'signup');
+
+            if (!isSignupOrCpwForm) {
+                 placeIcon(input, passwordFields.includes(input) ? 'password' : 'username');
+            } else {
+                const oldPwFields = passwordFields.filter(field => !newPwFields.includes(field) && (field.autocomplete.includes('current') ||
+                    field.name.match(oldPassRegex) || field.id.match(oldPassRegex)));
+
+                if (passwordFields.includes(input)) {
+                    placeIcon(input, oldPwFields.includes(input) ? 'password' : 'newPassword');
+                } else {
+                    placeIcon(input, 'username');
                 }
             }
             // TODO formless inputs

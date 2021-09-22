@@ -498,7 +498,7 @@ export default class RuntimeBackground {
 
         if (mainUsernameField && mainUsernameField.value) formData.username = mainUsernameField.value;
         else {
-            const cachedUsernames = this.usernameCache.filter(cachedUsername => cachedUsername.time > Date.now() - 6000
+            const cachedUsernames = this.usernameCache.filter(cachedUsername => cachedUsername.time > Date.now() - 60000
                 && cachedUsername.url === Utils.getDomain(formData.url));
             formData.username = cachedUsernames.sort((a, b) => a.time - b.time)[0]?.username;
         }
@@ -535,6 +535,6 @@ export default class RuntimeBackground {
                 url: formData.url,
             }, tab);
         }
-        this.usernameCache = this.usernameCache.filter(cachedUsername => cachedUsername.time > Date.now() - 6000);
+        this.usernameCache = this.usernameCache.filter(cachedUsername => cachedUsername.time > Date.now() - 60000);
       }
 }

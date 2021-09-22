@@ -80,6 +80,14 @@ document.addEventListener('DOMContentLoaded', _ => {
             });
         });
 
+        window.addEventListener('bw-submit', (e: CustomEvent) => {
+            startRequestListener(e.detail?.form as HTMLElement);
+            sendPlatformMessage({
+                command: 'formSubmission',
+                data: createFormData({formChild: e.detail?.form as HTMLElement}),
+            });
+        });
+
         document.addEventListener('mouseup', (e: MouseEvent) => {
             const targetNode = e.target as HTMLElement;
             if (canBeSubmitElement(targetNode))
@@ -95,6 +103,27 @@ document.addEventListener('DOMContentLoaded', _ => {
 
         function hook() {
             let requestCounter = 0;
+
+            const proxyFormSubmit = (func: Function) => {
+                return new Proxy(func, {
+                    apply: (target, receiver, args) => {
+                        window.dispatchEvent(new CustomEvent('bw-submit', {
+                            detail: {
+                                form: receiver,
+                            },
+                        }));
+                        return target.apply(receiver, args);
+                    },
+                });
+            };
+            Array.from(document.forms).forEach(form => (form.submit as any) = proxyFormSubmit(form.submit));
+            Document.prototype.createElement = new Proxy(Document.prototype.createElement, {
+                apply: (target, receiver, args) => {
+                    const result = target.apply(receiver, args);
+                    if (result?.nodeName === 'FORM' && result?.submit) result.submit = proxyFormSubmit(result.submit);
+                    return result;
+                },
+            });
 
             const xmlSendOriginalMethod = XMLHttpRequest.prototype.send;
             const xmlSendProxy = new Proxy(xmlSendOriginalMethod, {

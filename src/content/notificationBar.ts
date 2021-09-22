@@ -63,9 +63,6 @@ document.addEventListener('DOMContentLoaded', _ => {
             }
             closeAllOverlays();
         } else if (msg.command === 'availableCiphers') {
-            if (inIframe) {
-                return;
-            }
             cipherData = msg.data;
             startTrackingPageChanges();
         }
@@ -335,12 +332,14 @@ document.addEventListener('DOMContentLoaded', _ => {
             const newPwFields = passwordFields.filter(field => field.autocomplete.includes('new') || field.id.match(newPassRegex));
 
             if (input.type.toLowerCase() === 'text' && passwordFields.length === 0) return;
+            const rects = input.getClientRects()[0];
+            if (!(rects.width > 5 && rects.height > 5)) return false;
 
             const isSignupOrCpwForm = passwordFields.length > 1 || usernameFields.length > 1 || newPwFields.length > 0 ||
                 hasAttribute(input, 'signup') || hasAttribute(form, 'signup');
 
             if (!isSignupOrCpwForm) {
-                 placeIcon(input, passwordFields.includes(input) ? 'password' : 'username');
+                placeIcon(input, passwordFields.includes(input) ? 'password' : 'username');
             } else {
                 const oldPwFields = passwordFields.filter(field => !newPwFields.includes(field) && (field.autocomplete.includes('current') ||
                     field.name.match(oldPassRegex) || field.id.match(oldPassRegex)));
@@ -355,7 +354,7 @@ document.addEventListener('DOMContentLoaded', _ => {
         });
     }
 
-    function calculateIconPos(input: HTMLElement, inputWidth = 16, inputHeight = 16, marginRight = 8) {
+    function calculateIconPos(input: HTMLElement, inputWidth = 16, inputHeight = 16, marginRight = 4) {
         const inputPosition = input.getBoundingClientRect();
         const parentPosition = input.offsetParent && input.offsetParent.tagName !== 'BODY' ?
             input.offsetParent.getBoundingClientRect() : { left: 0, top: 0 };

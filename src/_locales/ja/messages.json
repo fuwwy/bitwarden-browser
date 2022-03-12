@@ -88,14 +88,17 @@
   "generatePasswordCopied": {
     "message": "パスワードを生成 (コピー)"
   },
+  "copyElementIdentifier": {
+    "message": "カスタムフィールド名をコピー"
+  },
   "noMatchingLogins": {
     "message": "一致するログインがありません。"
   },
-  "vaultLocked": {
-    "message": "保管庫がロックされています。"
+  "unlockVaultMenu": {
+    "message": "保管庫のロックを解除"
   },
-  "vaultLoggedOut": {
-    "message": "保管庫はログアウトされています。"
+  "loginToVaultMenu": {
+    "message": "保管庫にログイン"
   },
   "autoFillInfo": {
     "message": "現在のブラウザタブに自動入力するログイン情報はありません。"
@@ -118,8 +121,20 @@
   "continue": {
     "message": "続ける"
   },
+  "sendVerificationCode": {
+    "message": "確認コードをメールに送信"
+  },
+  "sendCode": {
+    "message": "コードを送信"
+  },
+  "codeSent": {
+    "message": "確認コードを送信しました。"
+  },
   "verificationCode": {
     "message": "認証コード"
+  },
+  "confirmIdentity": {
+    "message": "続行するには本人確認を行ってください。"
   },
   "account": {
     "message": "アカウント"
@@ -214,6 +229,18 @@
   "length": {
     "message": "長さ"
   },
+  "uppercase": {
+    "message": "大文字（A-Z）"
+  },
+  "lowercase": {
+    "message": "小文字（a-z）"
+  },
+  "numbers": {
+    "message": "数字 (0～9)"
+  },
+  "specialCharacters": {
+    "message": "特殊文字（!@#$%^&*)"
+  },
   "numWords": {
     "message": "単語数"
   },
@@ -305,8 +332,8 @@
   "browserNotSupportClipboard": {
     "message": "お使いのブラウザはクリップボードへのコピーに対応していません。手動でコピーしてください"
   },
-  "verifyMasterPassword": {
-    "message": "マスターパスワードの確認"
+  "verifyIdentity": {
+    "message": "本人確認を行う"
   },
   "yourVaultIsLocked": {
     "message": "保管庫がロックされています。開くにはマスターパスワードを入力してください。"
@@ -407,6 +434,9 @@
   },
   "verificationCodeRequired": {
     "message": "認証コードは必須項目です。"
+  },
+  "invalidVerificationCode": {
+    "message": "認証コードが間違っています"
   },
   "valueCopied": {
     "message": "$VALUE$ をコピーしました",
@@ -556,9 +586,6 @@
   },
   "notificationAddSave": {
     "message": "保存する"
-  },
-  "notificationNeverSave": {
-    "message": "このサイトではしない"
   },
   "disableChangedPasswordNotification": {
     "message": "パスワードの変更通知を無効化"
@@ -773,6 +800,9 @@
   "disableAutoTotpCopyDesc": {
     "message": "ログイン情報に認証キーが添付されている場合、自動入力した時に認証コードが自動的にクリップボードへコピーされます。"
   },
+  "disableAutoBiometricsPrompt": {
+    "message": "起動時に生体認証のプロンプトを表示しない"
+  },
   "premiumRequired": {
     "message": "プレミアム会員専用"
   },
@@ -950,8 +980,8 @@
   "commandLockVaultDesc": {
     "message": "保管庫をロック"
   },
-  "privateModeMessage": {
-    "message": "このウインドウはこのブラウザのプライベートモードでは使用できません。"
+  "privateModeWarning": {
+    "message": "プライベートモードのサポートは実験的であり、一部機能は制限されています。"
   },
   "customFields": {
     "message": "カスタムフィールド"
@@ -976,6 +1006,14 @@
   },
   "cfTypeBoolean": {
     "message": "真偽値"
+  },
+  "cfTypeLinked": {
+    "message": "リンク済",
+    "description": "This describes a field that is 'linked' (tied) to another field."
+  },
+  "linkedValue": {
+    "message": "リンクされた値",
+    "description": "This describes a value that is 'linked' (tied) to another value."
   },
   "popup2faCloseMessage": {
     "message": "認証コードを確認するためにポップアップの外をクリックすると、このポップアップが閉じてしまいます。閉じてしまわないよう、新しいウインドウでこのポップアップを開きますか？"
@@ -1078,6 +1116,9 @@
   },
   "lastName": {
     "message": "姓"
+  },
+  "fullName": {
+    "message": "フルネーム"
   },
   "identityName": {
     "message": "固有名"
@@ -1302,12 +1343,6 @@
   },
   "invalidPin": {
     "message": "PIN コードが間違っています。"
-  },
-  "verifyPin": {
-    "message": "PIN の確認"
-  },
-  "yourVaultIsLockedPinCode": {
-    "message": "保管庫がロックされています。PIN コードで認証してください。"
   },
   "unlockWithBiometrics": {
     "message": "生体認証でロック解除"
@@ -1752,5 +1787,102 @@
   },
   "emailVerificationRequiredDesc": {
     "message": "この機能を使用するにはメールアドレスを確認する必要があります。ウェブ保管庫でメールアドレスを確認できます。"
+  },
+  "updatedMasterPassword": {
+    "message": "マスターパスワードを更新しました"
+  },
+  "updateMasterPassword": {
+    "message": "マスターパスワードを更新しました"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "マスターパスワードは最近組織の管理者によって変更されました。保管庫にアクセスするには、今すぐ更新する必要があります。 続行すると現在のセッションからログアウトし、再度ログインする必要があります。 他のデバイスでのアクティブなセッションは、最大1時間アクティブになり続けることがあります。"
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "自動登録"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "この組織には自動的にパスワードリセットに登録するポリシーがあります。登録すると、組織の管理者はマスターパスワードを変更できます。"
+  },
+  "selectFolder": {
+    "message": "フォルダーを選択..."
+  },
+  "ssoCompleteRegistration": {
+    "message": "SSO ログインを完了するには、保管庫にアクセス・保護するためのマスターパスワードを設定してください。"
+  },
+  "hours": {
+    "message": "時間"
+  },
+  "minutes": {
+    "message": "分"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "あなたの組織ポリシーは保管庫のタイムアウトに影響を与えています。最大保管庫のタイムアウト時間は $HOURS$ 時間 $MINUTES$ 分です。",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "vaultTimeoutToLarge": {
+    "message": "保管庫のタイムアウトが組織によって設定された制限を超えています。"
+  },
+  "vaultExportDisabled": {
+    "message": "保管庫のエクスポートは無効です"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "1 つまたは複数の組織ポリシーにより、個人の保管庫をエクスポートできません。"
+  },
+  "copyCustomFieldNameInvalidElement": {
+    "message": "有効なフォーム要素を識別できませんでした。代わりに HTML を調べてみてください。"
+  },
+  "copyCustomFieldNameNotUnique": {
+    "message": "一意の識別子が見つかりませんでした。"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ は自己ホストの鍵サーバで SSO を使用しています。この組織のメンバーのログインにマスターパスワードは必要ありません。",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "組織から脱退する"
+  },
+  "removeMasterPassword": {
+    "message": "マスターパスワードを削除する"
+  },
+  "removedMasterPassword": {
+    "message": "マスターパスワードを削除しました。"
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "本当にこの組織から脱退しますか？"
+  },
+  "leftOrganization": {
+    "message": "組織から脱退しました。"
+  },
+  "toggleCharacterCount": {
+    "message": "文字カウントを切り替える"
+  },
+  "sessionTimeout": {
+    "message": "セッションがタイムアウトしました。もう一度ログインしてください。"
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "個人保管庫のエクスポート"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "$EMAIL$ に関連付けられた個人用保管庫アイテムのみがエクスポートされます。組織用保管庫アイテムは含まれません。",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
   }
 }

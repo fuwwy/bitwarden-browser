@@ -88,14 +88,17 @@
   "generatePasswordCopied": {
     "message": "Wachtwoord genereren (op klembord)"
   },
+  "copyElementIdentifier": {
+    "message": "Aangepaste veldnaam kopiëren"
+  },
   "noMatchingLogins": {
     "message": "Geen overeenkomstige logins."
   },
-  "vaultLocked": {
-    "message": "Kluis is vergrendeld."
+  "unlockVaultMenu": {
+    "message": "Ontgrendel je kluis"
   },
-  "vaultLoggedOut": {
-    "message": "Kluis is uitgelogd."
+  "loginToVaultMenu": {
+    "message": "Log in op je kluis"
   },
   "autoFillInfo": {
     "message": "Er zijn geen logins beschikbaar om op het huidige browser-tabblad in te vullen."
@@ -118,8 +121,20 @@
   "continue": {
     "message": "Doorgaan"
   },
+  "sendVerificationCode": {
+    "message": "Stuur een verificatiecode naar je e-mail"
+  },
+  "sendCode": {
+    "message": "Code versturen"
+  },
+  "codeSent": {
+    "message": "Code verstuurd"
+  },
   "verificationCode": {
     "message": "Verificatiecode"
+  },
+  "confirmIdentity": {
+    "message": "Bevestig je identiteit om door te gaan."
   },
   "account": {
     "message": "Account"
@@ -214,6 +229,18 @@
   "length": {
     "message": "Lengte"
   },
+  "uppercase": {
+    "message": "Hoofdletters (A-Z)"
+  },
+  "lowercase": {
+    "message": "Kleine letters (a-z)"
+  },
+  "numbers": {
+    "message": "Cijfers (0-9)"
+  },
+  "specialCharacters": {
+    "message": "Speciale tekens (!@#$%^&*)"
+  },
   "numWords": {
     "message": "Aantal woorden"
   },
@@ -305,11 +332,11 @@
   "browserNotSupportClipboard": {
     "message": "Je webbrowser ondersteunt kopiëren naar plakbord niet. Kopieer handmatig."
   },
-  "verifyMasterPassword": {
-    "message": "Hoofdwachtwoord invoeren"
+  "verifyIdentity": {
+    "message": "Identiteit verifiëren"
   },
   "yourVaultIsLocked": {
-    "message": "Je kluis is vergrendeld. Voer je hoofdwachtwoord in om door te gaan."
+    "message": "Je kluis is vergrendeld. Bevestig je identiteit om door te gaan."
   },
   "unlock": {
     "message": "Ontgrendelen"
@@ -407,6 +434,9 @@
   },
   "verificationCodeRequired": {
     "message": "Verificatiecode is vereist."
+  },
+  "invalidVerificationCode": {
+    "message": "Ongeldige verificatiecode"
   },
   "valueCopied": {
     "message": "$VALUE$ gekopieerd",
@@ -556,9 +586,6 @@
   },
   "notificationAddSave": {
     "message": "Ja, nu opslaan"
-  },
-  "notificationNeverSave": {
-    "message": "Nooit voor deze website"
   },
   "disableChangedPasswordNotification": {
     "message": "Melding gewijzigd wachtwoord uitschakelen"
@@ -773,6 +800,9 @@
   "disableAutoTotpCopyDesc": {
     "message": "Als je login gekoppeld is met een authenticatiecode, wordt de TOTP-verificatiecode automatisch naar het klembord gekopieerd bij het automatisch invullen van de login."
   },
+  "disableAutoBiometricsPrompt": {
+    "message": "Bij opstarten niet om biometrisch ontgrendelen vragen"
+  },
   "premiumRequired": {
     "message": "Premium is vereist"
   },
@@ -950,8 +980,8 @@
   "commandLockVaultDesc": {
     "message": "Kluis vergrendelen"
   },
-  "privateModeMessage": {
-    "message": "Dit scherm is helaas niet beschikbaar in het privévenster van deze browser."
+  "privateModeWarning": {
+    "message": "Private mode support is experimental and some features are limited."
   },
   "customFields": {
     "message": "Aangepaste velden"
@@ -976,6 +1006,14 @@
   },
   "cfTypeBoolean": {
     "message": "Boolean"
+  },
+  "cfTypeLinked": {
+    "message": "Gekoppeld",
+    "description": "This describes a field that is 'linked' (tied) to another field."
+  },
+  "linkedValue": {
+    "message": "Gekoppelde waarde",
+    "description": "This describes a value that is 'linked' (tied) to another value."
   },
   "popup2faCloseMessage": {
     "message": "Als je buiten het pop-upvenster klikt om je e-mail te controleren op een verificatiecode, dan zal de pop-up sluiten. Wil je het pop-upvenster openen in een nieuw scherm, zodat het niet wordt gesloten?"
@@ -1078,6 +1116,9 @@
   },
   "lastName": {
     "message": "Achternaam"
+  },
+  "fullName": {
+    "message": "Volledige naam"
   },
   "identityName": {
     "message": "Identiteitsnaam"
@@ -1302,12 +1343,6 @@
   },
   "invalidPin": {
     "message": "Ongeldige PIN-code."
-  },
-  "verifyPin": {
-    "message": "PIN-code invoeren"
-  },
-  "yourVaultIsLockedPinCode": {
-    "message": "Je kluis is vergrendeld. Voer je PIN-code in om door te gaan."
   },
   "unlockWithBiometrics": {
     "message": "Biometrisch ontgrendelen"
@@ -1752,5 +1787,102 @@
   },
   "emailVerificationRequiredDesc": {
     "message": "Je moet je e-mailadres verifiëren om deze functie te gebruiken. Je kunt je e-mailadres verifiëren in de kluis."
+  },
+  "updatedMasterPassword": {
+    "message": "Hoofdwachtwoord bijgewerkt"
+  },
+  "updateMasterPassword": {
+    "message": "Hoofdwachtwoord bijgewerken"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Je hoofdwachtwoord is onlangs veranderd door een beheerder in jouw organisatie. Om toegang te krijgen tot de kluis, moet je deze nu bijwerken. Doorgaan zal je huidige sessie uitloggen, waarna je opnieuw moet inloggen. Actieve sessies op andere apparaten blijven mogelijk nog een uur actief."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatische inschrijving"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Deze organisatie heeft een ondernemingsbeleid dat je automatisch inschrijft bij het resetten van je wachtwoord. Inschrijving stelt organisatiebeheerders in staat om je hoofdwachtwoord te wijzigen."
+  },
+  "selectFolder": {
+    "message": "Map selecteren..."
+  },
+  "ssoCompleteRegistration": {
+    "message": "Voor het inloggen met SSO moet je een hoofdwachtwoord instellen voor toegang tot en bescherming van je kluis."
+  },
+  "hours": {
+    "message": "Uren"
+  },
+  "minutes": {
+    "message": "Minuten"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Het beleid van je organisatie heeft invloed op de time-out van je kluis. De maximaal toegestane kluis time-out is $HOURS$ uur en $MINUTES$ minuten.",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Je kluis time-out is hoger dan het maximum van jouw organisatie."
+  },
+  "vaultExportDisabled": {
+    "message": "Kluis exporteren uitgeschakeld"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Organisatiebeleid voorkomt dat je je persoonlijke kluis exporteert."
+  },
+  "copyCustomFieldNameInvalidElement": {
+    "message": "Kan geen geldig formulierelement identificeren. Probeer in plaats daarvan de HTML te inspecteren."
+  },
+  "copyCustomFieldNameNotUnique": {
+    "message": "Geen unieke id gevonden."
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ gebruikt SSO met een zelf gehoste sleutelserver. Leden van deze organisatie kunnen inloggen zonder hoofdwachtwoord.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Organisatie verlaten"
+  },
+  "removeMasterPassword": {
+    "message": "Hoofdwachtwoord verwijderen"
+  },
+  "removedMasterPassword": {
+    "message": "Hoofdwachtwoord verwijderd."
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "Weet je zeker dat je deze organisatie wilt verlaten?"
+  },
+  "leftOrganization": {
+    "message": "Je hebt de organisatie verlaten."
+  },
+  "toggleCharacterCount": {
+    "message": "Tekentelling in-/uitschakelen"
+  },
+  "sessionTimeout": {
+    "message": "Je sessie is verlopen. Ga terug en probeer opnieuw in te loggen."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Persoonlijke kluis exporteren"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Exporteert alleen de persoonlijke kluis-items gerelateerd aan $EMAIL$. Geen kluis-items van de organisatie.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
   }
 }

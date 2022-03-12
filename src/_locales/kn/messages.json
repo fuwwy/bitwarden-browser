@@ -88,14 +88,17 @@
   "generatePasswordCopied": {
     "message": "ಪಾಸ್ವರ್ಡ್ ರಚಿಸಿ (ನಕಲಿಸಲಾಗಿದೆ)"
   },
+  "copyElementIdentifier": {
+    "message": "Copy Custom Field Name"
+  },
   "noMatchingLogins": {
     "message": "ಹೊಂದಾಣಿಕೆಯ ಲಾಗಿನ್‌ಗಳು ಇಲ್ಲ."
   },
-  "vaultLocked": {
-    "message": "ವಾಲ್ಟ್ ಲಾಕ್ ಆಗಿದೆ."
+  "unlockVaultMenu": {
+    "message": "Unlock your vault"
   },
-  "vaultLoggedOut": {
-    "message": "ವಾಲ್ಟ್ ಲಾಗ್ ಔಟ್ ಆಗಿದೆ."
+  "loginToVaultMenu": {
+    "message": "Log in to your vault"
   },
   "autoFillInfo": {
     "message": "ಪ್ರಸ್ತುತ ಬ್ರೌಸರ್ ಟ್ಯಾಬ್‌ಗಾಗಿ ಸ್ವಯಂ ಭರ್ತಿ ಮಾಡಲು ಯಾವುದೇ ಲಾಗಿನ್‌ಗಳು ಲಭ್ಯವಿಲ್ಲ."
@@ -118,8 +121,20 @@
   "continue": {
     "message": "ಮುಂದುವರಿಸಿ"
   },
+  "sendVerificationCode": {
+    "message": "Send a verification code to your email"
+  },
+  "sendCode": {
+    "message": "Send Code"
+  },
+  "codeSent": {
+    "message": "Code Sent"
+  },
   "verificationCode": {
     "message": "ಪರಿಶೀಲನಾ ಕೋಡ್‌ಗಳು"
+  },
+  "confirmIdentity": {
+    "message": "Confirm your identity to continue."
   },
   "account": {
     "message": "ಖಾತೆ"
@@ -214,6 +229,18 @@
   "length": {
     "message": "ಉದ್ದ"
   },
+  "uppercase": {
+    "message": "Uppercase (A-Z)"
+  },
+  "lowercase": {
+    "message": "Lowercase (a-z)"
+  },
+  "numbers": {
+    "message": "Numbers (0-9)"
+  },
+  "specialCharacters": {
+    "message": "Special Characters (!@#$%^&*)"
+  },
   "numWords": {
     "message": "ಪದಗಳ ಸಂಖ್ಯೆ"
   },
@@ -305,8 +332,8 @@
   "browserNotSupportClipboard": {
     "message": "ನಿಮ್ಮ ವೆಬ್ ಬ್ರೌಸರ್ ಸುಲಭವಾದ ಕ್ಲಿಪ್‌ಬೋರ್ಡ್ ನಕಲು ಮಾಡುವುದನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ. ಬದಲಿಗೆ ಅದನ್ನು ಹಸ್ತಚಾಲಿತವಾಗಿ ನಕಲಿಸಿ."
   },
-  "verifyMasterPassword": {
-    "message": "ಮಾಸ್ಟರ್ ಪಾಸ್‌ವರ್ಡ್ ಪರಿಶೀಲಿಸಿ"
+  "verifyIdentity": {
+    "message": "Verify Identity"
   },
   "yourVaultIsLocked": {
     "message": "ನಿಮ್ಮ ವಾಲ್ಟ್ ಲಾಕ್ ಆಗಿದೆ. ಮುಂದುವರೆಯಲು ನಿಮ್ಮ ಮಾಸ್ಟರ್ ಪಾಸ್‌ವರ್ಡ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ."
@@ -407,6 +434,9 @@
   },
   "verificationCodeRequired": {
     "message": "ಪರಿಶೀಲನೆ ಕೋಡ್ ಅಗತ್ಯವಿದೆ."
+  },
+  "invalidVerificationCode": {
+    "message": "Invalid verification code"
   },
   "valueCopied": {
     "message": "$VALUE$ ನಕಲಿಸಲಾಗಿದೆ",
@@ -556,9 +586,6 @@
   },
   "notificationAddSave": {
     "message": "ಹೌದು, ಈಗ ಉಳಿಸಿ"
-  },
-  "notificationNeverSave": {
-    "message": "ಈ ವೆಬ್ಸೈಟ್ಗೆ ಎಂದಿಗೂ ಇಲ್ಲ"
   },
   "disableChangedPasswordNotification": {
     "message": "ಬದಲಾವಣೆ ಪಾಸ್ವರ್ಡ್ ಅಧಿಸೂಚನೆಯನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ"
@@ -773,6 +800,9 @@
   "disableAutoTotpCopyDesc": {
     "message": "ನಿಮ್ಮ ಲಾಗಿನ್‌ಗೆ ದೃಢೀಕರಣ ಕೀಲಿಯನ್ನು ಲಗತ್ತಿಸಿದ್ದರೆ, ನೀವು ಲಾಗಿನ್ ಅನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಭರ್ತಿ ಮಾಡಿದಾಗಲೆಲ್ಲಾ TOTP ಪರಿಶೀಲನಾ ಕೋಡ್ ನಿಮ್ಮ ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನಕಲಿಸಲ್ಪಡುತ್ತದೆ."
   },
+  "disableAutoBiometricsPrompt": {
+    "message": "Do not prompt for biometrics on launch"
+  },
   "premiumRequired": {
     "message": "ಪ್ರೀಮಿಯಂ ಅಗತ್ಯವಿದೆ"
   },
@@ -950,8 +980,8 @@
   "commandLockVaultDesc": {
     "message": "ವಾಲ್ಟ್ ಅನ್ನು ಲಾಕ್ ಮಾಡಿ"
   },
-  "privateModeMessage": {
-    "message": "ದುರದೃಷ್ಟವಶಾತ್ ಈ ವಿಂಡೋ ಈ ಬ್ರೌಸರ್‌ಗಾಗಿ ಖಾಸಗಿ ಮೋಡ್‌ನಲ್ಲಿ ಲಭ್ಯವಿಲ್ಲ."
+  "privateModeWarning": {
+    "message": "Private mode support is experimental and some features are limited."
   },
   "customFields": {
     "message": "ಕಸ್ಟಮ್ ಕ್ಷೇತ್ರಗಳು"
@@ -976,6 +1006,14 @@
   },
   "cfTypeBoolean": {
     "message": "ಬೂಲಿಯನ್"
+  },
+  "cfTypeLinked": {
+    "message": "Linked",
+    "description": "This describes a field that is 'linked' (tied) to another field."
+  },
+  "linkedValue": {
+    "message": "Linked value",
+    "description": "This describes a value that is 'linked' (tied) to another value."
   },
   "popup2faCloseMessage": {
     "message": "ನಿಮ್ಮ ಪರಿಶೀಲನಾ ಕೋಡ್‌ಗಾಗಿ ನಿಮ್ಮ ಇಮೇಲ್ ಪರಿಶೀಲಿಸಲು ಪಾಪ್ಅಪ್ ವಿಂಡೋದ ಹೊರಗೆ ಕ್ಲಿಕ್ ಮಾಡುವುದರಿಂದ ಈ ಪಾಪ್ಅಪ್ ಮುಚ್ಚಲ್ಪಡುತ್ತದೆ. ಈ ಪಾಪ್ಅಪ್ ಅನ್ನು ಮುಚ್ಚದಿರುವಂತೆ ಹೊಸ ವಿಂಡೋದಲ್ಲಿ ತೆರೆಯಲು ನೀವು ಬಯಸುವಿರಾ?"
@@ -1078,6 +1116,9 @@
   },
   "lastName": {
     "message": "ಕೊನೆ ಹೆಸರು"
+  },
+  "fullName": {
+    "message": "Full Name"
   },
   "identityName": {
     "message": "ಹೆಸರು ಗುರುತು"
@@ -1302,12 +1343,6 @@
   },
   "invalidPin": {
     "message": "ಅಮಾನ್ಯ ಪಿನ್ ಕೋಡ್."
-  },
-  "verifyPin": {
-    "message": "ಪಿನ್ ಪರಿಶೀಲಿಸಿ"
-  },
-  "yourVaultIsLockedPinCode": {
-    "message": "ನಿಮ್ಮ ವಾಲ್ಟ್ ಲಾಕ್ ಆಗಿದೆ. ಮುಂದುವರೆಯಲು ನಿಮ್ಮ ಪಿನ್ ಕೋಡ್ ಪರಿಶೀಲಿಸಿ."
   },
   "unlockWithBiometrics": {
     "message": "ಬಯೋಮೆಟ್ರಿಕ್ಸ್‌ನೊಂದಿಗೆ ಅನ್ಲಾಕ್ ಮಾಡಿ"
@@ -1752,5 +1787,102 @@
   },
   "emailVerificationRequiredDesc": {
     "message": "ಈ ವೈಶಿಷ್ಟ್ಯವನ್ನು ಬಳಸಲು ನಿಮ್ಮ ಇಮೇಲ್ ಅನ್ನು ನೀವು ಪರಿಶೀಲಿಸಬೇಕು. ವೆಬ್ ವಾಲ್ಟ್ನಲ್ಲಿ ನಿಮ್ಮ ಇಮೇಲ್ ಅನ್ನು ನೀವು ಪರಿಶೀಲಿಸಬಹುದು."
+  },
+  "updatedMasterPassword": {
+    "message": "Updated Master Password"
+  },
+  "updateMasterPassword": {
+    "message": "Update Master Password"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update it now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatic Enrollment"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+  },
+  "selectFolder": {
+    "message": "Select folder..."
+  },
+  "ssoCompleteRegistration": {
+    "message": "In order to complete logging in with SSO, please set a master password to access and protect your vault."
+  },
+  "hours": {
+    "message": "Hours"
+  },
+  "minutes": {
+    "message": "Minutes"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Your vault timeout exceeds the restrictions set by your organization."
+  },
+  "vaultExportDisabled": {
+    "message": "Vault Export Disabled"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "One or more organization policies prevents you from exporting your personal vault."
+  },
+  "copyCustomFieldNameInvalidElement": {
+    "message": "Unable to identify a valid form element. Try inspecting the HTML instead."
+  },
+  "copyCustomFieldNameNotUnique": {
+    "message": "No unique identifier found."
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ is using SSO with a self-hosted key server. A master password is no longer required to log in for members of this organization.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Leave Organization"
+  },
+  "removeMasterPassword": {
+    "message": "Remove Master Password"
+  },
+  "removedMasterPassword": {
+    "message": "Master password removed."
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "Are you sure you want to leave this organization?"
+  },
+  "leftOrganization": {
+    "message": "You have left the organization."
+  },
+  "toggleCharacterCount": {
+    "message": "Toggle character count"
+  },
+  "sessionTimeout": {
+    "message": "Your session has timed out. Please go back and try logging in again."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Exporting Personal Vault"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Only the personal vault items associated with $EMAIL$ will be exported. Organization vault items will not be included.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
   }
 }

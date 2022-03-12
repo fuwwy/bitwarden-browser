@@ -1,540 +1,235 @@
-import { CipherType } from 'jslib-common/enums/cipherType';
+import { EnvironmentService } from "jslib-common/abstractions/environment.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { MessagingService } from "jslib-common/abstractions/messaging.service";
+import { NotificationsService } from "jslib-common/abstractions/notifications.service";
+import { SystemService } from "jslib-common/abstractions/system.service";
+import { Utils } from "jslib-common/misc/utils";
 
-import { CipherView } from 'jslib-common/models/view/cipherView';
-import { LoginUriView } from 'jslib-common/models/view/loginUriView';
-import { LoginView } from 'jslib-common/models/view/loginView';
+import { BrowserApi } from "../browser/browserApi";
+import { AutofillService } from "../services/abstractions/autofill.service";
+import BrowserPlatformUtilsService from "../services/browserPlatformUtils.service";
 
-import { CipherService } from 'jslib-common/abstractions/cipher.service';
-import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
-import { FolderService } from 'jslib-common/abstractions/folder.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { MessagingService } from 'jslib-common/abstractions/messaging.service';
-import { NotificationsService } from 'jslib-common/abstractions/notifications.service';
-import { PolicyService } from 'jslib-common/abstractions/policy.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
-import { SystemService } from 'jslib-common/abstractions/system.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
-import { VaultTimeoutService } from 'jslib-common/abstractions/vaultTimeout.service';
-import { ConstantsService } from 'jslib-common/services/constants.service';
-import { AutofillService } from '../services/abstractions/autofill.service';
-import BrowserPlatformUtilsService from '../services/browserPlatformUtils.service';
-
-import { BrowserApi } from '../browser/browserApi';
-
-import MainBackground from './main.background';
-
-import { Utils } from 'jslib-common/misc/utils';
-
-import { PolicyType } from 'jslib-common/enums/policyType';
+import MainBackground from "./main.background";
+import LockedVaultPendingNotificationsItem from "./models/lockedVaultPendingNotificationsItem";
 
 export default class RuntimeBackground {
-    private runtime: any;
-    private autofillTimeout: any;
-    private pageDetailsToAutoFill: any[] = [];
-    private onInstalledReason: string = null;
-    private usernameCache: any[] = [];
+  private autofillTimeout: any;
+  private pageDetailsToAutoFill: any[] = [];
+  private onInstalledReason: string = null;
+  private lockedVaultPendingNotifications: LockedVaultPendingNotificationsItem[] = [];
 
-    constructor(private main: MainBackground, private autofillService: AutofillService,
-        private cipherService: CipherService, private platformUtilsService: BrowserPlatformUtilsService,
-        private storageService: StorageService, private i18nService: I18nService,
-        private notificationsService: NotificationsService,
-        private systemService: SystemService, private vaultTimeoutService: VaultTimeoutService,
-        private environmentService: EnvironmentService, private policyService: PolicyService,
-        private userService: UserService, private messagingService: MessagingService,
-        private folderService: FolderService) {
+  constructor(
+    private main: MainBackground,
+    private autofillService: AutofillService,
+    private platformUtilsService: BrowserPlatformUtilsService,
+    private i18nService: I18nService,
+    private notificationsService: NotificationsService,
+    private systemService: SystemService,
+    private environmentService: EnvironmentService,
+    private messagingService: MessagingService,
+    private logService: LogService
+  ) {
+    // onInstalled listener must be wired up before anything else, so we do it in the ctor
+    chrome.runtime.onInstalled.addListener((details: any) => {
+      this.onInstalledReason = details.reason;
+    });
+  }
 
-        // onInstalled listener must be wired up before anything else, so we do it in the ctor
-        chrome.runtime.onInstalled.addListener((details: any) => {
-            this.onInstalledReason = details.reason;
-        });
+  async init() {
+    if (!chrome.runtime) {
+      return;
     }
 
-    async init() {
-        if (!chrome.runtime) {
-            return;
-        }
+    await this.checkOnInstalled();
+    const backgroundMessageListener = async (
+      msg: any,
+      sender: chrome.runtime.MessageSender,
+      sendResponse: any
+    ) => {
+      await this.processMessage(msg, sender, sendResponse);
+    };
 
-        await this.checkOnInstalled();
-        BrowserApi.messageListener('runtime.background', async (msg: any, sender: any, sendResponse: any) => {
-            await this.processMessage(msg, sender, sendResponse);
-        });
+    BrowserApi.messageListener("runtime.background", backgroundMessageListener);
+    if (this.main.isPrivateMode) {
+      (window as any).bitwardenBackgroundMessageListener = backgroundMessageListener;
     }
+  }
 
-    async processMessage(msg: any, sender: any, sendResponse: any) {
-        switch (msg.command) {
-            case 'loggedIn':
-            case 'unlocked':
-                await this.main.setIcon();
-                await this.main.refreshBadgeAndMenu(false);
-                this.notificationsService.updateConnection(msg.command === 'unlocked');
-                this.systemService.cancelProcessReload();
-                break;
-            case 'logout':
-                await this.main.logout(msg.expired);
-                break;
-            case 'syncCompleted':
-                if (msg.successfully) {
-                    setTimeout(async () => await this.main.refreshBadgeAndMenu(), 2000);
-                }
-                break;
-            case 'openPopup':
-                await this.main.openPopup();
-                break;
-            case 'showDialogResolve':
-                this.platformUtilsService.resolveDialogPromise(msg.dialogId, msg.confirmed);
-                break;
-            case 'bgGetDataForTab':
-                await this.getDataForTab(sender.tab, msg.responseCommand);
-                break;
-            case 'bgOpenNotificationBar':
-                await BrowserApi.tabSendMessageData(sender.tab, 'openNotificationBar', msg.data);
-                break;
-            case 'bgCloseNotificationBar':
-                await BrowserApi.tabSendMessageData(sender.tab, 'closeNotificationBar');
-                break;
-            case 'bgAdjustNotificationBar':
-                await BrowserApi.tabSendMessageData(sender.tab, 'adjustNotificationBar', msg.data);
-                break;
-            case 'bgCollectPageDetails':
-                await this.main.collectPageDetailsForContentScript(sender.tab, msg.sender, sender.frameId);
-                break;
-            case 'bgAddLogin':
-                await this.addLogin(msg.login, sender.tab);
-                break;
-            case 'bgChangedPassword':
-                await this.changedPassword(msg.data, sender.tab);
-                break;
-            case 'bgAddClose':
-            case 'bgChangeClose':
-                this.removeTabFromNotificationQueue(sender.tab);
-                break;
-            case 'bgAddSave':
-                await this.saveAddLogin(sender.tab, msg.folder);
-                break;
-            case 'bgChangeSave':
-                await this.saveChangePassword(sender.tab);
-                break;
-            case 'bgNeverSave':
-                await this.saveNever(sender.tab);
-                break;
-            case 'bgUpdateContextMenu':
-            case 'editedCipher':
-            case 'addedCipher':
-            case 'deletedCipher':
-                await this.main.refreshBadgeAndMenu();
-                break;
-            case 'bgReseedStorage':
-                await this.main.reseedStorage();
-                break;
-            case 'collectPageDetailsResponse':
-                if (await this.vaultTimeoutService.isLocked()) {
-                    return;
-                }
-                switch (msg.sender) {
-                    case 'autofiller':
-                    case 'autofill_cmd':
-                        const totpCode = await this.autofillService.doAutoFillActiveTab([{
-                            frameId: sender.frameId,
-                            tab: msg.tab,
-                            details: msg.details,
-                        }], msg.sender === 'autofill_cmd');
-                        if (totpCode != null) {
-                            this.platformUtilsService.copyToClipboard(totpCode, { window: window });
-                        }
-                        break;
-                    case 'contextMenu':
-                        clearTimeout(this.autofillTimeout);
-                        this.pageDetailsToAutoFill.push({
-                            frameId: sender.frameId,
-                            tab: msg.tab,
-                            details: msg.details,
-                        });
-                        this.autofillTimeout = setTimeout(async () => await this.autofillPage(), 300);
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case 'authResult':
-                const vaultUrl = this.environmentService.getWebVaultUrl();
+  async processMessage(msg: any, sender: any, sendResponse: any) {
+    switch (msg.command) {
+      case "loggedIn":
+      case "unlocked": {
+        let item: LockedVaultPendingNotificationsItem;
 
-                if (msg.referrer == null || Utils.getHostname(vaultUrl) !== msg.referrer) {
-                    return;
-                }
+        if (this.lockedVaultPendingNotifications?.length > 0) {
+          await BrowserApi.closeLoginTab();
 
-                try {
-                    BrowserApi.createNewTab('popup/index.html?uilocation=popout#/sso?code=' +
-                        msg.code + '&state=' + msg.state);
-                }
-                catch { }
-                break;
-            case 'webAuthnResult':
-                const vaultUrl2 = this.environmentService.getWebVaultUrl();
-
-                if (msg.referrer == null || Utils.getHostname(vaultUrl2) !== msg.referrer) {
-                    return;
-                }
-
-                const params = `webAuthnResponse=${encodeURIComponent(msg.data)};remember=${msg.remember}`;
-                BrowserApi.createNewTab(`popup/index.html?uilocation=popout#/2fa;${params}`, undefined, false);
-                break;
-            case 'reloadPopup':
-                this.messagingService.send('reloadPopup');
-                break;
-            case 'emailVerificationRequired':
-                this.messagingService.send('showDialog', {
-                    dialogId: 'emailVerificationRequired',
-                    title: this.i18nService.t('emailVerificationRequired'),
-                    text: this.i18nService.t('emailVerificationRequiredDesc'),
-                    confirmText: this.i18nService.t('ok'),
-                    type: 'info',
-                });
-                break;
-            case 'getClickedElementResponse':
-                this.platformUtilsService.copyToClipboard(msg.identifier, { window: window });
-            case 'formSubmission':
-                this.handleFormSubmission(sender.tab, msg.data);
-            case 'requestAvailableCiphers':
-                const ciphers = await this.cipherService.getAllDecryptedForUrl(sender.tab.url);
-                await BrowserApi.tabSendMessageData(sender.tab, 'availableCiphers', {
-                    ciphers: ciphers.length,
-                    usernameCiphers: ciphers.filter(cipher => cipher.login && cipher.login.username).length,
-                    passwordCiphers: ciphers.filter(cipher => cipher.login && cipher.login.password).length,
-                });
-                break;
-            default:
-                break;
-        }
-    }
-
-    private async autofillPage() {
-        const totpCode = await this.autofillService.doAutoFill({
-            cipher: this.main.loginToAutoFill,
-            pageDetails: this.pageDetailsToAutoFill,
-            fillNewPassword: true,
-        });
-
-        if (totpCode != null) {
-            this.platformUtilsService.copyToClipboard(totpCode, { window: window });
+          item = this.lockedVaultPendingNotifications.pop();
+          if (item.commandToRetry.sender?.tab?.id) {
+            await BrowserApi.focusSpecifiedTab(item.commandToRetry.sender.tab.id);
+          }
         }
 
-        // reset
-        this.main.loginToAutoFill = null;
-        this.pageDetailsToAutoFill = [];
-    }
+        await this.main.setIcon();
+        await this.main.refreshBadgeAndMenu(false);
+        this.notificationsService.updateConnection(msg.command === "unlocked");
+        this.systemService.cancelProcessReload();
 
-    private async saveAddLogin(tab: any, folderId: string) {
-        if (await this.vaultTimeoutService.isLocked()) {
-            return;
+        if (item) {
+          await BrowserApi.tabSendMessageData(
+            item.commandToRetry.sender.tab,
+            "unlockCompleted",
+            item
+          );
         }
-
-        for (let i = this.main.notificationQueue.length - 1; i >= 0; i--) {
-            const queueMessage = this.main.notificationQueue[i];
-            if (queueMessage.tabId !== tab.id || queueMessage.type !== 'addLogin') {
-                continue;
-            }
-
-            const tabDomain = Utils.getDomain(tab.url);
-            if (tabDomain != null && tabDomain !== queueMessage.domain) {
-                continue;
-            }
-
-            this.main.notificationQueue.splice(i, 1);
-            BrowserApi.tabSendMessageData(tab, 'closeNotificationBar');
-
-            const loginModel = new LoginView();
-            const loginUri = new LoginUriView();
-            loginUri.uri = queueMessage.uri;
-            loginModel.uris = [loginUri];
-            loginModel.username = queueMessage.username;
-            loginModel.password = queueMessage.password;
-            const model = new CipherView();
-            model.name = Utils.getHostname(queueMessage.uri) || queueMessage.domain;
-            model.name = model.name.replace(/^www\./, '');
-            model.type = CipherType.Login;
-            model.login = loginModel;
-
-            if (!Utils.isNullOrWhitespace(folderId)) {
-                const folders = await this.folderService.getAllDecrypted();
-                if (folders.some(x => x.id === folderId)) {
-                    model.folderId = folderId;
-                }
-            }
-
-            const cipher = await this.cipherService.encrypt(model);
-            await this.cipherService.saveWithServer(cipher);
-        }
-    }
-
-    private async saveChangePassword(tab: any) {
-        if (await this.vaultTimeoutService.isLocked()) {
-            return;
-        }
-
-        for (let i = this.main.notificationQueue.length - 1; i >= 0; i--) {
-            const queueMessage = this.main.notificationQueue[i];
-            if (queueMessage.tabId !== tab.id || queueMessage.type !== 'changePassword') {
-                continue;
-            }
-
-            const tabDomain = Utils.getDomain(tab.url);
-            if (tabDomain != null && tabDomain !== queueMessage.domain) {
-                continue;
-            }
-
-            this.main.notificationQueue.splice(i, 1);
-            BrowserApi.tabSendMessageData(tab, 'closeNotificationBar');
-
-            const cipher = await this.cipherService.get(queueMessage.cipherId);
-            if (cipher != null && cipher.type === CipherType.Login) {
-                const model = await cipher.decrypt();
-                model.login.password = queueMessage.newPassword;
-                const newCipher = await this.cipherService.encrypt(model);
-                await this.cipherService.saveWithServer(newCipher);
-            }
-        }
-    }
-
-    private async saveNever(tab: any) {
-        for (let i = this.main.notificationQueue.length - 1; i >= 0; i--) {
-            const queueMessage = this.main.notificationQueue[i];
-            if (queueMessage.tabId !== tab.id || queueMessage.type !== 'addLogin') {
-                continue;
-            }
-
-            const tabDomain = Utils.getDomain(tab.url);
-            if (tabDomain != null && tabDomain !== queueMessage.domain) {
-                continue;
-            }
-
-            this.main.notificationQueue.splice(i, 1);
-            BrowserApi.tabSendMessageData(tab, 'closeNotificationBar');
-
-            const hostname = Utils.getHostname(tab.url);
-            await this.cipherService.saveNeverDomain(hostname);
-        }
-    }
-
-    private async addLogin(loginInfo: any, tab: any) {
-        if (await this.vaultTimeoutService.isLocked()) {
-            return;
-        }
-
-        const loginDomain = Utils.getDomain(loginInfo.url);
-        if (loginDomain == null) {
-            return;
-        }
-
-        let normalizedUsername = loginInfo.username;
-        if (normalizedUsername != null) {
-            normalizedUsername = normalizedUsername.toLowerCase();
-        }
-
-        const ciphers = await this.cipherService.getAllDecryptedForUrl(loginInfo.url);
-        const usernameMatches = ciphers.filter(c =>
-            c.login.username != null && c.login.username.toLowerCase() === normalizedUsername);
-        if (usernameMatches.length === 0) {
-            const disabledAddLogin = await this.storageService.get<boolean>(
-                ConstantsService.disableAddLoginNotificationKey);
-            if (disabledAddLogin) {
-                return;
-            }
-
-            if (!(await this.allowPersonalOwnership())) {
-                return;
-            }
-
-            // remove any old messages for this tab
-            this.removeTabFromNotificationQueue(tab);
-            this.main.notificationQueue.push({
-                type: 'addLogin',
-                username: loginInfo.username,
-                password: loginInfo.password,
-                domain: loginDomain,
-                uri: loginInfo.url,
-                tabId: tab.id,
-                expires: new Date((new Date()).getTime() + 30 * 60000), // 30 minutes
-            });
-            await this.main.checkNotificationQueue(tab);
-        } else if (usernameMatches.length === 1 && usernameMatches[0].login.password !== loginInfo.password) {
-            const disabledChangePassword = await this.storageService.get<boolean>(
-                ConstantsService.disableChangedPasswordNotificationKey);
-            if (disabledChangePassword) {
-                return;
-            }
-            this.addChangedPasswordToQueue(usernameMatches[0].id, loginDomain, loginInfo.password, tab);
-        }
-    }
-
-    private async changedPassword(changeData: any, tab: any) {
-        if (await this.vaultTimeoutService.isLocked()) {
-            return;
-        }
-
-        const loginDomain = Utils.getDomain(changeData.url);
-        if (loginDomain == null) {
-            return;
-        }
-
-        let id: string = null;
-        const ciphers = await this.cipherService.getAllDecryptedForUrl(changeData.url);
-        if (changeData.currentPassword != null) {
-            const passwordMatches = ciphers.filter(c => c.login.password === changeData.currentPassword);
-            if (passwordMatches.length === 1) {
-                id = passwordMatches[0].id;
-            } else if (changeData.username) {
-                const usernameMatches = passwordMatches.filter(cipher => cipher.login.username === changeData.username);
-                if (usernameMatches.length === 1) {
-                    id = usernameMatches[0].id;
-                }
-            }
-        } else if (ciphers.length === 1) {
-            id = ciphers[0].id;
-        }
-        if (id != null) {
-            this.addChangedPasswordToQueue(id, loginDomain, changeData.newPassword, tab);
-        }
-    }
-
-    private async addChangedPasswordToQueue(cipherId: string, loginDomain: string, newPassword: string, tab: any) {
-        // remove any old messages for this tab
-        this.removeTabFromNotificationQueue(tab);
-        this.main.notificationQueue.push({
-            type: 'changePassword',
-            cipherId: cipherId,
-            newPassword: newPassword,
-            domain: loginDomain,
-            tabId: tab.id,
-            expires: new Date((new Date()).getTime() + 30 * 60000), // 30 minutes
-        });
-        await this.main.checkNotificationQueue(tab);
-    }
-
-    private removeTabFromNotificationQueue(tab: any) {
-        for (let i = this.main.notificationQueue.length - 1; i >= 0; i--) {
-            if (this.main.notificationQueue[i].tabId === tab.id) {
-                this.main.notificationQueue.splice(i, 1);
-            }
-        }
-    }
-
-    private async checkOnInstalled() {
-        setTimeout(async () => {
-            if (this.onInstalledReason != null) {
-                if (this.onInstalledReason === 'install') {
-                    BrowserApi.createNewTab('https://bitwarden.com/browser-start/');
-                    await this.setDefaultSettings();
-                }
-
-                this.onInstalledReason = null;
-            }
-        }, 100);
-    }
-
-    private async setDefaultSettings() {
-        // Default timeout option to "on restart".
-        const currentVaultTimeout = await this.storageService.get<number>(ConstantsService.vaultTimeoutKey);
-        if (currentVaultTimeout == null) {
-            await this.storageService.save(ConstantsService.vaultTimeoutKey, -1);
-        }
-
-        // Default action to "lock".
-        const currentVaultTimeoutAction = await this.storageService.get<string>(ConstantsService.vaultTimeoutActionKey);
-        if (currentVaultTimeoutAction == null) {
-            await this.storageService.save(ConstantsService.vaultTimeoutActionKey, 'lock');
-        }
-    }
-
-    private async getDataForTab(tab: any, responseCommand: string) {
-        const responseData: any = {};
-        if (responseCommand === 'notificationBarDataResponse') {
-            responseData.neverDomains = await this.storageService.get<any>(ConstantsService.neverDomainsKey);
-            const disableAddLoginFromOptions = await this.storageService.get<boolean>(
-                ConstantsService.disableAddLoginNotificationKey);
-            responseData.disabledAddLoginNotification = disableAddLoginFromOptions || !(await this.allowPersonalOwnership());
-            responseData.disabledChangedPasswordNotification = await this.storageService.get<boolean>(
-                ConstantsService.disableChangedPasswordNotificationKey);
-        } else if (responseCommand === 'autofillerAutofillOnPageLoadEnabledResponse') {
-            responseData.autofillEnabled = await this.storageService.get<boolean>(
-                ConstantsService.enableAutoFillOnPageLoadKey);
-        } else if (responseCommand === 'notificationBarFrameDataResponse') {
-            responseData.i18n = {
-                appName: this.i18nService.t('appName'),
-                close: this.i18nService.t('close'),
-                yes: this.i18nService.t('yes'),
-                never: this.i18nService.t('never'),
-                notificationAddSave: this.i18nService.t('notificationAddSave'),
-                notificationNeverSave: this.i18nService.t('notificationNeverSave'),
-                notificationAddDesc: this.i18nService.t('notificationAddDesc'),
-                notificationChangeSave: this.i18nService.t('notificationChangeSave'),
-                notificationChangeDesc: this.i18nService.t('notificationChangeDesc'),
-            };
-        } else if (responseCommand === 'notificationBarGetFoldersList') {
-            responseData.folders = await this.folderService.getAllDecrypted();
-        }
-
-        await BrowserApi.tabSendMessageData(tab, responseCommand, responseData);
-    }
-
-    private async allowPersonalOwnership(): Promise<boolean> {
-        return !await this.policyService.policyAppliesToUser(PolicyType.PersonalOwnership);
-    }
-
-    private async handleFormSubmission(tab: any, formData: {url: string, fields: any[], username?: string, password?: string, originalPassword?: string, isPasswordChange?: boolean}) {
-        const ciphers = await this.cipherService.getAllDecryptedForUrl(formData.url);
-        const passwordFields = formData.fields.filter(field => field.type === 'password');
-        const usernameFields = formData.fields.filter(field => field.type === 'email' || field.type === 'text');
-        const mainUsernameField = formData.fields.filter(field => field.attributes.includes('email'))[0] || usernameFields[0];
-
-        if (passwordFields.length === 0) {
-            if (!mainUsernameField) return;
-
-            return this.usernameCache.push({
-                url: Utils.getDomain(formData.url),
-                username: mainUsernameField.value,
-                time: Date.now(),
-            });
-        }
-
-        if (mainUsernameField && mainUsernameField.value) formData.username = mainUsernameField.value;
-        else {
-            const cachedUsernames = this.usernameCache.filter(cachedUsername => cachedUsername.time > Date.now() - 60000
-                && cachedUsername.url === Utils.getDomain(formData.url));
-            formData.username = cachedUsernames.sort((a, b) => a.time - b.time)[0]?.username;
-        }
-
-        const passwordValues = Array.from(new Set(passwordFields.map(field => field.value)));
-        if (passwordValues.length === 1) {
-            if (passwordFields.length === 2 && formData.fields.length === 2) formData.isPasswordChange = true;
-            formData.password = passwordValues[0];
-        } else {
-            passwordValues.forEach(password => {
-                const passwordMatches = ciphers.filter(c => (!formData.username || c.login.username === formData.username.toLowerCase()) && c.login.password === password);
-                if (passwordMatches) {
-                    formData.originalPassword = password;
-                    formData.password = passwordValues.find(value => value !== password);
-                } else if (passwordValues.length === 2 && passwordFields.filter(field => field.value === password).length > 1) {
-                    formData.originalPassword = passwordValues.find(value => value !== password);
-                    formData.password = password;
-                }
-            });
-        }
-        if (!formData.password) formData.password = passwordValues[0];
-
-        if (formData.isPasswordChange || formData.originalPassword) {
-            this.changedPassword({
-                username: formData.username,
-                newPassword: formData.password,
-                currentPassword: formData.originalPassword,
-                url: formData.url,
-            }, tab);
-        } else {
-            this.addLogin({
-                username: formData.username,
-                password: formData.password,
-                url: formData.url,
-            }, tab);
-        }
-        this.usernameCache = this.usernameCache.filter(cachedUsername => cachedUsername.time > Date.now() - 60000);
+        break;
       }
+      case "addToLockedVaultPendingNotifications":
+        this.lockedVaultPendingNotifications.push(msg.data);
+        break;
+      case "logout":
+        await this.main.logout(msg.expired, msg.userId);
+        break;
+      case "syncCompleted":
+        if (msg.successfully) {
+          setTimeout(async () => await this.main.refreshBadgeAndMenu(), 2000);
+        }
+        break;
+      case "openPopup":
+        await this.main.openPopup();
+        break;
+      case "promptForLogin":
+        await BrowserApi.createNewTab("popup/index.html?uilocation=popout", true, true);
+        break;
+      case "showDialogResolve":
+        this.platformUtilsService.resolveDialogPromise(msg.dialogId, msg.confirmed);
+        break;
+      case "bgCollectPageDetails":
+        await this.main.collectPageDetailsForContentScript(sender.tab, msg.sender, sender.frameId);
+        break;
+      case "bgUpdateContextMenu":
+      case "editedCipher":
+      case "addedCipher":
+      case "deletedCipher":
+        await this.main.refreshBadgeAndMenu();
+        break;
+      case "bgReseedStorage":
+        await this.main.reseedStorage();
+        break;
+      case "collectPageDetailsResponse":
+        switch (msg.sender) {
+          case "autofiller":
+          case "autofill_cmd": {
+            const totpCode = await this.autofillService.doAutoFillActiveTab(
+              [
+                {
+                  frameId: sender.frameId,
+                  tab: msg.tab,
+                  details: msg.details,
+                },
+              ],
+              msg.sender === "autofill_cmd"
+            );
+            if (totpCode != null) {
+              this.platformUtilsService.copyToClipboard(totpCode, { window: window });
+            }
+            break;
+          }
+          case "contextMenu":
+            clearTimeout(this.autofillTimeout);
+            this.pageDetailsToAutoFill.push({
+              frameId: sender.frameId,
+              tab: msg.tab,
+              details: msg.details,
+            });
+            this.autofillTimeout = setTimeout(async () => await this.autofillPage(), 300);
+            break;
+          default:
+            break;
+        }
+        break;
+      case "authResult": {
+        const vaultUrl = this.environmentService.getWebVaultUrl();
+
+        if (msg.referrer == null || Utils.getHostname(vaultUrl) !== msg.referrer) {
+          return;
+        }
+
+        try {
+          BrowserApi.createNewTab(
+            "popup/index.html?uilocation=popout#/sso?code=" +
+              encodeURIComponent(msg.code) +
+              "&state=" +
+              encodeURIComponent(msg.state)
+          );
+        } catch {
+          this.logService.error("Unable to open sso popout tab");
+        }
+        break;
+      }
+      case "webAuthnResult": {
+        const vaultUrl = this.environmentService.getWebVaultUrl();
+
+        if (msg.referrer == null || Utils.getHostname(vaultUrl) !== msg.referrer) {
+          return;
+        }
+
+        const params =
+          `webAuthnResponse=${encodeURIComponent(msg.data)};` +
+          `remember=${encodeURIComponent(msg.remember)}`;
+        BrowserApi.createNewTab(
+          `popup/index.html?uilocation=popout#/2fa;${params}`,
+          undefined,
+          false
+        );
+        break;
+      }
+      case "reloadPopup":
+        this.messagingService.send("reloadPopup");
+        break;
+      case "emailVerificationRequired":
+        this.messagingService.send("showDialog", {
+          dialogId: "emailVerificationRequired",
+          title: this.i18nService.t("emailVerificationRequired"),
+          text: this.i18nService.t("emailVerificationRequiredDesc"),
+          confirmText: this.i18nService.t("ok"),
+          type: "info",
+        });
+        break;
+      case "getClickedElementResponse":
+        this.platformUtilsService.copyToClipboard(msg.identifier, { window: window });
+        break;
+      default:
+        break;
+    }
+  }
+
+  private async autofillPage() {
+    const totpCode = await this.autofillService.doAutoFill({
+      cipher: this.main.loginToAutoFill,
+      pageDetails: this.pageDetailsToAutoFill,
+      fillNewPassword: true,
+    });
+
+    if (totpCode != null) {
+      this.platformUtilsService.copyToClipboard(totpCode, { window: window });
+    }
+
+    // reset
+    this.main.loginToAutoFill = null;
+    this.pageDetailsToAutoFill = [];
+  }
+
+  private async checkOnInstalled() {
+    setTimeout(async () => {
+      if (this.onInstalledReason != null) {
+        if (this.onInstalledReason === "install") {
+          BrowserApi.createNewTab("https://bitwarden.com/browser-start/");
+        }
+
+        this.onInstalledReason = null;
+      }
+    }, 100);
+  }
 }

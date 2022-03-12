@@ -88,14 +88,17 @@
   "generatePasswordCopied": {
     "message": "Δημιουργία Κωδικού (αντιγράφηκε)"
   },
+  "copyElementIdentifier": {
+    "message": "Αντιγραφή ονόματος προσαρμοσμένου πεδίου"
+  },
   "noMatchingLogins": {
     "message": "Δεν υπάρχουν αντιστοιχίσεις σύνδεσης."
   },
-  "vaultLocked": {
-    "message": "Το Vault είναι κλειδωμένο."
+  "unlockVaultMenu": {
+    "message": "Ξεκλειδώστε το vault σας"
   },
-  "vaultLoggedOut": {
-    "message": "Το Vault έχει αποσυνδεθεί."
+  "loginToVaultMenu": {
+    "message": "Συνδεθείτε στο vault σας"
   },
   "autoFillInfo": {
     "message": "Δεν υπάρχουν διαθέσιμες συνδέσεις για την αυτόματη συμπλήρωση, στην τρέχουσα καρτέλα του προγράμματος περιήγησης."
@@ -118,8 +121,20 @@
   "continue": {
     "message": "Συνέχεια"
   },
+  "sendVerificationCode": {
+    "message": "Στείλτε έναν κωδικό επαλήθευσης στο email σας"
+  },
+  "sendCode": {
+    "message": "Αποστολή Κωδικού"
+  },
+  "codeSent": {
+    "message": "Ο Κωδικός Στάλθηκε"
+  },
   "verificationCode": {
     "message": "Κωδικός Επαλήθευσης"
+  },
+  "confirmIdentity": {
+    "message": "Επιβεβαιώστε την ταυτότητα σας για να συνεχίσετε."
   },
   "account": {
     "message": "Λογαριασμός"
@@ -214,6 +229,18 @@
   "length": {
     "message": "Μήκος"
   },
+  "uppercase": {
+    "message": "Κεφαλαία (A-Z)"
+  },
+  "lowercase": {
+    "message": "Πεζά (α-ω)"
+  },
+  "numbers": {
+    "message": "Αριθμοί (0-9)"
+  },
+  "specialCharacters": {
+    "message": "Ειδικοί Χαρακτήρες (!@#$%^&*)"
+  },
   "numWords": {
     "message": "Αριθμός Λέξεων"
   },
@@ -305,8 +332,8 @@
   "browserNotSupportClipboard": {
     "message": "Το πρόγραμμα περιήγησης ιστού δεν υποστηρίζει εύκολη αντιγραφή πρόχειρου. Αντιγράψτε το με το χέρι αντ'αυτού."
   },
-  "verifyMasterPassword": {
-    "message": "Επαλήθευση Κύριου Κωδικού"
+  "verifyIdentity": {
+    "message": "Επιβεβαίωση ταυτότητας"
   },
   "yourVaultIsLocked": {
     "message": "Το vault σας είναι κλειδωμένο. Επαληθεύστε τον κύριο κωδικό πρόσβασης για να συνεχίσετε."
@@ -407,6 +434,9 @@
   },
   "verificationCodeRequired": {
     "message": "Απαιτείται ο κωδικός επαλήθευσης."
+  },
+  "invalidVerificationCode": {
+    "message": "Μη έγκυρος κωδικός επαλήθευσης"
   },
   "valueCopied": {
     "message": "$VALUE$ αντιγράφηκε",
@@ -557,9 +587,6 @@
   "notificationAddSave": {
     "message": "Ναι, Αποθήκευση Τώρα"
   },
-  "notificationNeverSave": {
-    "message": "Ποτέ για αυτή την ιστοσελίδα"
-  },
   "disableChangedPasswordNotification": {
     "message": "Απενεργοποίηση ειδοποίησης αλλαγής κωδικού πρόσβασης"
   },
@@ -635,7 +662,7 @@
     "message": "Μάθετε για τους Οργανισμούς"
   },
   "learnOrgConfirmation": {
-    "message": "Το Bitwarden επιτρέπει να μοιράζεστε τα στοιχεία του θησαυροφυλακίου σας με άλλους χρησιμοποιώντας ένα λογαριασμό οργανισμού. Θέλετε να επισκεφθείτε την ιστοσελίδα bitwarden.com για να μάθετε περισσότερα;"
+    "message": "Το Bitwarden επιτρέπει να μοιράζεστε τα στοιχεία του vault σας με άλλους χρησιμοποιώντας ένα λογαριασμό οργανισμού. Θέλετε να επισκεφθείτε την ιστοσελίδα bitwarden.com για να μάθετε περισσότερα;"
   },
   "moveToOrganization": {
     "message": "Μετακίνηση στον Οργανισμό"
@@ -772,6 +799,9 @@
   },
   "disableAutoTotpCopyDesc": {
     "message": "Εάν η σύνδεση έχει συνημμένο κάποιο κλειδί επαλήθευσης, ο κωδικός επαλήθευσης TOTP αντιγράφεται αυτόματα στο πρόχειρο κάθε φορά που συμπληρώνετε αυτόματα τα στοιχεία σύνδεσης."
+  },
+  "disableAutoBiometricsPrompt": {
+    "message": "Μην ζητάτε βιομετρικά στοιχεία κατά την εκκίνηση"
   },
   "premiumRequired": {
     "message": "Απαιτείται Έκδοση Premium"
@@ -950,8 +980,8 @@
   "commandLockVaultDesc": {
     "message": "Κλειδώστε το vault"
   },
-  "privateModeMessage": {
-    "message": "Δυστυχώς, αυτό το παράθυρο δεν είναι διαθέσιμο σε ιδιωτική λειτουργία για αυτό το πρόγραμμα περιήγησης."
+  "privateModeWarning": {
+    "message": "Η υποστήριξη ιδιωτικής λειτουργίας είναι πειραματική και ορισμένες δυνατότητες είναι περιορισμένες."
   },
   "customFields": {
     "message": "Προσαρμοσμένα Πεδία"
@@ -976,6 +1006,14 @@
   },
   "cfTypeBoolean": {
     "message": "Δυαδικό"
+  },
+  "cfTypeLinked": {
+    "message": "Συνδεδεμένο",
+    "description": "This describes a field that is 'linked' (tied) to another field."
+  },
+  "linkedValue": {
+    "message": "Συνδεδεμένη τιμή",
+    "description": "This describes a value that is 'linked' (tied) to another value."
   },
   "popup2faCloseMessage": {
     "message": "Εάν κάνετε κλικ έξω από το αναδυόμενο παράθυρο για να ελέγξετε το email για κωδικό επαλήθευσης, το αναδυόμενο παράθυρο θα κλείσει. Θέλετε να ανοίξετε αυτό το αναδυόμενο σε νέο παράθυρο ώστε να μην κλείνει;"
@@ -1078,6 +1116,9 @@
   },
   "lastName": {
     "message": "Επίθετο"
+  },
+  "fullName": {
+    "message": "Ονοματεπώνυμο"
   },
   "identityName": {
     "message": "Όνομα Ταυτότητας"
@@ -1302,12 +1343,6 @@
   },
   "invalidPin": {
     "message": "Μη έγκυρος κωδικός PIN."
-  },
-  "verifyPin": {
-    "message": "Επαλήθευση PIN"
-  },
-  "yourVaultIsLockedPinCode": {
-    "message": "Το vault σας είναι κλειδωμένο. Επαληθεύστε τον κωδικό PIN για να συνεχίσετε."
   },
   "unlockWithBiometrics": {
     "message": "Ξεκλείδωμα με βιομετρικά στοιχεία"
@@ -1751,6 +1786,103 @@
     "message": "Απαιτείται Επαλήθευση Email"
   },
   "emailVerificationRequiredDesc": {
-    "message": "Πρέπει να επαληθεύσετε το email σας για να χρησιμοποιήσετε αυτή τη δυνατότητα. Μπορείτε να επαληθεύσετε το email σας στο θησαυροφυλάκιο ιστού."
+    "message": "Πρέπει να επαληθεύσετε το email σας για να χρησιμοποιήσετε αυτή τη δυνατότητα. Μπορείτε να επαληθεύσετε το email σας στο web vault."
+  },
+  "updatedMasterPassword": {
+    "message": "Ενημερώθηκε ο κύριος κωδικός πρόσβασης"
+  },
+  "updateMasterPassword": {
+    "message": "Ενημερώστε τον κύριο κωδικό πρόσβασης"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Ο Κύριος Κωδικός Πρόσβασής σας άλλαξε πρόσφατα από διαχειριστή στον οργανισμό σας. Για να αποκτήσετε πρόσβαση στο vault, πρέπει να τον ενημερώσετε τώρα. Η διαδικασία θα σας αποσυνδέσει από την τρέχουσα συνεδρία σας, απαιτώντας από εσάς να συνδεθείτε ξανά. Οι ενεργές συνεδρίες σε άλλες συσκευές ενδέχεται να συνεχίσουν να είναι ενεργές για μία ώρα."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Αυτόματη Εγγραφή"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Αυτός ο οργανισμός έχει μια επιχειρηματική πολιτική που θα σας εγγράψει αυτόματα στην επαναφορά κωδικού. Η εγγραφή θα επιτρέψει στους διαχειριστές του οργανισμού να αλλάξουν τον κύριο κωδικό πρόσβασης σας."
+  },
+  "selectFolder": {
+    "message": "Επιλέξτε φάκελο..."
+  },
+  "ssoCompleteRegistration": {
+    "message": "Για να ολοκληρώσετε τη σύνδεση με SSO, ορίστε έναν κύριο κωδικό πρόσβασης για πρόσβαση και προστασία του vault σας."
+  },
+  "hours": {
+    "message": "Ώρες"
+  },
+  "minutes": {
+    "message": "Λεπτά"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Οι πολιτικές του οργανισμού σας επηρεάζουν το χρονικό όριο vault σας. Το μέγιστο επιτρεπόμενο Χρονικό όριο Vault είναι $HOURS$ ώρα(ες) και $MINUTES$ λεπτό(ά)",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Το χρονικό όριο του vault σας υπερβαίνει τους περιορισμούς που έχει ορίσει ο οργανισμός σας."
+  },
+  "vaultExportDisabled": {
+    "message": "Εξαγωγή vault Απενεργοποιημένη"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Μία ή περισσότερες οργανωτικές πολιτικές σας αποτρέπει από την εξαγωγή του προσωπικού vault."
+  },
+  "copyCustomFieldNameInvalidElement": {
+    "message": "Δεν είναι δυνατή η αναγνώριση ενός έγκυρου στοιχείου φόρμας. Δοκιμάστε να επιθεωρήσετε τον κώδικα HTML."
+  },
+  "copyCustomFieldNameNotUnique": {
+    "message": "Δε βρέθηκε μοναδικό αναγνωριστικό."
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ χρησιμοποιεί SSO με έναν αυτοεξυπηρετητή κλειδιών. Ένας κύριος κωδικός πρόσβασης δεν απαιτείται πλέον για να συνδεθείτε για τα μέλη αυτού του οργανισμού.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Αποχώρηση από τον οργανισμό"
+  },
+  "removeMasterPassword": {
+    "message": "Αφαίρεση Κύριου Κωδικού Πρόσβασης"
+  },
+  "removedMasterPassword": {
+    "message": "Ο κύριος κωδικός αφαιρέθηκε."
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "Είστε βέβαιοι ότι θέλετε να φύγετε από αυτόν τον οργανισμό;"
+  },
+  "leftOrganization": {
+    "message": "Έχετε φύγει από τον οργανισμό."
+  },
+  "toggleCharacterCount": {
+    "message": "Εναλλαγή αριθμού χαρακτήρων"
+  },
+  "sessionTimeout": {
+    "message": "Έχει λήξει το χρονικό όριο. Παρακαλώ επιστρέψτε και προσπαθήστε να συνδεθείτε ξανά."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Exporting Personal Vault"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Only the personal vault items associated with $EMAIL$ will be exported. Organization vault items will not be included.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
   }
 }

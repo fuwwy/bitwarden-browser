@@ -88,14 +88,17 @@
   "generatePasswordCopied": {
     "message": "Generare parolă (s-a copiat)"
   },
+  "copyElementIdentifier": {
+    "message": "Copiere nume de câmp personalizat"
+  },
   "noMatchingLogins": {
     "message": "Nu există potrivire de autentificări."
   },
-  "vaultLocked": {
-    "message": "Seiful este blocat."
+  "unlockVaultMenu": {
+    "message": "Deblocați-vă seiful"
   },
-  "vaultLoggedOut": {
-    "message": "Seiful este deconectat."
+  "loginToVaultMenu": {
+    "message": "Conectați-vă la seif"
   },
   "autoFillInfo": {
     "message": "Nu sunt disponibile autentificări pentru auto-completare în fila curentă a browserului."
@@ -118,8 +121,20 @@
   "continue": {
     "message": "Continuare"
   },
+  "sendVerificationCode": {
+    "message": "Trimite un cod de verificare la adresa dvs. de e-mail"
+  },
+  "sendCode": {
+    "message": "Trimitere cod"
+  },
+  "codeSent": {
+    "message": "Cod trimis"
+  },
   "verificationCode": {
     "message": "Cod de verificare"
+  },
+  "confirmIdentity": {
+    "message": "Confirmați-vă identitatea pentru a continua."
   },
   "account": {
     "message": "Cont"
@@ -214,6 +229,18 @@
   "length": {
     "message": "Lungime"
   },
+  "uppercase": {
+    "message": "Litere mari (A-Z)"
+  },
+  "lowercase": {
+    "message": "Litere mici (a-z)"
+  },
+  "numbers": {
+    "message": "Numere (0-9)"
+  },
+  "specialCharacters": {
+    "message": "Caractere speciale (!@#$%^&*)"
+  },
   "numWords": {
     "message": "Număr de cuvinte"
   },
@@ -305,11 +332,11 @@
   "browserNotSupportClipboard": {
     "message": "Browserul dvs. nu acceptă copierea în clipboard. Transcrieți datele manual."
   },
-  "verifyMasterPassword": {
-    "message": "Verificare parolă principală"
+  "verifyIdentity": {
+    "message": "Verificare identitate"
   },
   "yourVaultIsLocked": {
-    "message": "Seiful dvs. este blocat. Verificați parola principală pentru a continua."
+    "message": "Seiful dvs. este blocat. Verificați-vă identitatea pentru a continua."
   },
   "unlock": {
     "message": "Deblocare"
@@ -407,6 +434,9 @@
   },
   "verificationCodeRequired": {
     "message": "Este necesar codul de verificare."
+  },
+  "invalidVerificationCode": {
+    "message": "Cod de verificare nevalid"
   },
   "valueCopied": {
     "message": " $VALUE$ s-a copiat",
@@ -555,10 +585,7 @@
     "message": "Ar trebui ca Bitwarden să memoreze această parolă pentru dvs.?"
   },
   "notificationAddSave": {
-    "message": "Da, salvează acum"
-  },
-  "notificationNeverSave": {
-    "message": "Niciodată pentru acest sait"
+    "message": "Salvare"
   },
   "disableChangedPasswordNotification": {
     "message": "Dezactivare notificare de modificare a parolei"
@@ -570,7 +597,7 @@
     "message": "Doriți să actualizați această parolă în Bitwarden?"
   },
   "notificationChangeSave": {
-    "message": "Da, actualizează acum"
+    "message": "Actualizare"
   },
   "disableContextMenuItem": {
     "message": "Dezactivare opțiuni meniu contextual"
@@ -773,6 +800,9 @@
   "disableAutoTotpCopyDesc": {
     "message": "Dacă autentificarea dvs. are o cheie atașată, codul de verificare TOTP este copiat în clipboard de fiecare dată când efectuați auto-completarea datelor de conectare."
   },
+  "disableAutoBiometricsPrompt": {
+    "message": "Nu solicitați datele biometrice la pornire"
+  },
   "premiumRequired": {
     "message": "Este necesară versiunea Premium"
   },
@@ -950,8 +980,8 @@
   "commandLockVaultDesc": {
     "message": "Blocare seif"
   },
-  "privateModeMessage": {
-    "message": "Din păcate, această fereastră nu este disponibilă în modul privat pentru acest browser."
+  "privateModeWarning": {
+    "message": "Suportul pentru modul privat este experimental, iar unele caracteristici sunt limitate."
   },
   "customFields": {
     "message": "Câmpuri particularizate"
@@ -976,6 +1006,14 @@
   },
   "cfTypeBoolean": {
     "message": "Valoare logică"
+  },
+  "cfTypeLinked": {
+    "message": "Conectat",
+    "description": "This describes a field that is 'linked' (tied) to another field."
+  },
+  "linkedValue": {
+    "message": "Valoarea conectată",
+    "description": "This describes a value that is 'linked' (tied) to another value."
   },
   "popup2faCloseMessage": {
     "message": "Dând clic în afara ferestrei pop-up pentru a vă verifica e-mailul pentru codul de verificare, aceasta se va închide. Doriți să deschideți acest pop-up într-o fereastră nouă, astfel încât aceasta să nu se închidă?"
@@ -1078,6 +1116,9 @@
   },
   "lastName": {
     "message": "Nume"
+  },
+  "fullName": {
+    "message": "Numele complet"
   },
   "identityName": {
     "message": "Identitate"
@@ -1302,12 +1343,6 @@
   },
   "invalidPin": {
     "message": "Codul PIN este invalid."
-  },
-  "verifyPin": {
-    "message": "Verificare cod PIN"
-  },
-  "yourVaultIsLockedPinCode": {
-    "message": "Seiful dvs. este blocat. Verificați codul PIN pentru a continua."
   },
   "unlockWithBiometrics": {
     "message": "Deblocare folosind biometria"
@@ -1641,7 +1676,7 @@
     "message": "Număr maxim de accesări"
   },
   "maximumAccessCountDesc": {
-    "message": "Dacă este setată, utilizatorii nu vor mai putea accesa acest Send după atingerea numărului maxim de accesării.",
+    "message": "Dacă este configurat, utilizatorii nu vor mai putea accesa acest Send când a fost atins numărul maxim de accesări.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendPasswordDesc": {
@@ -1752,5 +1787,102 @@
   },
   "emailVerificationRequiredDesc": {
     "message": "Trebuie să vă verificați e-mailul pentru a utiliza această caracteristică. Puteți verifica e-mailul în seiful web."
+  },
+  "updatedMasterPassword": {
+    "message": "Parolă principală actualizată"
+  },
+  "updateMasterPassword": {
+    "message": "Actualizare parolă principală"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Parola dvs. principală a fost modificată recent de unul din administratorii organizației dvs. Pentru a accesa seiful, trebuie să o actualizați acum. Procedura vă va deconecta de la sesiunea curentă, necesitând să vă reconectați. Sesiunile active de pe alte dispozitive pot continua să rămână active timp de până la o oră."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Înregistrare automată"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Această organizație are o politică de întreprindere care vă va înregistra automat la resetarea parolei. Înregistrarea va permite administratorilor organizației să vă modifice parola principală."
+  },
+  "selectFolder": {
+    "message": "Selectare folder..."
+  },
+  "ssoCompleteRegistration": {
+    "message": "Pentru a finaliza conectarea cu SSO, vă rugăm să setați o parolă principală pentru a vă accesa și proteja seiful."
+  },
+  "hours": {
+    "message": "Ore"
+  },
+  "minutes": {
+    "message": "Minute"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Politicile organizației dvs vă afectează expirarea seifului. Timpul maxim permis de expirare a seifului este $HOURS$ oră (ore) și $MINUTES$ minut(e)",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Timpul de expirare a seifului depășește restricțiile stabilite de organizația dvs."
+  },
+  "vaultExportDisabled": {
+    "message": "Export de seif dezactivat"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Una sau mai multe politici ale organizației vă împiedică să exportați seiful personal."
+  },
+  "copyCustomFieldNameInvalidElement": {
+    "message": "Imposibil de identificat un element de formular valid. Încercați să inspectați codul HTML."
+  },
+  "copyCustomFieldNameNotUnique": {
+    "message": "Nu a fost găsit niciun identificator unic."
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ folosește SSO cu un server de chei auto-găzduit. Membrii acestei organizații nu mai au nevoie de o parolă principală pentru autentificare.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Părăsire organizație"
+  },
+  "removeMasterPassword": {
+    "message": "Eliminare parolă principală"
+  },
+  "removedMasterPassword": {
+    "message": "Parolă principală eliminată."
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "Sigur doriți să părăsiți această organizație?"
+  },
+  "leftOrganization": {
+    "message": "Ați părăsit organizația."
+  },
+  "toggleCharacterCount": {
+    "message": "Comutare pe contorizare de caractere"
+  },
+  "sessionTimeout": {
+    "message": "Sesiunea dvs. a expirat. Vă rugăm reveniți și încercați să vă autentificați din nou."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Exportarea seifului personal"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Numai elementele personale din seif asociate cu $EMAIL$ vor fi exportate. Elementele seifului organizației nu vor fi incluse.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
   }
 }

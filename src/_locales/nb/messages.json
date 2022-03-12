@@ -88,14 +88,17 @@
   "generatePasswordCopied": {
     "message": "Generer et passord (kopiert)"
   },
+  "copyElementIdentifier": {
+    "message": "Kopier egendefinert feltnavn"
+  },
   "noMatchingLogins": {
     "message": "Ingen samsvarende innlogginger."
   },
-  "vaultLocked": {
-    "message": "Hvelvet er låst."
+  "unlockVaultMenu": {
+    "message": "Lås opp hvelvet ditt"
   },
-  "vaultLoggedOut": {
-    "message": "Hvelvet er logget ut."
+  "loginToVaultMenu": {
+    "message": "Logg inn på hvelvet ditt"
   },
   "autoFillInfo": {
     "message": "Det er ingen tilgjengelige innlogginger å auto-utfylle med i den nåværende nettleserfanen."
@@ -118,8 +121,20 @@
   "continue": {
     "message": "Fortsett"
   },
+  "sendVerificationCode": {
+    "message": "Send en bekreftelseskode til E-postadressen din"
+  },
+  "sendCode": {
+    "message": "Send kode"
+  },
+  "codeSent": {
+    "message": "Kode sendt"
+  },
   "verificationCode": {
     "message": "Verifiseringskode"
+  },
+  "confirmIdentity": {
+    "message": "Bekreft identiteten din for å fortsette."
   },
   "account": {
     "message": "Konto"
@@ -214,6 +229,18 @@
   "length": {
     "message": "Lengde"
   },
+  "uppercase": {
+    "message": "Store bokstaver (A–Å)"
+  },
+  "lowercase": {
+    "message": "Små bokstaver (a-z)"
+  },
+  "numbers": {
+    "message": "Tall (0-9)"
+  },
+  "specialCharacters": {
+    "message": "Spesialtegn (!@#$%^&*)"
+  },
   "numWords": {
     "message": "Antall ord"
   },
@@ -305,8 +332,8 @@
   "browserNotSupportClipboard": {
     "message": "Nettleseren din støtter ikke kopiering til utklippstavlen på noe enkelt vis. Prøv å kopiere det manuelt i stedet."
   },
-  "verifyMasterPassword": {
-    "message": "Verifiser hovedpassordet"
+  "verifyIdentity": {
+    "message": "Bekreft identitet"
   },
   "yourVaultIsLocked": {
     "message": "Hvelvet ditt er låst. Kontroller hovedpassordet ditt for å fortsette."
@@ -407,6 +434,9 @@
   },
   "verificationCodeRequired": {
     "message": "En verifiseringskode er påkrevd."
+  },
+  "invalidVerificationCode": {
+    "message": "Ugyldig bekreftelseskode"
   },
   "valueCopied": {
     "message": "$VALUE$ er kopiert",
@@ -556,9 +586,6 @@
   },
   "notificationAddSave": {
     "message": "Ja, lagre nå"
-  },
-  "notificationNeverSave": {
-    "message": "Aldri for dette nettstedet"
   },
   "disableChangedPasswordNotification": {
     "message": "Deaktiver beskjeder om passordendringer"
@@ -773,6 +800,9 @@
   "disableAutoTotpCopyDesc": {
     "message": "Dersom din innlogging har en autentiseringsnøkkel knyttet til den, blir TOTP-verifiseringskoden automatisk kopiert til utklippstavlen din når enn du auto-utfyller innloggingen."
   },
+  "disableAutoBiometricsPrompt": {
+    "message": "Ikke be om biometri under åpning"
+  },
   "premiumRequired": {
     "message": "Premium er påkrevd"
   },
@@ -950,8 +980,8 @@
   "commandLockVaultDesc": {
     "message": "Lås hvelvet"
   },
-  "privateModeMessage": {
-    "message": "Dessverre er dette vinduet ikke tilgjengelig i privat modus for denne nettleseren."
+  "privateModeWarning": {
+    "message": "Støtte for privatmodus er eksperimentelt, og noen funksjoner er begrenset."
   },
   "customFields": {
     "message": "Tilpassede felter"
@@ -976,6 +1006,14 @@
   },
   "cfTypeBoolean": {
     "message": "Boolsk verdi"
+  },
+  "cfTypeLinked": {
+    "message": "Tilkoblet",
+    "description": "This describes a field that is 'linked' (tied) to another field."
+  },
+  "linkedValue": {
+    "message": "Tilkoblet verdi",
+    "description": "This describes a value that is 'linked' (tied) to another value."
   },
   "popup2faCloseMessage": {
     "message": "Å klikke utenfor dette oppsprettsvinduet for å sjekke E-postinnboksen din for en verifiseringskoden, vil lukke denne oppspretten. Vil du åpne oppsprettet i et nytt vindu sånn at den ikke lukkes?"
@@ -1078,6 +1116,9 @@
   },
   "lastName": {
     "message": "Etternavn"
+  },
+  "fullName": {
+    "message": "Fullt navn"
   },
   "identityName": {
     "message": "Identitetsnavn"
@@ -1302,12 +1343,6 @@
   },
   "invalidPin": {
     "message": "Ugyldig PIN-kode."
-  },
-  "verifyPin": {
-    "message": "Verifiser PIN-koden"
-  },
-  "yourVaultIsLockedPinCode": {
-    "message": "Hvelvet ditt er låst. Kontroller PIN-koden din for å fortsette."
   },
   "unlockWithBiometrics": {
     "message": "Lås opp med biometri"
@@ -1657,28 +1692,28 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendShareDesc": {
-    "message": "Copy this Send's link to clipboard upon save.",
+    "message": "Kopier denne Send-ens lenke til utklippstavlen når den har blitt lagret.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTextDesc": {
     "message": "Teksten du ønsker å sende."
   },
   "sendHideText": {
-    "message": "Hide this Send's text by default.",
+    "message": "Skjul denne Send-ens tekst som standard.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
-    "message": "Current Access Count"
+    "message": "Antall nåværende tilganger"
   },
   "createSend": {
-    "message": "Create New Send",
+    "message": "Lag en ny Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "newPassword": {
     "message": "Nytt passord"
   },
   "sendDisabled": {
-    "message": "Send Disabled",
+    "message": "Send er skrudd av",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
@@ -1752,5 +1787,102 @@
   },
   "emailVerificationRequiredDesc": {
     "message": "Du må bekrefte e-posten din for å bruke denne funksjonen. Du kan bekrefte e-postadressen din i netthvelvet."
+  },
+  "updatedMasterPassword": {
+    "message": "Oppdaterte hovedpassordet"
+  },
+  "updateMasterPassword": {
+    "message": "Oppdater hovedpassord"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Hovedpassordet ditt ble nylig endret av en administrator i organisasjonen din. For å få tilgang til hvelvet, må du oppdatere det nå. Hvis du fortsetter, logges du ut av den nåværende økten, og du må logge på igjen. Aktive økter på andre enheter kan fortsette å være aktive i opptil én time."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatisk registrering"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Denne organisasjonen har en bedriftsoppsettsregel som automatisk innrullerer deg i tilbakestilling av passord. Registrering vil tillate organisasjonsadministratorer å endre hovedpassordet ditt."
+  },
+  "selectFolder": {
+    "message": "Velg mappe …"
+  },
+  "ssoCompleteRegistration": {
+    "message": "For å fullføre påloggingen med SSO, vennligst velg et hovedpassord for å få tilgang til og beskytte hvelvet ditt."
+  },
+  "hours": {
+    "message": "Åpningstider"
+  },
+  "minutes": {
+    "message": "Minutter"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Organisasjonens retningslinjer påvirker tidsavbruddet for hvelvet ditt. Maksimalt tillatt tidsavbrudd for hvelv er $HOURS$ time(r) og $MINUTES$ minutt(er)",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Tidsavbruddet ditt for hvelvet overstiger begrensningene som er satt av organisasjonen din."
+  },
+  "vaultExportDisabled": {
+    "message": "Hvelveksportering er skrudd av"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "En eller flere regler i organisasjonsoppsettet forhindrer deg i å eksportere ditt personlige hvelv."
+  },
+  "copyCustomFieldNameInvalidElement": {
+    "message": "Klarte ikke å identifisere et gyldig skjemaelement. Prøv å inspisere HTML-en i stedet."
+  },
+  "copyCustomFieldNameNotUnique": {
+    "message": "Ingen unik identifikator ble funnet."
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ bruker SSO med en selvdrevet nøkkelserver. Et hovedpassord er ikke lenger nødvendig for å logge inn for medlemmer av denne organisasjonen.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Forlat organisasjonen"
+  },
+  "removeMasterPassword": {
+    "message": "Fjern hovedpassord"
+  },
+  "removedMasterPassword": {
+    "message": "Hovedpassordet er fjernet."
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "Er du sikker på at du vil forlate denne organisasjonen?"
+  },
+  "leftOrganization": {
+    "message": "Du har forlatt organisasjonen."
+  },
+  "toggleCharacterCount": {
+    "message": "Toggle character count"
+  },
+  "sessionTimeout": {
+    "message": "Your session has timed out. Please go back and try logging in again."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Exporting Personal Vault"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Only the personal vault items associated with $EMAIL$ will be exported. Organization vault items will not be included.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
   }
 }

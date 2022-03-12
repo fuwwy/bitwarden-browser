@@ -71,7 +71,7 @@
     "message": "Notu kopyala"
   },
   "copyUri": {
-    "message": "Linki Kopyala"
+    "message": "URI'yi kopyala"
   },
   "copyUsername": {
     "message": "Kullanıcı adını kopyala"
@@ -88,14 +88,17 @@
   "generatePasswordCopied": {
     "message": "Parola oluştur (ve kopyala)"
   },
+  "copyElementIdentifier": {
+    "message": "Özel alan adını kopyala"
+  },
   "noMatchingLogins": {
     "message": "Eşleşen hesap yok."
   },
-  "vaultLocked": {
-    "message": "Kasa kilitli."
+  "unlockVaultMenu": {
+    "message": "Kasanızın kilidini açın"
   },
-  "vaultLoggedOut": {
-    "message": "Kasadan çıkış yaptınız."
+  "loginToVaultMenu": {
+    "message": "Kasanıza giriş yapın"
   },
   "autoFillInfo": {
     "message": "Mevcut sekme için otomatik doldurulacak giriş bilgisi bulunmuyor."
@@ -118,8 +121,20 @@
   "continue": {
     "message": "Devam"
   },
+  "sendVerificationCode": {
+    "message": "E-posta adresime doğrulama kodu gönder"
+  },
+  "sendCode": {
+    "message": "Kod gönder"
+  },
+  "codeSent": {
+    "message": "Kod gönderildi"
+  },
   "verificationCode": {
     "message": "Doğrulama kodu"
+  },
+  "confirmIdentity": {
+    "message": "Devam etmek için kimliğinizi doğrulayın."
   },
   "account": {
     "message": "Hesap"
@@ -214,6 +229,18 @@
   "length": {
     "message": "Uzunluk"
   },
+  "uppercase": {
+    "message": "Büyük harf (A-Z)"
+  },
+  "lowercase": {
+    "message": "Küçük harf (a-z)"
+  },
+  "numbers": {
+    "message": "Rakamlar (0-9)"
+  },
+  "specialCharacters": {
+    "message": "Özel karakterler (!@#$%^&*)"
+  },
   "numWords": {
     "message": "Kelime sayısı"
   },
@@ -305,11 +332,11 @@
   "browserNotSupportClipboard": {
     "message": "Web tarayıcınız panoya kopyalamayı desteklemiyor. Parolayı elle kopyalayın."
   },
-  "verifyMasterPassword": {
-    "message": "Ana parolayı doğrulayın"
+  "verifyIdentity": {
+    "message": "Kimlik Doğrulama"
   },
   "yourVaultIsLocked": {
-    "message": "Kasanız kilitli. Devam etmek için ana parolanızı doğrulayın."
+    "message": "Kasanız kilitli. Devam etmek için kimliğinizi doğrulayın."
   },
   "unlock": {
     "message": "Kilidi aç"
@@ -408,6 +435,9 @@
   "verificationCodeRequired": {
     "message": "Doğrulama kodu gereklidir."
   },
+  "invalidVerificationCode": {
+    "message": "Geçersiz doğrulama kodu"
+  },
   "valueCopied": {
     "message": "$VALUE$ kopyalandı",
     "description": "Value has been copied to the clipboard.",
@@ -482,7 +512,7 @@
     "message": "URl"
   },
   "uriPosition": {
-    "message": "URL $POSITION$",
+    "message": "URI $POSITION$",
     "description": "A listing of URIs. Ex: URI 1, URI 2, URI 3, etc.",
     "placeholders": {
       "position": {
@@ -501,7 +531,7 @@
     "message": "Kayıt düzenlendi"
   },
   "deleteItemConfirmation": {
-    "message": "Bu kaydı çöp kutusuna göndermek istediğinizden emin misiniz?"
+    "message": "Çöp kutusuna göndermek istediğinizden emin misiniz?"
   },
   "deletedItem": {
     "message": "Kayıt çöp kutusuna gönderildi"
@@ -555,10 +585,7 @@
     "message": "Bitwarden bu parolayı sizin için hatırlasın mı?"
   },
   "notificationAddSave": {
-    "message": "Evet, parolayı kaydet"
-  },
-  "notificationNeverSave": {
-    "message": "Bu sitede asla kaydetme"
+    "message": "Kaydet"
   },
   "disableChangedPasswordNotification": {
     "message": "\"Parola değiştirildi\" bildirimini kapat"
@@ -570,7 +597,7 @@
     "message": "Bu parolayı Bitwarden'da güncellemek ister misiniz?"
   },
   "notificationChangeSave": {
-    "message": "Evet, güncelle"
+    "message": "Güncelle"
   },
   "disableContextMenuItem": {
     "message": "Sağ tıklama menüsünü kapat"
@@ -773,6 +800,9 @@
   "disableAutoTotpCopyDesc": {
     "message": "Hesabınıza bağlı bir kimlik doğrulama anahtarı varsa giriş bilgilerini otomatik olarak doldurduğunuzda TOTP doğrulama kodu da otomatik olarak panonuza kopyalanır."
   },
+  "disableAutoBiometricsPrompt": {
+    "message": "Açılışta biyometri doğrulaması isteme"
+  },
   "premiumRequired": {
     "message": "Premium gerekli"
   },
@@ -950,8 +980,8 @@
   "commandLockVaultDesc": {
     "message": "Kasayı kilitle"
   },
-  "privateModeMessage": {
-    "message": "Maalesef bu pencereyi bu tarayıcının gizli modunda kullanamazsınız."
+  "privateModeWarning": {
+    "message": "Gizli mod desteği deneyseldir ve bazı özellikler kısıtlıdır."
   },
   "customFields": {
     "message": "Özel alanlar"
@@ -976,6 +1006,14 @@
   },
   "cfTypeBoolean": {
     "message": "Boolean"
+  },
+  "cfTypeLinked": {
+    "message": "Bağlantılı",
+    "description": "This describes a field that is 'linked' (tied) to another field."
+  },
+  "linkedValue": {
+    "message": "Bağlı değer",
+    "description": "This describes a value that is 'linked' (tied) to another value."
   },
   "popup2faCloseMessage": {
     "message": "Doğrulama kodunuzu alacağınız e-postayı kontrol etmek için bu pencerenin dışında bir yere tıklarsanız bu pencere kapanacaktır. Bu pencerenin kapanmaması için yeni bir pencerede açmak ister misiniz?"
@@ -1078,6 +1116,9 @@
   },
   "lastName": {
     "message": "Soyad"
+  },
+  "fullName": {
+    "message": "Adı soyadı"
   },
   "identityName": {
     "message": "Kimlik adı"
@@ -1302,12 +1343,6 @@
   },
   "invalidPin": {
     "message": "PIN kodu geçersiz."
-  },
-  "verifyPin": {
-    "message": "PIN'i doğrula"
-  },
-  "yourVaultIsLockedPinCode": {
-    "message": "Kasanız kilitlendi. Devam etmek için PIN kodunuzu doğrulayın."
   },
   "unlockWithBiometrics": {
     "message": "Kilidi biyometri ile aç"
@@ -1752,5 +1787,102 @@
   },
   "emailVerificationRequiredDesc": {
     "message": "Bu özelliği kullanmak için e-postanızı doğrulamanız gerekir. E-postanızı web kasasında doğrulayabilirsiniz."
+  },
+  "updatedMasterPassword": {
+    "message": "Ana parola güncellendi"
+  },
+  "updateMasterPassword": {
+    "message": "Ana parolayı güncelle"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Ana parolanız kuruluşunuzdaki bir yönetici tarafından yakın zamanda değiştirildi. Kasanıza erişmek için parolanızı güncellemelisiniz. Devam ettiğinizde oturumunuz kapanacak ve yeniden oturum açmanız gerekecektir. Diğer cihazlardaki aktif oturumlar bir saate kadar aktif kalabilir."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Otomatik Eklenme"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Bu kuruluşun sizi otomatik olarak parola sıfırlamaya ekleyen bir ilkesi bulunmakta. Bu ilkeye eklenmek, kuruluş yöneticilerinin ana parolanızı değiştirebilmesini sağlar."
+  },
+  "selectFolder": {
+    "message": "Klasör seç..."
+  },
+  "ssoCompleteRegistration": {
+    "message": "SSO ile girişinizi tamamlamak için lütfen kasanıza erişirken kullanacağınız ana parolayı belirleyin."
+  },
+  "hours": {
+    "message": "Saat"
+  },
+  "minutes": {
+    "message": "Dakika"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Kuruluş ilkeleriniz kasa zaman aşımınızı etkiliyor. İzin verilen maksimum kasa zaman aşımı $HOURS$ saat $MINUTES$ dakikadır",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Kasa zaman aşımınız, kuruluşunuz tarafından belirlenen kısıtlamaları aşıyor."
+  },
+  "vaultExportDisabled": {
+    "message": "Kasayı dışa aktarma devre dışı"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Bir veya daha fazla kuruluş ilkesi, kişisel kasanızı dışa aktarmanızı engelliyor."
+  },
+  "copyCustomFieldNameInvalidElement": {
+    "message": "Geçerli bir form elemanı bulunamadı. HTML'i denetlemeyi deneyebilirsiniz."
+  },
+  "copyCustomFieldNameNotUnique": {
+    "message": "Benzersiz tanımlayıcı bulunamadı."
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ kendi barındırdığı bir anahtar sunucusuyla SSO kullanıyor. Bu kuruluşun üyelerinin artık ana parola kullanması gerekmiyor.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Kuruluştan ayrıl"
+  },
+  "removeMasterPassword": {
+    "message": "Ana parolayı kaldır"
+  },
+  "removedMasterPassword": {
+    "message": "Ana parola kaldırıldı."
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "Bu kuruluştan ayrılmak istediğinizden emin misiniz?"
+  },
+  "leftOrganization": {
+    "message": "Kuruluştan ayrıldınız."
+  },
+  "toggleCharacterCount": {
+    "message": "Karakter sayacını aç/kapat"
+  },
+  "sessionTimeout": {
+    "message": "Oturumunuzun süresi doldu. Lütfen geri dönüp yeniden giriş yapın."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Kişisel Kasayı Dışa Aktarma"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Yalnızca $EMAIL$ ile ilişkili kişisel kasa öğeleri dışa aktarılacaktır. Kuruluş kasası öğeleri dahil edilmeyecektir.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
   }
 }

@@ -88,14 +88,17 @@
   "generatePasswordCopied": {
     "message": "Genera password (copiata)"
   },
+  "copyElementIdentifier": {
+    "message": "Copia nome campo personalizzato"
+  },
   "noMatchingLogins": {
     "message": "Nessun login corrispondente."
   },
-  "vaultLocked": {
-    "message": "La cassaforte è bloccata."
+  "unlockVaultMenu": {
+    "message": "Sblocca la tua cassaforte"
   },
-  "vaultLoggedOut": {
-    "message": "La cassaforte è bloccata."
+  "loginToVaultMenu": {
+    "message": "Accedi alla tua cassaforte"
   },
   "autoFillInfo": {
     "message": "Non ci sono login disponibili per completare la scheda attuale del browser."
@@ -118,8 +121,20 @@
   "continue": {
     "message": "Continua"
   },
+  "sendVerificationCode": {
+    "message": "Invia un codice di verifica alla tua email"
+  },
+  "sendCode": {
+    "message": "Invia codice"
+  },
+  "codeSent": {
+    "message": "Codice inviato"
+  },
   "verificationCode": {
     "message": "Codice di verifica"
+  },
+  "confirmIdentity": {
+    "message": "Conferma la tua identità per continuare."
   },
   "account": {
     "message": "Account"
@@ -214,6 +229,18 @@
   "length": {
     "message": "Lunghezza"
   },
+  "uppercase": {
+    "message": "Maiuscole (A-Z)"
+  },
+  "lowercase": {
+    "message": "Minuscole (a-z)"
+  },
+  "numbers": {
+    "message": "Numeri (0-9)"
+  },
+  "specialCharacters": {
+    "message": "Caratteri speciali (!@#$%^&*)"
+  },
   "numWords": {
     "message": "Numero di parole"
   },
@@ -305,8 +332,8 @@
   "browserNotSupportClipboard": {
     "message": "Il tuo browser non supporta la copia dagli appunti. Copiala manualmente."
   },
-  "verifyMasterPassword": {
-    "message": "Verifica password principale"
+  "verifyIdentity": {
+    "message": "Verifica l'identità."
   },
   "yourVaultIsLocked": {
     "message": "La tua cassaforte è bloccata. Inserisci la tua password principale per continuare."
@@ -408,8 +435,11 @@
   "verificationCodeRequired": {
     "message": "Il codice di verifica è obbligatorio."
   },
+  "invalidVerificationCode": {
+    "message": "Codice di verifica non valido."
+  },
   "valueCopied": {
-    "message": "$VALUE$ copiato",
+    "message": "$VALUE$ copiata",
     "description": "Value has been copied to the clipboard.",
     "placeholders": {
       "value": {
@@ -556,9 +586,6 @@
   },
   "notificationAddSave": {
     "message": "Sì, salva ora"
-  },
-  "notificationNeverSave": {
-    "message": "Mai per questo sito"
   },
   "disableChangedPasswordNotification": {
     "message": "Disabilita notifica di modifica delle password"
@@ -773,6 +800,9 @@
   "disableAutoTotpCopyDesc": {
     "message": "Se il tuo login ha un autenticatore collegato, il codice ti verifica TOTP è automaticamente copiato negli appunti ogni volta che auto-completi il login."
   },
+  "disableAutoBiometricsPrompt": {
+    "message": "Non richiedere dati biometrici all'avvio"
+  },
   "premiumRequired": {
     "message": "Premium richiesto"
   },
@@ -816,13 +846,13 @@
     "message": "Inserisci la tua chiave di sicurezza nella porta USB del tuo computer. Se dispone di un pulsante, premilo."
   },
   "webAuthnNewTab": {
-    "message": "Continua la verifica di WebAuthn 2FA nella nuova scheda."
+    "message": "Per avviare la verifica WebAuthn 2FA. Fare clic sul pulsante in basso per aprire una nuova scheda e seguire le istruzioni fornite nella nuova scheda. "
   },
   "webAuthnNewTabOpen": {
     "message": "Apri nuova scheda"
   },
   "webAuthnAuthenticate": {
-    "message": "Autenticazione WebAutn"
+    "message": "Autenticazione WebAuthn"
   },
   "loginUnavailable": {
     "message": "Login non disponibile"
@@ -950,8 +980,8 @@
   "commandLockVaultDesc": {
     "message": "Blocca la cassaforte"
   },
-  "privateModeMessage": {
-    "message": "Purtroppo questa finestra non è disponibile nella modalità anonima per questo browser."
+  "privateModeWarning": {
+    "message": "Il supporto della modalità privata è sperimentale e alcune funzionalità sono limitate."
   },
   "customFields": {
     "message": "Campi personalizzati"
@@ -976,6 +1006,14 @@
   },
   "cfTypeBoolean": {
     "message": "Booleano"
+  },
+  "cfTypeLinked": {
+    "message": "Collegato",
+    "description": "This describes a field that is 'linked' (tied) to another field."
+  },
+  "linkedValue": {
+    "message": "Valore collegato",
+    "description": "This describes a value that is 'linked' (tied) to another value."
   },
   "popup2faCloseMessage": {
     "message": "Facendo clic all'esterno della finestra popup per controllare la mail con il codice di verifica chiuderà la finestra di popup. Vuoi aprire questo popup in una nuova finestra?"
@@ -1078,6 +1116,9 @@
   },
   "lastName": {
     "message": "Cognome"
+  },
+  "fullName": {
+    "message": "Nome completo"
   },
   "identityName": {
     "message": "Nome dell'identità"
@@ -1303,12 +1344,6 @@
   "invalidPin": {
     "message": "Codice PIN non valido."
   },
-  "verifyPin": {
-    "message": "Verifica PIN"
-  },
-  "yourVaultIsLockedPinCode": {
-    "message": "La tua cassaforte è bloccata. Inserisci il tuo codice PIN per continuare."
-  },
   "unlockWithBiometrics": {
     "message": "Sblocca con i dati biometrici"
   },
@@ -1423,7 +1458,7 @@
     }
   },
   "masterPasswordPolicyRequirementsNotMet": {
-    "message": "La tua nuova password principale non soddisfa i requisiti di sicurezza."
+    "message": "La tua nuova password principale non soddisfa i parametri di sicurezza."
   },
   "acceptPolicies": {
     "message": "Selezionando la casella accetti quanto segue:"
@@ -1752,5 +1787,102 @@
   },
   "emailVerificationRequiredDesc": {
     "message": "Devi verificare la tua email per utilizzare questa funzionalità. Puoi verificare la tua email nella cassaforte web."
+  },
+  "updatedMasterPassword": {
+    "message": "Password principale aggiornata"
+  },
+  "updateMasterPassword": {
+    "message": "Aggiorna password principale"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "La tua password principale è stata recentemente modificata da un amministratore nella tua organizzazione. Per accedere alla cassaforte, aggiorna ora la password. Procedendo sarai disconnesso dalla sessione attuale e ti sarà richiesto di effettuare nuovamente l'accesso. Le sessioni attive su altri dispositivi potrebbero continuare a rimanere attive per un massimo di un'ora."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Iscrizione automatica"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Questa organizzazione ha una policy aziendale che ti iscriverà automaticamente al ripristino della password. Ciò permetterà agli amministratori dell'organizzazione di cambiare la tua password principale."
+  },
+  "selectFolder": {
+    "message": "Seleziona cartella..."
+  },
+  "ssoCompleteRegistration": {
+    "message": "Per completare l'accesso con SSO, imposta una password principale per accedere e proteggere la cassaforte."
+  },
+  "hours": {
+    "message": "Ore"
+  },
+  "minutes": {
+    "message": "Minuti"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Le policy dell'organizzazione stanno influenzando il timeout della tua cassaforte. Il tempo massimo consentito è di $HOURS$ ore e $MINUTES$ minuti",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Il timeout della tua cassaforte supera i limiti impostati dalla tua organizzazione."
+  },
+  "vaultExportDisabled": {
+    "message": "Esportazione cassaforte disabilitata"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Una o più policy dell'organizzazione ti impediscono di esportare la tua cassaforte personale."
+  },
+  "copyCustomFieldNameInvalidElement": {
+    "message": "Impossibile identificare un elemento del form valido. Prova a ispezionare l'HTML."
+  },
+  "copyCustomFieldNameNotUnique": {
+    "message": "Nessun identificatore univoco trovato."
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ sta usando SSO con un server \"self-hosted\". Non è più richiesta una password principale per accedere per i membri di questa organizzazione.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Lascia l'organizzazione"
+  },
+  "removeMasterPassword": {
+    "message": "Rimuovi la password principale"
+  },
+  "removedMasterPassword": {
+    "message": "Password principale rimossa."
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "Sei sicuro di voler lasciare questa organizzazione?"
+  },
+  "leftOrganization": {
+    "message": "Hai lasciato l'organizzazione."
+  },
+  "toggleCharacterCount": {
+    "message": "Attiva/Disattiva conteggio dei caratteri"
+  },
+  "sessionTimeout": {
+    "message": "La tua sessione è scaduta. Torna indietro e riprova ad accedere."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Esportazione cassaforte personale"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Saranno esportati solo gli oggetti della cassaforte personale associati a $EMAIL$. Gli oggetti della cassaforte dell'organizzazione non saranno inclusi.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
   }
 }

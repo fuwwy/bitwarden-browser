@@ -88,14 +88,17 @@
   "generatePasswordCopied": {
     "message": "Generar contraseña (copiada)"
   },
+  "copyElementIdentifier": {
+    "message": "Copiar Nombre del campo personalizado"
+  },
   "noMatchingLogins": {
     "message": "Sin entradas coincidentes."
   },
-  "vaultLocked": {
-    "message": "La caja fuerte está bloqueada."
+  "unlockVaultMenu": {
+    "message": "Desbloquea tu bóveda"
   },
-  "vaultLoggedOut": {
-    "message": "La caja fuerte está desconectada."
+  "loginToVaultMenu": {
+    "message": "Inicia sesión en tu bóveda"
   },
   "autoFillInfo": {
     "message": "No hay entradas disponibles para autorellenar en la pestaña actual del navegador."
@@ -118,8 +121,20 @@
   "continue": {
     "message": "Continuar"
   },
+  "sendVerificationCode": {
+    "message": "Envía un código de verificación a tu correo electrónico"
+  },
+  "sendCode": {
+    "message": "Enviar código"
+  },
+  "codeSent": {
+    "message": "Código enviado"
+  },
   "verificationCode": {
     "message": "Código de verificación"
+  },
+  "confirmIdentity": {
+    "message": "Confirme su identidad para continuar."
   },
   "account": {
     "message": "Cuenta"
@@ -214,6 +229,18 @@
   "length": {
     "message": "Longitud"
   },
+  "uppercase": {
+    "message": "Mayúsculas (A-Z)"
+  },
+  "lowercase": {
+    "message": "Minúsculas (a-z)"
+  },
+  "numbers": {
+    "message": "Números (0-9)"
+  },
+  "specialCharacters": {
+    "message": "Carácteres especiales (!@#$%^&*)"
+  },
   "numWords": {
     "message": "Número de palabras"
   },
@@ -305,8 +332,8 @@
   "browserNotSupportClipboard": {
     "message": "Tu navegador web no soporta copiar al portapapeles facilmente. Cópialo manualmente."
   },
-  "verifyMasterPassword": {
-    "message": "Verificar contraseña maestra"
+  "verifyIdentity": {
+    "message": "Verificar identidad"
   },
   "yourVaultIsLocked": {
     "message": "Su caja fuerte está bloqueada. Verifique su contraseña maestra para continuar."
@@ -407,6 +434,9 @@
   },
   "verificationCodeRequired": {
     "message": "Código de verificación requerido."
+  },
+  "invalidVerificationCode": {
+    "message": "Código de verificación no válido"
   },
   "valueCopied": {
     "message": "Valor de $VALUE$ copiado",
@@ -557,9 +587,6 @@
   "notificationAddSave": {
     "message": "Sí, guardar ahora"
   },
-  "notificationNeverSave": {
-    "message": "Nunca para este sitio"
-  },
   "disableChangedPasswordNotification": {
     "message": "Deshabilitar la notificación de cambio de contraseña"
   },
@@ -570,7 +597,7 @@
     "message": "¿Desea actualizar esta contraseña en Bitwarden?"
   },
   "notificationChangeSave": {
-    "message": "Sí, actualizar ahora"
+    "message": "Actualizado"
   },
   "disableContextMenuItem": {
     "message": "Deshabilitar opciones del menú contextual"
@@ -773,6 +800,9 @@
   "disableAutoTotpCopyDesc": {
     "message": "Si tu entrada tiene una clave de autenticación adjunta, el código de verificación TOTP es copiado automáticamente al portapapeles cuando autorellenas una entrada."
   },
+  "disableAutoBiometricsPrompt": {
+    "message": "No solicitar biométricos al iniciar"
+  },
   "premiumRequired": {
     "message": "Premium requerido"
   },
@@ -950,8 +980,8 @@
   "commandLockVaultDesc": {
     "message": "Bloquear la caja fuerte"
   },
-  "privateModeMessage": {
-    "message": "Lamentablemente esta ventana no está disponible en el modo privado de este navegador."
+  "privateModeWarning": {
+    "message": "El soporte en modo privado es experimental y algunas características son limitadas."
   },
   "customFields": {
     "message": "Campos personalizados"
@@ -976,6 +1006,14 @@
   },
   "cfTypeBoolean": {
     "message": "Booleano"
+  },
+  "cfTypeLinked": {
+    "message": "Vinculado",
+    "description": "This describes a field that is 'linked' (tied) to another field."
+  },
+  "linkedValue": {
+    "message": "Valor vinculado",
+    "description": "This describes a value that is 'linked' (tied) to another value."
   },
   "popup2faCloseMessage": {
     "message": "Pulsar fuera de la ventana emergente para comprobar tu correo de verificación, hará que esta se cierre. ¿Quieres abrir esta ventana emergente en una nueva ventana para evitar su cierre?"
@@ -1078,6 +1116,9 @@
   },
   "lastName": {
     "message": "Apellido"
+  },
+  "fullName": {
+    "message": "Nombre completo"
   },
   "identityName": {
     "message": "Nombre de la identidad"
@@ -1302,12 +1343,6 @@
   },
   "invalidPin": {
     "message": "Código PIN inválido."
-  },
-  "verifyPin": {
-    "message": "Verificar PIN"
-  },
-  "yourVaultIsLockedPinCode": {
-    "message": "Tu caja fuerte está bloqueada. Verifica tu código PIN para continuar."
   },
   "unlockWithBiometrics": {
     "message": "Desbloquear con biométricos"
@@ -1752,5 +1787,102 @@
   },
   "emailVerificationRequiredDesc": {
     "message": "Debes verificar tu correo electrónico para usar esta función. Puedes verificar tu correo electrónico en la bóveda web."
+  },
+  "updatedMasterPassword": {
+    "message": "Contraseña maestra actualizada"
+  },
+  "updateMasterPassword": {
+    "message": "Actualizar contraseña maestra"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Su contraseña maestra ha sido cambiada recientemente por un administrador de su organización. Para acceder a la caja fuerte, debe actualizarla ahora. Proceder le desconectará de su sesión actual, requiriendo que vuelva a iniciar sesión. Las sesiones activas en otros dispositivos pueden seguir estando activas durante una hora."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Inscripción automática"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Esta organización tiene una política empresarial que lo inscribirá automáticamente en el restablecimiento de contraseña. La inscripción permitirá a los administradores de la organización cambiar su contraseña maestra."
+  },
+  "selectFolder": {
+    "message": "Seleccione carpeta..."
+  },
+  "ssoCompleteRegistration": {
+    "message": "Para completar el inicio de sesión con SSO, por favor establezca una contraseña maestra para acceder y proteger su caja fuerte."
+  },
+  "hours": {
+    "message": "Horas"
+  },
+  "minutes": {
+    "message": "Minutos"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Las políticas de tu organización están afectando el tiempo de espera de tu caja fuerte. El máximo permitido de espera es de $HOURS$ hora(s) y de $MINUTES$ minuto(s)",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "vaultTimeoutToLarge": {
+    "message": "El tiempo de espera de tu caja fuerte excede las restricciones establecidas por tu organización."
+  },
+  "vaultExportDisabled": {
+    "message": "Exportación de caja fuerte desactivada"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Una o más políticas de organización le impiden exportar su caja fuerte personal."
+  },
+  "copyCustomFieldNameInvalidElement": {
+    "message": "No se puede identificar un elemento de formulario válido. Intenta inspeccionar el HTML en su lugar."
+  },
+  "copyCustomFieldNameNotUnique": {
+    "message": "Identificador único no encontrado."
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ está usando SSO con un servidor de claves autoalojado. Los miembros de esta organización ya no necesitarán una contraseña maestra para iniciar sesión.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Abandonar organización"
+  },
+  "removeMasterPassword": {
+    "message": "Eliminar contraseña maestra"
+  },
+  "removedMasterPassword": {
+    "message": "Contraseña maestra eliminada."
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "¿Confirma que quiere abandonar esta organización?"
+  },
+  "leftOrganization": {
+    "message": "Ha abandonado la organización."
+  },
+  "toggleCharacterCount": {
+    "message": "Alternar conteo de caracteres"
+  },
+  "sessionTimeout": {
+    "message": "Su sesión ha expirado. Por favor, vuelva e intente iniciar sesión de nuevo."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Exportando bóveda personal"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Solo se exportarán los elementos de la bóveda personal asociados con $EMAIL$. Los elementos de la bóveda de la organización no se incluirán.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
   }
 }

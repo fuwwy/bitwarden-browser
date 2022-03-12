@@ -1,22 +1,19 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
-import { PopupUtilsService } from './services/popup-utils.service';
+import { PopupUtilsService } from "./services/popup-utils.service";
 
 @Component({
-    selector: 'app-tabs',
-    templateUrl: 'tabs.component.html',
+  selector: "app-tabs",
+  templateUrl: "tabs.component.html",
 })
 export class TabsComponent implements OnInit {
-    showTabs: boolean = true;
-    showCurrentTab: boolean = true;
+  showTabs = true;
+  showCurrentTab = true;
 
-    constructor(private popupUtilsService: PopupUtilsService) { }
+  constructor(private popupUtilsService: PopupUtilsService) {}
 
-    ngOnInit() {
-        this.showTabs = !this.popupUtilsService.inOverlay(window);
-        this.showCurrentTab = !this.popupUtilsService.inPopout(window);
-    }
+  ngOnInit() {
+    this.showTabs = !this.popupUtilsService.inOverlay(window);
+    this.showCurrentTab = !this.popupUtilsService.inPopout(window);
+  }
 }

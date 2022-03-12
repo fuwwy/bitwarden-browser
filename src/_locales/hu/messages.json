@@ -88,14 +88,17 @@
   "generatePasswordCopied": {
     "message": "Jelszó generálás (másolt)"
   },
+  "copyElementIdentifier": {
+    "message": "Egyedi mezőnév másolása"
+  },
   "noMatchingLogins": {
     "message": "Nincsenek egyező bejelentkezések."
   },
-  "vaultLocked": {
-    "message": "A széf zárolva van."
+  "unlockVaultMenu": {
+    "message": "Széf kinyitása"
   },
-  "vaultLoggedOut": {
-    "message": "A széf kijelentkezésre került."
+  "loginToVaultMenu": {
+    "message": "Bejelentkezés a saját széfbe"
   },
   "autoFillInfo": {
     "message": "Nincsenek elérhető bejelentkezések ehhez a fülhöz ezért az automatikus kitöltés nem működik."
@@ -118,8 +121,20 @@
   "continue": {
     "message": "Folytatás"
   },
+  "sendVerificationCode": {
+    "message": "Ellenőrző kód elküldése a saját email címre"
+  },
+  "sendCode": {
+    "message": "Kód küldése"
+  },
+  "codeSent": {
+    "message": "A kód elküldésre került."
+  },
   "verificationCode": {
     "message": "Ellenőrző kód"
+  },
+  "confirmIdentity": {
+    "message": "A folytatáshoz meg kell erősíteni a személyazonosságot."
   },
   "account": {
     "message": "Felhasználó"
@@ -214,6 +229,18 @@
   "length": {
     "message": "Hossz"
   },
+  "uppercase": {
+    "message": "Nagybetűs (A-Z)"
+  },
+  "lowercase": {
+    "message": "Kisbetűs (a-z)"
+  },
+  "numbers": {
+    "message": "Számok (0-9)"
+  },
+  "specialCharacters": {
+    "message": "Speciális karakterek (!@#$%^&*)"
+  },
   "numWords": {
     "message": "Szavak száma"
   },
@@ -305,11 +332,11 @@
   "browserNotSupportClipboard": {
     "message": "A webböngésződ nem támogat könnyű vágólap másolást. Másold manuálisan inkább."
   },
-  "verifyMasterPassword": {
-    "message": "Mesterjelszó ellenőrzése"
+  "verifyIdentity": {
+    "message": "Személyazonosság ellenőrzése"
   },
   "yourVaultIsLocked": {
-    "message": "A széf zárolásra került. A folytatáshoz meg kell adni a mesterjelszót."
+    "message": "A páncélszekrény zárva van. A folytatáshoz igazolja személyazonosságát."
   },
   "unlock": {
     "message": "Feloldás"
@@ -407,6 +434,9 @@
   },
   "verificationCodeRequired": {
     "message": "Ellenőrző kód szükséges."
+  },
+  "invalidVerificationCode": {
+    "message": "Érvénytelen ellenőrző kód"
   },
   "valueCopied": {
     "message": "$VALUE$ másolásra került.",
@@ -555,10 +585,7 @@
     "message": "A Bitwarden megjegyezze ezt a jelszót?"
   },
   "notificationAddSave": {
-    "message": "Igen, mentés most"
-  },
-  "notificationNeverSave": {
-    "message": "Ezen az weboldalon soha"
+    "message": "Mentés"
   },
   "disableChangedPasswordNotification": {
     "message": "Megváltozott jelszó értesítés letiltása"
@@ -570,7 +597,7 @@
     "message": "Frissítésre kerüljön a jelszó a Bitwardenben?"
   },
   "notificationChangeSave": {
-    "message": "Igen, frissítés most"
+    "message": "Frissítés"
   },
   "disableContextMenuItem": {
     "message": "Helyi menüopciók kikapcsolása"
@@ -773,6 +800,9 @@
   "disableAutoTotpCopyDesc": {
     "message": "Ha a bejelentkezésedhez csatolva van egy hitelesítő kód, a TOTP ellenőrző kód automatikusan másolva lesz a vágólapodra bejelentkezésed automatikus kitöltése esetén."
   },
+  "disableAutoBiometricsPrompt": {
+    "message": "Nincs biometrika kérés indításkor"
+  },
   "premiumRequired": {
     "message": "Prémium funkció szükséges"
   },
@@ -950,8 +980,8 @@
   "commandLockVaultDesc": {
     "message": "A széf zárolása"
   },
-  "privateModeMessage": {
-    "message": "Ebben a böngészőben ez az ablak sajnos nem érhető el privát módban."
+  "privateModeWarning": {
+    "message": "A privát mód támogatása kísérleti és néhány funkció korlátozott."
   },
   "customFields": {
     "message": "Egyedi mezők"
@@ -976,6 +1006,14 @@
   },
   "cfTypeBoolean": {
     "message": "Boolean (Logikai)"
+  },
+  "cfTypeLinked": {
+    "message": "Csatolva",
+    "description": "This describes a field that is 'linked' (tied) to another field."
+  },
+  "linkedValue": {
+    "message": "Csatolt érték",
+    "description": "This describes a value that is 'linked' (tied) to another value."
   },
   "popup2faCloseMessage": {
     "message": "Az ellenőrző kódot tartalmazó email egy olyan felugró ablakban nyílik meg, mely a mellette levő területre kattinva bezáródik. Szeretnéd az emailt egy olyan ablakban megnyitni, ami nem záródhat így be?"
@@ -1078,6 +1116,9 @@
   },
   "lastName": {
     "message": "Családnév"
+  },
+  "fullName": {
+    "message": "Teljes név"
   },
   "identityName": {
     "message": "Személyazonosság megnevezés"
@@ -1302,12 +1343,6 @@
   },
   "invalidPin": {
     "message": "A pinkód érvénytelen."
-  },
-  "verifyPin": {
-    "message": "Pinkód ellenőrzése"
-  },
-  "yourVaultIsLockedPinCode": {
-    "message": "A széf zárolásra került. A folytatáshoz meg kell adni a pinkódot."
   },
   "unlockWithBiometrics": {
     "message": "Biometrikus feloldás"
@@ -1752,5 +1787,102 @@
   },
   "emailVerificationRequiredDesc": {
     "message": "A funkció használatához igazolni kell email címet. Az email cím a webtárban ellenőrizhető."
+  },
+  "updatedMasterPassword": {
+    "message": "A mesterjelszó frissítésre került."
+  },
+  "updateMasterPassword": {
+    "message": "Mesterjelszó frissítése"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "A szervezet egyik adminisztrátora nemrég megváltoztatta a mesterjelszót. A széf eléréséhez most frissíteni kell a mesterjelszót. Továbblépéskor kijelentkezés történik a jelenlegi munkamenetből és újra be kell jelentkezni. Ha van aktív munkamenet más eszközön, az még legfeljebb egy óráig aktív maradhat."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatikus regisztráció"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Ennek a szervezetnek van egy vállalati házirendje, amely automatikusan regisztrál a jelszó alaphelyzetbe állítására. A regisztráció lehetővé teszi a szervezet adminisztrátorainak a mesterjelszó megváltoztatását."
+  },
+  "selectFolder": {
+    "message": "Mappa választása..."
+  },
+  "ssoCompleteRegistration": {
+    "message": "Az SSO-val történő bejelentkezés befejezéséhez mesterjelszót kell beállítani a széf eléréséhez és védelméhez."
+  },
+  "hours": {
+    "message": "Óra"
+  },
+  "minutes": {
+    "message": "Perc"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "A szervezeti házirendek hatással vannak a széf időkorlátjára. A széf időkorlátja legfeljebb $HOURS$ óra és $MINUTES$ perc lehet.",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "vaultTimeoutToLarge": {
+    "message": "A széf időkorlátja túllépi a szervezet által beállított korlátozást."
+  },
+  "vaultExportDisabled": {
+    "message": "A széf exportálás nem engedélyezett."
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Egy vagy több szervezeti házirend tiltja a személyes széf exportálását."
+  },
+  "copyCustomFieldNameInvalidElement": {
+    "message": "Nem lehet azonosítani egy érvényes űrlapelemet. Ehelyett próbáljuk meg ellenőrizni a HTML -t."
+  },
+  "copyCustomFieldNameNotUnique": {
+    "message": "Nincs egyedi azonosító."
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ jelenleg saját tárolású aláíráskulcsú SSO szervert használ. A mesterjelszó a továbbiakban nem szükséges a szervezeti tagsági bejelentkezéshez.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Szervezet elhagyása"
+  },
+  "removeMasterPassword": {
+    "message": "Mesterjelszó eltávolítása"
+  },
+  "removedMasterPassword": {
+    "message": "A mesterjelszó eltávolításra került."
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "Biztosan kilépünk ebből a szervezetből?"
+  },
+  "leftOrganization": {
+    "message": "Megtörtént a kilépés a szervezetből."
+  },
+  "toggleCharacterCount": {
+    "message": "Karakterszámláló váltás"
+  },
+  "sessionTimeout": {
+    "message": "A munkamenet lejárt. Lépjünk vissza és próbáljunk újra bejelentlezni."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Személyes széf exportálása"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Csak $EMAIL$ email címmel társított személyes széf elemek kerülnek exportálásra. Ebbe nem kerülnek be a szervezeti széf elemek.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
   }
 }

@@ -20,7 +20,7 @@
     "message": "登入"
   },
   "enterpriseSingleSignOn": {
-    "message": "企業單一登入（SSO）"
+    "message": "企業單一登入"
   },
   "cancel": {
     "message": "取消"
@@ -88,14 +88,17 @@
   "generatePasswordCopied": {
     "message": "產生及複製密碼"
   },
+  "copyElementIdentifier": {
+    "message": "複製自訂欄位名稱"
+  },
   "noMatchingLogins": {
     "message": "無符合的登入資料。"
   },
-  "vaultLocked": {
-    "message": "密碼庫已鎖定。"
+  "unlockVaultMenu": {
+    "message": "解鎖您的密碼庫"
   },
-  "vaultLoggedOut": {
-    "message": "密碼庫已登出。"
+  "loginToVaultMenu": {
+    "message": "登入您的密碼庫"
   },
   "autoFillInfo": {
     "message": "沒有可以自動填入目前瀏覽器分頁的登入資料。"
@@ -118,8 +121,20 @@
   "continue": {
     "message": "繼續"
   },
+  "sendVerificationCode": {
+    "message": "傳送驗證碼到您的信箱"
+  },
+  "sendCode": {
+    "message": "傳送驗證碼"
+  },
+  "codeSent": {
+    "message": "驗證碼已送出"
+  },
   "verificationCode": {
     "message": "驗證碼"
+  },
+  "confirmIdentity": {
+    "message": "請先確認身分後再繼續。"
   },
   "account": {
     "message": "帳戶"
@@ -214,6 +229,18 @@
   "length": {
     "message": "長度"
   },
+  "uppercase": {
+    "message": "大寫 (A-Z)"
+  },
+  "lowercase": {
+    "message": "小寫 (a-z)"
+  },
+  "numbers": {
+    "message": "數字 (0-9)"
+  },
+  "specialCharacters": {
+    "message": "特殊字元 (!@#$%^&*)"
+  },
   "numWords": {
     "message": "字數"
   },
@@ -305,11 +332,11 @@
   "browserNotSupportClipboard": {
     "message": "您的瀏覽器不支援剪貼簿簡單複製，請手動複製。"
   },
-  "verifyMasterPassword": {
-    "message": "驗證主密碼"
+  "verifyIdentity": {
+    "message": "驗證身份"
   },
   "yourVaultIsLocked": {
-    "message": "密碼庫已鎖定。驗證主密碼以繼續。"
+    "message": "您的密碼庫已上鎖。請驗證身份後繼續。"
   },
   "unlock": {
     "message": "解鎖"
@@ -331,7 +358,7 @@
     "message": "無效的主密碼"
   },
   "vaultTimeout": {
-    "message": "密碼庫逾時"
+    "message": "密碼庫逾時時間"
   },
   "lockNow": {
     "message": "立即鎖定"
@@ -408,6 +435,9 @@
   "verificationCodeRequired": {
     "message": "必須填入驗證碼。"
   },
+  "invalidVerificationCode": {
+    "message": "無效的驗證碼"
+  },
   "valueCopied": {
     "message": "$VALUE$ 已複製",
     "description": "Value has been copied to the clipboard.",
@@ -443,7 +473,7 @@
     "message": "必須填入名稱。"
   },
   "addedFolder": {
-    "message": "資料夾已新增"
+    "message": "已新增資料夾"
   },
   "changeMasterPass": {
     "message": "變更主密碼"
@@ -461,7 +491,7 @@
     "message": "您確定要刪除此資料夾嗎？"
   },
   "deletedFolder": {
-    "message": "資料夾已刪除"
+    "message": "已刪除資料夾"
   },
   "gettingStartedTutorial": {
     "message": "新手教學"
@@ -555,10 +585,7 @@
     "message": "希望 Bitwarden 幫您儲存這個密碼嗎？"
   },
   "notificationAddSave": {
-    "message": "是，立即儲存"
-  },
-  "notificationNeverSave": {
-    "message": "此網站不再提示"
+    "message": "儲存"
   },
   "disableChangedPasswordNotification": {
     "message": "停用密碼變更通知"
@@ -570,13 +597,13 @@
     "message": "是否要在 Bitwarden 中更新此密碼？"
   },
   "notificationChangeSave": {
-    "message": "是，立即更新"
+    "message": "更新"
   },
   "disableContextMenuItem": {
     "message": "停用右鍵選單選項"
   },
   "disableContextMenuItemDesc": {
-    "message": "右鍵選單選項可讓您在目前分頁中快速存取密碼或使用密碼產生器產生新密碼。"
+    "message": "右鍵選單選項幫您快速使用密碼產生器，以及快速登入目前分頁中的網站。"
   },
   "defaultUriMatchDetection": {
     "message": "預設的 URI 一致性偵測",
@@ -717,7 +744,7 @@
     "message": "您可以在 Bitwarden 網頁版管理您的會員資格。現在要前往嗎？"
   },
   "premiumRefresh": {
-    "message": "重新整理會員資格"
+    "message": "更新會員資格狀態"
   },
   "premiumNotCurrentMember": {
     "message": "您尚未成為進階會員。"
@@ -772,6 +799,9 @@
   },
   "disableAutoTotpCopyDesc": {
     "message": "如果您的登入資料已包含驗證器金鑰，TOTP 驗證碼會在您自動填入時自動複製到您的剪貼簿。"
+  },
+  "disableAutoBiometricsPrompt": {
+    "message": "不要在啟動時提示生物特徵辨識驗證"
   },
   "premiumRequired": {
     "message": "需要進階會員資格"
@@ -837,7 +867,7 @@
     "message": "兩步驟登入選項"
   },
   "recoveryCodeDesc": {
-    "message": "無法使用任何兩步驟登入方式？請使用您的復原代碼以停用您帳戶的所有兩步驟登入方式。"
+    "message": "無法使用任何雙要素提供程式嗎？請使用您的復原代碼以停用您賬戶的所有雙要素提供程式。"
   },
   "recoveryCodeTitle": {
     "message": "復原代碼"
@@ -950,8 +980,8 @@
   "commandLockVaultDesc": {
     "message": "鎖定密碼庫"
   },
-  "privateModeMessage": {
-    "message": "很遺憾，在瀏覽器的隱私模式下，此視窗無法使用。"
+  "privateModeWarning": {
+    "message": "私密模式的支援是實驗性功能，部分功能無法完全發揮作用。"
   },
   "customFields": {
     "message": "自訂欄位"
@@ -969,13 +999,21 @@
     "message": "透過拖曳來排序"
   },
   "cfTypeText": {
-    "message": "文字"
+    "message": "文字型"
   },
   "cfTypeHidden": {
-    "message": "隱藏"
+    "message": "隱藏型"
   },
   "cfTypeBoolean": {
     "message": "布林值"
+  },
+  "cfTypeLinked": {
+    "message": "連結型",
+    "description": "This describes a field that is 'linked' (tied) to another field."
+  },
+  "linkedValue": {
+    "message": "連結的數值",
+    "description": "This describes a value that is 'linked' (tied) to another value."
   },
   "popup2faCloseMessage": {
     "message": "如果您點選彈出式視窗外的任意區域，將導致彈出式視窗關閉。您想在新視窗中開啟此彈出式視窗，以讓它不關閉嗎？"
@@ -1078,6 +1116,9 @@
   },
   "lastName": {
     "message": "姓"
+  },
+  "fullName": {
+    "message": "全名"
   },
   "identityName": {
     "message": "身分名稱"
@@ -1220,11 +1261,11 @@
     "message": "切換選項"
   },
   "toggleCurrentUris": {
-    "message": "切換目前 URL",
+    "message": "切換目前 URI",
     "description": "Toggle the display of the URIs of the currently open tabs in the browser."
   },
   "currentUri": {
-    "message": "目前 URL",
+    "message": "目前 URI",
     "description": "The URI of one of the current open tabs in the browser."
   },
   "organization": {
@@ -1303,12 +1344,6 @@
   "invalidPin": {
     "message": "無效的 PIN 碼。"
   },
-  "verifyPin": {
-    "message": "驗證 PIN 碼"
-  },
-  "yourVaultIsLockedPinCode": {
-    "message": "密碼庫已鎖定。驗證 PIN 碼以繼續。"
-  },
   "unlockWithBiometrics": {
     "message": "使用生物特徵辨識解鎖"
   },
@@ -1366,7 +1401,7 @@
     "message": "項目已還原"
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "逾時後登出將移除對密碼庫的所有存取權限，以及重新認證時需要連線網路。確定要使用此設定嗎？"
+    "message": "選擇登出將會在密碼庫逾時後移除對密碼庫的所有存取權限，以及重新認證時需要連線網路。確定要使用此設定嗎？"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
     "message": "逾時動作確認"
@@ -1504,7 +1539,7 @@
     "message": "此動作無法在側邊欄中完成，請在彈出式視窗中再試一次。"
   },
   "personalOwnershipSubmitError": {
-    "message": "由於某個企業原則，您被限制為儲存項目到您的個人密碼庫。將擁有權改為組織，並從可用的集合中選擇。"
+    "message": "由於某個企業原則，您被限制為儲存項目到您的個人密碼庫。將擁有權變更為組織，並從可用的集合中選擇。"
   },
   "personalOwnershipPolicyInEffect": {
     "message": "一個組織原則正在影響您的擁有權選項。"
@@ -1513,7 +1548,7 @@
     "message": "排除的網域"
   },
   "excludedDomainsDesc": {
-    "message": "Bitwarden 不會要求儲存這些網域的登入詳細資訊。必須重新整理頁面才能使變更生效。"
+    "message": "Bitwarden 不會要求儲存這些網域的詳細登入資訊。必須重新整理頁面才能使變更生效。"
   },
   "excludedDomainsInvalidDomain": {
     "message": "$DOMAIN$ 不是一個有效的網域",
@@ -1752,5 +1787,102 @@
   },
   "emailVerificationRequiredDesc": {
     "message": "您必須驗證您的電子郵件才能使用此功能。 您可以在網頁密碼庫裡驗證您的電子郵件。"
+  },
+  "updatedMasterPassword": {
+    "message": "已更新主密碼"
+  },
+  "updateMasterPassword": {
+    "message": "更新主密碼"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "您的主密碼最近被您的組織管理者變更過。要存取密碼庫，您必須現在更新主密碼。繼續操作會登出目前的登入階段，要求您重新登入。其他裝置上使用中的登入階段可能持續最長一個小時。"
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "自動註冊"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "此組織有一個可以為您自動註冊密碼重設的企業原則。註冊後將允許組織管理員變更您的主密碼。"
+  },
+  "selectFolder": {
+    "message": "選擇資料夾⋯"
+  },
+  "ssoCompleteRegistration": {
+    "message": "要完成 SSO 登入，請設定主密碼以存取和保護您的密碼庫。"
+  },
+  "hours": {
+    "message": "小時"
+  },
+  "minutes": {
+    "message": "分鐘"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "您的組織策略正在影響您的密碼庫逾時時間。密碼庫逾時時間最多可以設定到 $HOURS$ 小時 $MINUTES$ 分鐘。",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "vaultTimeoutToLarge": {
+    "message": "您的密碼庫逾時時間超過組織限制。"
+  },
+  "vaultExportDisabled": {
+    "message": "密碼庫匯出已停用"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "一或多個組織策略不允許您輸出個人密碼庫。"
+  },
+  "copyCustomFieldNameInvalidElement": {
+    "message": "未能找出有效的表單元件。請試試看改用 HTML 檢查功能。"
+  },
+  "copyCustomFieldNameNotUnique": {
+    "message": "找不到唯一識別元。"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ 使用自我托管金輪伺服器 SSO。這個组织的成員登入時将不再需要主密碼。",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "離開組織"
+  },
+  "removeMasterPassword": {
+    "message": "移除主密碼"
+  },
+  "removedMasterPassword": {
+    "message": "主密碼已移除。"
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "您確定要離開這個組織嗎？"
+  },
+  "leftOrganization": {
+    "message": "您已離開此組織。"
+  },
+  "toggleCharacterCount": {
+    "message": "切換字元計數"
+  },
+  "sessionTimeout": {
+    "message": "您的登入階段已逾時。請返回並嘗試重新登入。"
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "匯出個人密碼庫"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "只會匯出關聯到 $EMAIL$ 的個人密碼庫。組織密碼庫的項目不包含在內。",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
   }
 }

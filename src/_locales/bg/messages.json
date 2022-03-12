@@ -88,14 +88,17 @@
   "generatePasswordCopied": {
     "message": "Генериране на парола (копирана)"
   },
+  "copyElementIdentifier": {
+    "message": "Копиране на името на допълнителното поле"
+  },
   "noMatchingLogins": {
     "message": "Няма съвпадащи записи."
   },
-  "vaultLocked": {
-    "message": "Трезорът е заключен."
+  "unlockVaultMenu": {
+    "message": "Отключете трезора си"
   },
-  "vaultLoggedOut": {
-    "message": "Излезли сте от трезора."
+  "loginToVaultMenu": {
+    "message": "Влезте в трезора си"
   },
   "autoFillInfo": {
     "message": "В текущия раздел няма записи, които да бъдат попълнени."
@@ -118,8 +121,20 @@
   "continue": {
     "message": "Продължаване"
   },
+  "sendVerificationCode": {
+    "message": "Изпращане на код за потвърждаване до Вашата ел. поща"
+  },
+  "sendCode": {
+    "message": "Изпращане на кода"
+  },
+  "codeSent": {
+    "message": "Кодът е изпратен"
+  },
   "verificationCode": {
     "message": "Код за потвърждаване"
+  },
+  "confirmIdentity": {
+    "message": "Потвърдете самоличността си, за да продължите."
   },
   "account": {
     "message": "Регистрация"
@@ -214,6 +229,18 @@
   "length": {
     "message": "Дължина"
   },
+  "uppercase": {
+    "message": "Главни букви (A-Z)"
+  },
+  "lowercase": {
+    "message": "Малки букви (a-z)"
+  },
+  "numbers": {
+    "message": "Числа (0-9)"
+  },
+  "specialCharacters": {
+    "message": "Специални знаци (!@#$%^&*)"
+  },
   "numWords": {
     "message": "Брой думи"
   },
@@ -305,8 +332,8 @@
   "browserNotSupportClipboard": {
     "message": "Браузърът не поддържа копиране в буфера, затова копирайте на ръка."
   },
-  "verifyMasterPassword": {
-    "message": "Потвърждаване на главната парола"
+  "verifyIdentity": {
+    "message": "Потвърждаване на самоличността"
   },
   "yourVaultIsLocked": {
     "message": "Трезорът е заключен — въведете главната си парола, за да продължите."
@@ -407,6 +434,9 @@
   },
   "verificationCodeRequired": {
     "message": "Кодът за потвърждение е задължителен."
+  },
+  "invalidVerificationCode": {
+    "message": "Грешен код за потвърждаване"
   },
   "valueCopied": {
     "message": "$VALUE$ — копирано",
@@ -556,9 +586,6 @@
   },
   "notificationAddSave": {
     "message": "Да, нека се запише сега"
-  },
-  "notificationNeverSave": {
-    "message": "Никога за този сайт"
   },
   "disableChangedPasswordNotification": {
     "message": "Без известия за обновяване на регистрации"
@@ -773,6 +800,9 @@
   "disableAutoTotpCopyDesc": {
     "message": "Ако регистрацията използва и удостоверителен ключ, временният, еднократен код се копира в буфера при всяко автоматично попълване на формуляра."
   },
+  "disableAutoBiometricsPrompt": {
+    "message": "Да не се изискват биометрични данни при стартиране"
+  },
   "premiumRequired": {
     "message": "Изисква се платен абонамент"
   },
@@ -950,8 +980,8 @@
   "commandLockVaultDesc": {
     "message": "Заключване на трезора"
   },
-  "privateModeMessage": {
-    "message": "За жалост този прозорец не може да се ползва в изолирани раздели на браузъра ви."
+  "privateModeWarning": {
+    "message": "Поддръжката на частния режим е експериментална и някои функционалности са ограничени."
   },
   "customFields": {
     "message": "Допълнителни полета"
@@ -976,6 +1006,14 @@
   },
   "cfTypeBoolean": {
     "message": "Булево"
+  },
+  "cfTypeLinked": {
+    "message": "Свързано",
+    "description": "This describes a field that is 'linked' (tied) to another field."
+  },
+  "linkedValue": {
+    "message": "Свързана стойност",
+    "description": "This describes a value that is 'linked' (tied) to another value."
   },
   "popup2faCloseMessage": {
     "message": "Ако натиснете бутон на мишката извън изскочилия прозорец за кода за потвърждение, същият този прозорец ще се затвори. Искате ли проверката да се извърши в нормален прозорец, който не се затваря толкова лесно?"
@@ -1078,6 +1116,9 @@
   },
   "lastName": {
     "message": "Фамилно име"
+  },
+  "fullName": {
+    "message": "Пълно име"
   },
   "identityName": {
     "message": "Име на самоличността"
@@ -1247,7 +1288,7 @@
     "message": "Стандартно"
   },
   "dateUpdated": {
-    "message": "Осъвременено",
+    "message": "Обновено",
     "description": "ex. Date this item was updated"
   },
   "datePasswordUpdated": {
@@ -1302,12 +1343,6 @@
   },
   "invalidPin": {
     "message": "Неправилен ПИН."
-  },
-  "verifyPin": {
-    "message": "Потвърждаване на ПИН"
-  },
-  "yourVaultIsLockedPinCode": {
-    "message": "Трезорът е заключен. Въведете своя ПИН, за да продължите."
   },
   "unlockWithBiometrics": {
     "message": "Отключване с биометрични данни"
@@ -1752,5 +1787,102 @@
   },
   "emailVerificationRequiredDesc": {
     "message": "Трябва да потвърдите е-пощата си, за да използвате тази функционалност. Можете да го направите в уеб-трезора."
+  },
+  "updatedMasterPassword": {
+    "message": "Главната парола е променена"
+  },
+  "updateMasterPassword": {
+    "message": "Промяна на главната парола"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Вашата главна парола наскоро е била сменена от администратор в организацията Ви. За да получите достъп до трезора, трябва първо да я промените. Това означава, че ще бъдете отписан(а) от текущата си сесия и ще трябва да се впишете отново. Активните сесии на други устройства може да продължат да бъдат активни още един час."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Автоматично включване"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Тази организация включва автоматично новите си потребители в смяната на пароли. Това означава, че администраторите на организацията ще могат да променят главната Ви парола."
+  },
+  "selectFolder": {
+    "message": "Избиране на папка..."
+  },
+  "ssoCompleteRegistration": {
+    "message": "За да завършите настройките за еднократна идентификация, трябва да зададете главна парола за трезора."
+  },
+  "hours": {
+    "message": "Часа"
+  },
+  "minutes": {
+    "message": "Минути"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Настройките на организацията Ви влияят върху времето за достъп до трезора Ви. Максималното разрешено време за достъп е $HOURS$ час(а) и $MINUTES$ минути",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Времето за достъп до трезора Ви превишава ограничението, определено от организацията Ви."
+  },
+  "vaultExportDisabled": {
+    "message": "Изнасянето на трезора е изключено"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Една или повече от настройките на организацията Ви не позволяват да изнасяте личния си трезор."
+  },
+  "copyCustomFieldNameInvalidElement": {
+    "message": "Не може да бъде открит подходящ елемент от формуляр. Опитайте да инспектирате кода на HTML."
+  },
+  "copyCustomFieldNameNotUnique": {
+    "message": "Няма намерен уникален идентификатор."
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ използва еднократно удостоверяване със собствен сървър за ключове. Членовете на тази организация вече нямат нужда от главна парола за вписване.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Напускане на организацията"
+  },
+  "removeMasterPassword": {
+    "message": "Премахване на главната парола"
+  },
+  "removedMasterPassword": {
+    "message": "Главната парола е премахната."
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "Наистина ли искате да напуснете тази организация?"
+  },
+  "leftOrganization": {
+    "message": "Напуснахте организацията."
+  },
+  "toggleCharacterCount": {
+    "message": "Превключване на броя знаци"
+  },
+  "sessionTimeout": {
+    "message": "Сесията Ви изтече. Моля, върнете се назад и се опитайте да влезете отново."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Изнасяне на личния трезор"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Ще бъдат изнесени само записите от личния трезор свързан с $EMAIL$. Записите в трезора на организацията няма да бъдат включени.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
   }
 }

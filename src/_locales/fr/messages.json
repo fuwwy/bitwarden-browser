@@ -88,14 +88,17 @@
   "generatePasswordCopied": {
     "message": "Générer un mot de passe (copié)"
   },
+  "copyElementIdentifier": {
+    "message": "Copier le nom du champ personnalisé"
+  },
   "noMatchingLogins": {
     "message": "Aucun site correspondant."
   },
-  "vaultLocked": {
-    "message": "Le coffre est verrouillé."
+  "unlockVaultMenu": {
+    "message": "Déverrouillez votre coffre"
   },
-  "vaultLoggedOut": {
-    "message": "Le coffre est déconnecté."
+  "loginToVaultMenu": {
+    "message": "Connectez-vous à votre coffre"
   },
   "autoFillInfo": {
     "message": "Il n'existe aucun site disponible pour le remplissage automatique pour l'onglet actuel du navigateur."
@@ -118,8 +121,20 @@
   "continue": {
     "message": "Continuer"
   },
+  "sendVerificationCode": {
+    "message": "Envoyer un code de vérification à votre adresse email"
+  },
+  "sendCode": {
+    "message": "Envoyer le code"
+  },
+  "codeSent": {
+    "message": "Code envoyé"
+  },
   "verificationCode": {
     "message": "Code de vérification"
+  },
+  "confirmIdentity": {
+    "message": "Confirmez votre identité pour continuer."
   },
   "account": {
     "message": "Compte"
@@ -151,7 +166,7 @@
     "message": "Enregistrer"
   },
   "move": {
-    "message": "Se déplacer"
+    "message": "Déplacer"
   },
   "addFolder": {
     "message": "Ajouter un dossier"
@@ -213,6 +228,18 @@
   },
   "length": {
     "message": "Longueur"
+  },
+  "uppercase": {
+    "message": "Majuscules (A-Z)"
+  },
+  "lowercase": {
+    "message": "Minuscules (a-z)"
+  },
+  "numbers": {
+    "message": "Chiffres (0-9)"
+  },
+  "specialCharacters": {
+    "message": "Caractères spéciaux (!@#$%^&*)"
   },
   "numWords": {
     "message": "Nombre de mots"
@@ -305,11 +332,11 @@
   "browserNotSupportClipboard": {
     "message": "Votre navigateur web ne supporte pas la copie rapide depuis le presse-papier. Copiez-le manuellement à la place."
   },
-  "verifyMasterPassword": {
-    "message": "Saisie du mot de passe maître"
+  "verifyIdentity": {
+    "message": "Confirmer votre identité"
   },
   "yourVaultIsLocked": {
-    "message": "Votre coffre est verrouillé. Saisissez votre mot de passe maître pour continuer."
+    "message": "Votre coffre est verrouillé. Vérifiez votre identité pour continuer."
   },
   "unlock": {
     "message": "Déverrouiller"
@@ -407,6 +434,9 @@
   },
   "verificationCodeRequired": {
     "message": "Le code de vérification est requis."
+  },
+  "invalidVerificationCode": {
+    "message": "Code de vérification invalide"
   },
   "valueCopied": {
     "message": "$VALUE$ copié",
@@ -555,10 +585,7 @@
     "message": "Est-ce que Bitwarden doit se souvenir de ce mot de passe pour vous ?"
   },
   "notificationAddSave": {
-    "message": "Oui, enregistrer maintenant"
-  },
-  "notificationNeverSave": {
-    "message": "Jamais pour ce site web"
+    "message": "Enregistrer"
   },
   "disableChangedPasswordNotification": {
     "message": "Désactiver la notification de changement de mot de passe"
@@ -570,7 +597,7 @@
     "message": "Souhaitez-vous mettre à jour ce mot de passe dans Bitwarden ?"
   },
   "notificationChangeSave": {
-    "message": "Oui, mettre à jour maintenant"
+    "message": "Mettre à jour"
   },
   "disableContextMenuItem": {
     "message": "Désactiver les options de menu contextuel"
@@ -773,6 +800,9 @@
   "disableAutoTotpCopyDesc": {
     "message": "Si une clé d'authentification est rattachée à votre identifiant, alors le code de vérification TOTP est automatiquement copié dans le presse-papiers lorsque vous renseignez l'identifiant."
   },
+  "disableAutoBiometricsPrompt": {
+    "message": "Ne pas demander de biométrie au démarrage"
+  },
   "premiumRequired": {
     "message": "Adhésion Premium requise"
   },
@@ -950,8 +980,8 @@
   "commandLockVaultDesc": {
     "message": "Verrouiller le coffre"
   },
-  "privateModeMessage": {
-    "message": "Malheureusement cette fenêtre n'est pas disponible en navigation privée pour ce navigateur."
+  "privateModeWarning": {
+    "message": "La prise en charge de la navigation privée est expérimentale et certaines fonctionnalités sont limitées."
   },
   "customFields": {
     "message": "Champs personnalisés"
@@ -976,6 +1006,14 @@
   },
   "cfTypeBoolean": {
     "message": "Booléen"
+  },
+  "cfTypeLinked": {
+    "message": "Lié",
+    "description": "This describes a field that is 'linked' (tied) to another field."
+  },
+  "linkedValue": {
+    "message": "Valeur liée",
+    "description": "This describes a value that is 'linked' (tied) to another value."
   },
   "popup2faCloseMessage": {
     "message": "Le fait de cliquer à l'extérieur de la fenêtre pop-up pour vérifier votre e-mail avec votre code de vérification fermera cette pop-up. Voulez-vous ouvrir cette pop-up dans une nouvelle fenêtre pour qu'elle ne soit pas fermée ?"
@@ -1078,6 +1116,9 @@
   },
   "lastName": {
     "message": "Nom"
+  },
+  "fullName": {
+    "message": "Nom et prénom"
   },
   "identityName": {
     "message": "Identité"
@@ -1302,12 +1343,6 @@
   },
   "invalidPin": {
     "message": "Code PIN invalide."
-  },
-  "verifyPin": {
-    "message": "Saisie du code PIN"
-  },
-  "yourVaultIsLockedPinCode": {
-    "message": "Votre coffre est verrouillé. Saisissez votre code PIN pour continuer."
   },
   "unlockWithBiometrics": {
     "message": "Déverrouiller par biométrie"
@@ -1752,5 +1787,102 @@
   },
   "emailVerificationRequiredDesc": {
     "message": "Vous devez vérifier votre adresse e-mail pour utiliser cette fonctionnalité. Vous pouvez vérifier votre adresse e-mail dans le coffre web."
+  },
+  "updatedMasterPassword": {
+    "message": "Mot de passe maître mis à jour"
+  },
+  "updateMasterPassword": {
+    "message": "Mettre à jour le mot de passe maître"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Votre mot de passe maître a récemment été modifié par un administrateur de votre organisation. Pour pouvoir accéder au coffre-fort, vous devez mettre à jour votre mot de passe maître maintenant. Poursuivre vous déconnectera de votre session actuelle, vous obligeant à vous reconnecter. Les sessions actives sur d'autres appareils peuvent rester actives jusqu'à une heure."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Inscription automatique"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Cette organisation a une politique d'entreprise qui vous inscrira automatiquement à la réinitialisation du mot de passe. L'inscription permettra aux administrateurs de l'organisation de changer votre mot de passe maître."
+  },
+  "selectFolder": {
+    "message": "Sélectionnez un dossier..."
+  },
+  "ssoCompleteRegistration": {
+    "message": "Afin de terminer la connexion avec SSO, veuillez définir un mot de passe maître pour accéder à votre coffre et le protéger."
+  },
+  "hours": {
+    "message": "Heures"
+  },
+  "minutes": {
+    "message": "Minutes"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Les politiques de votre organisation affectent le délai d'expiration de votre coffre-fort. Le délai d'expiration maximal autorisé est de $HOURS$ heure(s) et $MINUTES$ minute(s)",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Le délai d'expiration de votre coffre dépasse les restrictions définies par votre organisation."
+  },
+  "vaultExportDisabled": {
+    "message": "Export du coffre désactivé"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Une ou plusieurs politiques d'organisation vous empêchent d'exporter votre coffre personnel."
+  },
+  "copyCustomFieldNameInvalidElement": {
+    "message": "Aucun élément de formulaire valide n'a pu être identifié. Essayez plutôt d'inspecter le HTML."
+  },
+  "copyCustomFieldNameNotUnique": {
+    "message": "Aucun identifiant unique trouvé."
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ utilise SSO avec un serveur de clés auto-hébergé. Un mot de passe maître n'est plus nécessaire aux membres de cette organisation pour se connecter.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Quitter l'organisation"
+  },
+  "removeMasterPassword": {
+    "message": "Supprimer le mot de passe maître"
+  },
+  "removedMasterPassword": {
+    "message": "Mot de passe maître supprimé."
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "Êtes-vous sûr·e de vouloir quitter cette organisation ?"
+  },
+  "leftOrganization": {
+    "message": "Vous avez quitté l'organisation."
+  },
+  "toggleCharacterCount": {
+    "message": "Activer/désactiver le compteur de caractères"
+  },
+  "sessionTimeout": {
+    "message": "Votre session a expiré. Veuillez revenir en arrière et essayer de vous connecter à nouveau."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Export du coffre personnel"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Seuls les éléments du coffre personnel associé à l'adresse e-mail $EMAIL$ seront exportés. Les éléments du coffre de l'organisation ne seront pas inclus.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
   }
 }

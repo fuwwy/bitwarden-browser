@@ -88,14 +88,17 @@
   "generatePasswordCopied": {
     "message": "Passwort generieren (kopiert)"
   },
+  "copyElementIdentifier": {
+    "message": "Benutzerdefinierten Feldnamen kopieren"
+  },
   "noMatchingLogins": {
     "message": "Keine passenden Zugangsdaten."
   },
-  "vaultLocked": {
-    "message": "Der Tresor ist gesperrt."
+  "unlockVaultMenu": {
+    "message": "Entsperre deinen Tresor"
   },
-  "vaultLoggedOut": {
-    "message": "Der Tresor ist ausgeloggt."
+  "loginToVaultMenu": {
+    "message": "In deinem Tresor anmelden"
   },
   "autoFillInfo": {
     "message": "Für den aktuellen Browser-Tab gibt es keine passenden Zugangsdaten, welche automatisch ausgefüllt werden können."
@@ -118,8 +121,20 @@
   "continue": {
     "message": "Weiter"
   },
+  "sendVerificationCode": {
+    "message": "Einen Bestätigungscode an deine E-Mail senden"
+  },
+  "sendCode": {
+    "message": "Send Code"
+  },
+  "codeSent": {
+    "message": "Code gesendet"
+  },
   "verificationCode": {
     "message": "Verifizierungscode"
+  },
+  "confirmIdentity": {
+    "message": "Bestätige deine Identität, um fortzufahren."
   },
   "account": {
     "message": "Konto"
@@ -214,6 +229,18 @@
   "length": {
     "message": "Länge"
   },
+  "uppercase": {
+    "message": "Großbuchstaben (A-Z)"
+  },
+  "lowercase": {
+    "message": "Kleinbuchstaben (a-z)"
+  },
+  "numbers": {
+    "message": "Zahlen (0-9)"
+  },
+  "specialCharacters": {
+    "message": "Sonderzeichen (!@#$%^&*)"
+  },
   "numWords": {
     "message": "Anzahl der Wörter"
   },
@@ -305,8 +332,8 @@
   "browserNotSupportClipboard": {
     "message": "Den Browser unterstützt das einfache Kopieren nicht. Bitte kopiere es manuell."
   },
-  "verifyMasterPassword": {
-    "message": "Master-Passwort verifizieren"
+  "verifyIdentity": {
+    "message": "Identität verifizieren"
   },
   "yourVaultIsLocked": {
     "message": "Dein Tresor ist gesperrt. Überprüfe dein Master-Passwort um fortzufahren."
@@ -407,6 +434,9 @@
   },
   "verificationCodeRequired": {
     "message": "Verifizierungscode wird benötigt."
+  },
+  "invalidVerificationCode": {
+    "message": "Ungültiger Verifizierungscode"
   },
   "valueCopied": {
     "message": "$VALUE$ kopiert",
@@ -556,9 +586,6 @@
   },
   "notificationAddSave": {
     "message": "Ja, jetzt speichern"
-  },
-  "notificationNeverSave": {
-    "message": "Niemals für diese Webseite"
   },
   "disableChangedPasswordNotification": {
     "message": "Passwort geändert Benachrichtigung deaktivieren"
@@ -773,6 +800,9 @@
   "disableAutoTotpCopyDesc": {
     "message": "Ist ein Authentifizierungsschlüssel mit deinen Zugangsdaten verknüpft, wird der TOTP Bestätigungscode automatisch in die Zwischenablage kopiert, wenn du die Zugangsdaten einfügen lässt."
   },
+  "disableAutoBiometricsPrompt": {
+    "message": "Beim Start nicht nach biometrischen Daten fragen"
+  },
   "premiumRequired": {
     "message": "Premium-Mitgliedschaft wird benötigt"
   },
@@ -950,8 +980,8 @@
   "commandLockVaultDesc": {
     "message": "Den Tresor sperren"
   },
-  "privateModeMessage": {
-    "message": "Leider ist dieses Fenster nicht im privaten Modus für diesen Browser verfügbar."
+  "privateModeWarning": {
+    "message": "Die Unterstützung des privaten Modus ist experimentell und einige Funktionen sind eingeschränkt."
   },
   "customFields": {
     "message": "Benutzerdefinierte Felder"
@@ -976,6 +1006,14 @@
   },
   "cfTypeBoolean": {
     "message": "Ja/Nein"
+  },
+  "cfTypeLinked": {
+    "message": "Verknüpft",
+    "description": "This describes a field that is 'linked' (tied) to another field."
+  },
+  "linkedValue": {
+    "message": "Verknüpfter Inhalt",
+    "description": "This describes a value that is 'linked' (tied) to another value."
   },
   "popup2faCloseMessage": {
     "message": "Dieses Pop-up Fenster wird geschlossen, wenn du außerhalb des Fensters klickst um in deinen E-Mails nach dem Verifizierungscode zu suchen. Möchtest du, dass dieses Pop-up in einem separaten Fenster geöffnet wird, damit es nicht geschlossen wird?"
@@ -1078,6 +1116,9 @@
   },
   "lastName": {
     "message": "Nachname"
+  },
+  "fullName": {
+    "message": "Vollständiger Name"
   },
   "identityName": {
     "message": "Identitätsname"
@@ -1302,12 +1343,6 @@
   },
   "invalidPin": {
     "message": "Ungültiger PIN-Code."
-  },
-  "verifyPin": {
-    "message": "PIN bestätigen"
-  },
-  "yourVaultIsLockedPinCode": {
-    "message": "Dein Tresor ist gesperrt. Gebe deinen PIN-Code ein um fortzufahren."
   },
   "unlockWithBiometrics": {
     "message": "Mit Biometrie entsperren"
@@ -1752,5 +1787,102 @@
   },
   "emailVerificationRequiredDesc": {
     "message": "Du musst deine E-Mail Adresse verifizieren, um diese Funktion nutzen zu können. Du kannst deine E-Mail im Web-Tresor verifizieren."
+  },
+  "updatedMasterPassword": {
+    "message": "Master-Passwort aktualisiert"
+  },
+  "updateMasterPassword": {
+    "message": "Master-Passwort aktualisieren"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Dein Master-Passwort wurde kürzlich von einem Administrator Ihrer Organisation geändert. Um auf den Tresor zuzugreifen, musst du es jetzt aktualisieren. Wenn du fortfährst, wirst du aus der aktuellen Sitzung abgemeldet, eine erneute Anmeldung wird erforderlich. Aktive Sitzungen auf anderen Geräten können bis zu einer Stunde weiterhin aktiv bleiben."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatische Registrierung"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Diese Organisation hat eine Unternehmensrichtlinie, die dich automatisch zum Zurücksetzen deines Passworts registriert. Die Registrierung wird es Administratoren der Organisation erlauben, dein Master-Passwort zu ändern."
+  },
+  "selectFolder": {
+    "message": "Ordner auswählen..."
+  },
+  "ssoCompleteRegistration": {
+    "message": "Um die Anmeldung über SSO abzuschließen, lege bitte ein Master-Passwort fest, um auf deinen Tresor zuzugreifen und ihn zu schützen."
+  },
+  "hours": {
+    "message": "Stunden"
+  },
+  "minutes": {
+    "message": "Minuten"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Deine Unternehmensrichtlinien beeinflussen dein Tresor-Timeout. Das maximal zulässige Tresor-Timeout ist $HOURS$ Stunde(n) und $MINUTES$ Minute(n)",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Dein Tresor-Timeout überschreitet die von deinem Unternehmen festgelegten Beschränkungen."
+  },
+  "vaultExportDisabled": {
+    "message": "Tresor-Export deaktiviert"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Eine oder mehrere Unternehmensrichtlinien hindern dich daran, deinen persönlichen Tresor zu exportieren."
+  },
+  "copyCustomFieldNameInvalidElement": {
+    "message": "Es konnte kein gültiges Formularelement identifiziert werden. Versuche stattdessen das HTML zu untersuchen."
+  },
+  "copyCustomFieldNameNotUnique": {
+    "message": "Keine eindeutige Kennung gefunden."
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ verwendet SSO mit einem selbst gehosteten Schlüsselserver. Ein Master-Passwort ist nicht mehr erforderlich, damit sich Mitglieder dieser Organisation anmelden können.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Organisation verlassen"
+  },
+  "removeMasterPassword": {
+    "message": "Master-Passwort entfernen"
+  },
+  "removedMasterPassword": {
+    "message": "Master-Passwort entfernt."
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "Bist du sicher, dass du diese Organisation verlassen möchtest?"
+  },
+  "leftOrganization": {
+    "message": "Du hast die Organisation verlassen."
+  },
+  "toggleCharacterCount": {
+    "message": "Zeichenzählung ein-/ausschalten"
+  },
+  "sessionTimeout": {
+    "message": "Deine Sitzung ist abgelaufen. Bitte gehe zurück und versuche dich erneut einzuloggen."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Persönlichen Tresor exportieren"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Nur die persönlichen Tresoreinträge, die mit $EMAIL$ verbunden sind, werden exportiert. Tresoreinträge der Organisation werden nicht berücksichtigt.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
   }
 }

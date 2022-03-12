@@ -88,14 +88,17 @@
   "generatePasswordCopied": {
     "message": "Сгенерировать пароль (с копированием)"
   },
+  "copyElementIdentifier": {
+    "message": "Скопировать название пользовательского поля"
+  },
   "noMatchingLogins": {
     "message": "Нет подходящих логинов."
   },
-  "vaultLocked": {
-    "message": "Хранилище заблокировано."
+  "unlockVaultMenu": {
+    "message": "Разблокировать хранилище"
   },
-  "vaultLoggedOut": {
-    "message": "Вы вышли из хранилища."
+  "loginToVaultMenu": {
+    "message": "Войти в хранилище"
   },
   "autoFillInfo": {
     "message": "Нет доступных логинов для автозаполнения на текущей вкладке браузера."
@@ -118,8 +121,20 @@
   "continue": {
     "message": "Продолжить"
   },
+  "sendVerificationCode": {
+    "message": "Отправить код подтверждения на ваш email"
+  },
+  "sendCode": {
+    "message": "Отправить код"
+  },
+  "codeSent": {
+    "message": "Код отправлен"
+  },
   "verificationCode": {
     "message": "Код подтверждения"
+  },
+  "confirmIdentity": {
+    "message": "Подтвердите вашу личность, чтобы продолжить."
   },
   "account": {
     "message": "Аккаунт"
@@ -214,6 +229,18 @@
   "length": {
     "message": "Длина"
   },
+  "uppercase": {
+    "message": "Прописные буквы (A-Z)"
+  },
+  "lowercase": {
+    "message": "Строчные буквы (a-z)"
+  },
+  "numbers": {
+    "message": "Цифры (0-9)"
+  },
+  "specialCharacters": {
+    "message": "Специальные символы (!@#$%^&*)"
+  },
   "numWords": {
     "message": "Количество слов"
   },
@@ -305,11 +332,11 @@
   "browserNotSupportClipboard": {
     "message": "Ваш браузер не поддерживает копирование данных в буфер обмена. Скопируйте вручную."
   },
-  "verifyMasterPassword": {
-    "message": "Проверка мастер-пароля"
+  "verifyIdentity": {
+    "message": "Подтвердить личность"
   },
   "yourVaultIsLocked": {
-    "message": "Ваше хранилище заблокировано. Для продолжения введите мастер-пароль."
+    "message": "Ваше хранилище заблокировано. Подтвердите свою личность, чтобы продолжить"
   },
   "unlock": {
     "message": "Разблокировать"
@@ -331,7 +358,7 @@
     "message": "Неверный мастер-пароль"
   },
   "vaultTimeout": {
-    "message": "Таймаут хранилища"
+    "message": "Тайм-аут хранилища"
   },
   "lockNow": {
     "message": "Заблокировать сейчас"
@@ -407,6 +434,9 @@
   },
   "verificationCodeRequired": {
     "message": "Необходимо ввести код подтверждения."
+  },
+  "invalidVerificationCode": {
+    "message": "Неверный код подтверждения"
   },
   "valueCopied": {
     "message": "$VALUE$ скопировано",
@@ -555,10 +585,7 @@
     "message": "Должен ли Bitwarden запомнить этот пароль?"
   },
   "notificationAddSave": {
-    "message": "Да, сохранить"
-  },
-  "notificationNeverSave": {
-    "message": "Никогда для этого сайта"
+    "message": "Сохранить"
   },
   "disableChangedPasswordNotification": {
     "message": "Отключить уведомление об изменении пароля"
@@ -570,7 +597,7 @@
     "message": "Обновить этот пароль в Bitwarden?"
   },
   "notificationChangeSave": {
-    "message": "Да, обновить"
+    "message": "Обновить"
   },
   "disableContextMenuItem": {
     "message": "Отключить опции контекстного меню"
@@ -773,6 +800,9 @@
   "disableAutoTotpCopyDesc": {
     "message": "Если к вашему логину прикреплен ключ проверки подлинности, то код подтверждения TOTP будет скопирован при автозаполнении логина."
   },
+  "disableAutoBiometricsPrompt": {
+    "message": "Не запрашивать биометрию при запуске"
+  },
   "premiumRequired": {
     "message": "Необходим Премиум"
   },
@@ -856,11 +886,11 @@
     "message": "Используйте YubiKey для доступа к вашей учетной записи. Работает с устройствами YubiKey 4 серии, 5 серии и NEO."
   },
   "duoDesc": {
-    "message": "Проверьте с помощью Duo Security, используя приложение Duo Mobile, SMS, телефонный звонок или ключ безопасности U2F.",
+    "message": "Подтвердите с помощью Duo Security, используя приложение Duo Mobile, SMS, телефонный звонок или ключ безопасности U2F.",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "duoOrganizationDesc": {
-    "message": "Подтвердите при помощи Duo Security для вашей организации, используя приложение Duo Mobile, SMS, телефонный звонок или ключ безопасности U2F.",
+    "message": "Подтвердите с помощью Duo Security для вашей организации, используя приложение Duo Mobile, SMS, телефонный звонок или ключ безопасности U2F.",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "webAuthnTitle": {
@@ -882,10 +912,10 @@
     "message": "Укажите URL-адрес Bitwarden на вашем сервере."
   },
   "customEnvironment": {
-    "message": "Настройка среды"
+    "message": "Пользовательское окружение"
   },
   "customEnvironmentFooter": {
-    "message": "Для продвинутых пользователей. Можно указать URL-адреса отдельно для каждой службы."
+    "message": "Для опытных пользователей. Можно указать URL отдельно для каждой службы."
   },
   "baseUrl": {
     "message": "URL-адрес сервера"
@@ -950,8 +980,8 @@
   "commandLockVaultDesc": {
     "message": "Заблокировать хранилище"
   },
-  "privateModeMessage": {
-    "message": "К сожалению, это окно недоступно в приватном режиме этого браузера."
+  "privateModeWarning": {
+    "message": "Частный режим - экспериментальный, некоторые функции ограничены."
   },
   "customFields": {
     "message": "Пользовательские поля"
@@ -976,6 +1006,14 @@
   },
   "cfTypeBoolean": {
     "message": "Логическое"
+  },
+  "cfTypeLinked": {
+    "message": "Связано",
+    "description": "This describes a field that is 'linked' (tied) to another field."
+  },
+  "linkedValue": {
+    "message": "Связанное значение",
+    "description": "This describes a value that is 'linked' (tied) to another value."
   },
   "popup2faCloseMessage": {
     "message": "Щелчок за пределами этого окна для просмотра кода проверки из электронной почты приведет к его закрытию. Открыть bitwarden в новом окне?"
@@ -1078,6 +1116,9 @@
   },
   "lastName": {
     "message": "Фамилия"
+  },
+  "fullName": {
+    "message": "Полное имя"
   },
   "identityName": {
     "message": "Имя"
@@ -1303,12 +1344,6 @@
   "invalidPin": {
     "message": "Неверный PIN-код."
   },
-  "verifyPin": {
-    "message": "Подтвердить PIN-код"
-  },
-  "yourVaultIsLockedPinCode": {
-    "message": "Ваше хранилище заблокировано. Для продолжения введите PIN-код."
-  },
   "unlockWithBiometrics": {
     "message": "Разблокировать с помощью биометрии"
   },
@@ -1334,7 +1369,7 @@
     "message": "На настройки генератора влияют одна или несколько политик организации."
   },
   "vaultTimeoutAction": {
-    "message": "Действие по таймауту хранилища"
+    "message": "Действие по тайм-ауту хранилища"
   },
   "lock": {
     "message": "Заблокировать",
@@ -1366,10 +1401,10 @@
     "message": "Элемент восстановлен"
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "По истечении таймаута будет выполнен выход, что приведет к отмене всех прав доступа к вашему хранилищу и потребует онлайн-аутентификации. Вы уверены, что хотите использовать этот параметр?"
+    "message": "По истечении тайм-аута будет выполнен выход, что приведет к отмене всех прав доступа к вашему хранилищу и потребует онлайн-аутентификации. Вы уверены, что хотите использовать этот параметр?"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
-    "message": "Подтверждение действия по таймауту"
+    "message": "Подтверждение действия по тайм-ауту"
   },
   "autoFillAndSave": {
     "message": "Заполнить и сохранить"
@@ -1635,7 +1670,7 @@
     }
   },
   "custom": {
-    "message": "Другой"
+    "message": "Пользовательский"
   },
   "maximumAccessCount": {
     "message": "Максимум обращений"
@@ -1752,5 +1787,102 @@
   },
   "emailVerificationRequiredDesc": {
     "message": "Для использования этой функции необходимо подтвердить ваш email. Вы можете это сделать в веб-хранилище."
+  },
+  "updatedMasterPassword": {
+    "message": "Мастер-пароль обновлен"
+  },
+  "updateMasterPassword": {
+    "message": "Обновить мастер-пароль"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Мастер-пароль недавно был изменен администратором вашей организации. Чтобы получить доступ к хранилищу, вы должны обновить его сейчас. В результате текущая сессия будет завершена, потребуется повторный вход. Активные сессии на других устройствах могут оставаться активными в течение одного часа."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Автоматическая регистрация"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "В этой организации действует корпоративная политика, которая автоматически зарегистрирует вас на сброс пароля. Регистрация позволит администраторам организации изменить ваш мастер-пароль."
+  },
+  "selectFolder": {
+    "message": "Выберите папку..."
+  },
+  "ssoCompleteRegistration": {
+    "message": "Для завершения процесса авторизации при помощи SSO, установите мастер-пароль для доступа к вашему хранилищу и его защиты."
+  },
+  "hours": {
+    "message": "Час."
+  },
+  "minutes": {
+    "message": "Мин."
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Политики вашей организации влияют на тайм-аут хранилища. Максимально допустимый тайм-аут хранилища составляет $HOURS$ час. и $MINUTES$ мин.",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Время ожидания превышает ограничения, установленные вашей организацией."
+  },
+  "vaultExportDisabled": {
+    "message": "Экспорт хранилища отключен"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Экспорт вашего личного хранилища запрещен одной или несколькими политиками организации."
+  },
+  "copyCustomFieldNameInvalidElement": {
+    "message": "Невозможно определить элемент формы. Попробуйте вместо этого проверить HTML."
+  },
+  "copyCustomFieldNameNotUnique": {
+    "message": "Уникальный идентификатор не найден."
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ использует SSO с собственным сервером ключей. Для авторизации членам этой организации больше не требуется мастер-пароль.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Покинуть организацию"
+  },
+  "removeMasterPassword": {
+    "message": "Удалить мастер-пароль"
+  },
+  "removedMasterPassword": {
+    "message": "Мастер-пароль удален."
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "Вы действительно хотите покинуть эту организацию?"
+  },
+  "leftOrganization": {
+    "message": "Вы покинули организацию."
+  },
+  "toggleCharacterCount": {
+    "message": "Показать количество символов"
+  },
+  "sessionTimeout": {
+    "message": "Время вашей сессии истекло. Пожалуйста, вернитесь и попробуйте войти снова."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Экспорт личного хранилища"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Будут экспортированы только личные элементы хранилища, связанные с $EMAIL$. Элементы хранилища организации включены не будут.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
   }
 }

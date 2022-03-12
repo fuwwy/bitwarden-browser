@@ -88,14 +88,17 @@
   "generatePasswordCopied": {
     "message": "Genera contrasenya (copiada)"
   },
+  "copyElementIdentifier": {
+    "message": "Copia nom del camp personalitzat"
+  },
   "noMatchingLogins": {
     "message": "No hi ha inicis de sessió coincidents."
   },
-  "vaultLocked": {
-    "message": "La caixa forta està bloquejada."
+  "unlockVaultMenu": {
+    "message": "1. Desbloquegeu la caixa forta."
   },
-  "vaultLoggedOut": {
-    "message": "La caixa forta està desconnectada."
+  "loginToVaultMenu": {
+    "message": "Inicia sessió a la caixa forta"
   },
   "autoFillInfo": {
     "message": "No hi ha cap inici de sessió disponible per omplir automàticament la pestanya del navegador actual."
@@ -118,8 +121,20 @@
   "continue": {
     "message": "Continua"
   },
+  "sendVerificationCode": {
+    "message": "Envia un codi de verificació al correu electrònic"
+  },
+  "sendCode": {
+    "message": "Envia codi"
+  },
+  "codeSent": {
+    "message": "Codi enviat"
+  },
   "verificationCode": {
     "message": "Codi de verificació"
+  },
+  "confirmIdentity": {
+    "message": "Confirmeu la vostra identitat per continuar."
   },
   "account": {
     "message": "Compte"
@@ -214,6 +229,18 @@
   "length": {
     "message": "Longitud"
   },
+  "uppercase": {
+    "message": "Majúscula (A-Z)"
+  },
+  "lowercase": {
+    "message": "Minúscula (a-z)"
+  },
+  "numbers": {
+    "message": "Números (0-9)"
+  },
+  "specialCharacters": {
+    "message": "Caràcters especials (!@#$%^&*)"
+  },
   "numWords": {
     "message": "Nombre de paraules"
   },
@@ -305,8 +332,8 @@
   "browserNotSupportClipboard": {
     "message": "El vostre navegador web no admet la còpia fàcil del porta-retalls. Copieu-ho manualment."
   },
-  "verifyMasterPassword": {
-    "message": "Verifica la contrasenya mestra"
+  "verifyIdentity": {
+    "message": "Verifica identitat"
   },
   "yourVaultIsLocked": {
     "message": "La caixa forta està bloquejada. Comproveu la contrasenya mestra per continuar."
@@ -407,6 +434,9 @@
   },
   "verificationCodeRequired": {
     "message": "El codi de verificació és obligatori."
+  },
+  "invalidVerificationCode": {
+    "message": "Codi de verificació no vàlid"
   },
   "valueCopied": {
     "message": "S'ha copiat $VALUE$",
@@ -555,10 +585,7 @@
     "message": "Bitwarden ha de recordar aquesta contrasenya per a vosaltres?"
   },
   "notificationAddSave": {
-    "message": "Sí, guarda-la ara"
-  },
-  "notificationNeverSave": {
-    "message": "Mai per a aquest lloc"
+    "message": "Guarda"
   },
   "disableChangedPasswordNotification": {
     "message": "Deshabilita la notificació de contrasenya modificada"
@@ -570,7 +597,7 @@
     "message": "Voleu actualitzar aquesta contrasenya a Bitwarden?"
   },
   "notificationChangeSave": {
-    "message": "Sí, actualitza-la ara"
+    "message": "Actualitza"
   },
   "disableContextMenuItem": {
     "message": "Inhabilita opcions del menú contextual"
@@ -773,6 +800,9 @@
   "disableAutoTotpCopyDesc": {
     "message": "Si el vostre inici de sessió té una clau d'autenticació associada, el codi de verificació TOTP es copiarà al vostre porta-retalls quan s'òmpliga automàticament l'inici de sessió."
   },
+  "disableAutoBiometricsPrompt": {
+    "message": "No sol·liciteu biomètrica en iniciar."
+  },
   "premiumRequired": {
     "message": "Premium requerit"
   },
@@ -950,8 +980,8 @@
   "commandLockVaultDesc": {
     "message": "Tanca la caixa forta"
   },
-  "privateModeMessage": {
-    "message": "Malauradament, aquesta finestra no està disponible en el mode privat d'aquest navegador."
+  "privateModeWarning": {
+    "message": "El suport del mode privat és experimental i algunes funcions són limitades."
   },
   "customFields": {
     "message": "Camps personalitzats"
@@ -976,6 +1006,14 @@
   },
   "cfTypeBoolean": {
     "message": "Booleà"
+  },
+  "cfTypeLinked": {
+    "message": "Enllaçat",
+    "description": "This describes a field that is 'linked' (tied) to another field."
+  },
+  "linkedValue": {
+    "message": "Valor enllaçat",
+    "description": "This describes a value that is 'linked' (tied) to another value."
   },
   "popup2faCloseMessage": {
     "message": "Si feu clic a l'exterior de la finestra emergent per comprovar el vostre correu electrònic amb el codi de verificació, es tancarà aquesta finestra. Voleu obrir aquesta finestra emergent en una finestra nova perquè no es tanque?"
@@ -1078,6 +1116,9 @@
   },
   "lastName": {
     "message": "Cognoms"
+  },
+  "fullName": {
+    "message": "Nom complet"
   },
   "identityName": {
     "message": "Nom d'identitat"
@@ -1302,12 +1343,6 @@
   },
   "invalidPin": {
     "message": "El codi PIN no és vàlid."
-  },
-  "verifyPin": {
-    "message": "Verifica el PIN"
-  },
-  "yourVaultIsLockedPinCode": {
-    "message": "La caixa forta està bloquejada. Verifiqueu El codi PIN per continuar."
   },
   "unlockWithBiometrics": {
     "message": "Desbloqueja amb biomètrica"
@@ -1752,5 +1787,102 @@
   },
   "emailVerificationRequiredDesc": {
     "message": "Heu de verificar el correu electrònic per utilitzar aquesta característica. Podeu verificar el vostre correu electrònic a la caixa forta web."
+  },
+  "updatedMasterPassword": {
+    "message": "Contrasenya mestra actualitzada"
+  },
+  "updateMasterPassword": {
+    "message": "Actualitza contrasenya mestra"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Un administrador de l'organització ha canviat recentment la contrasenya principal. Per accedir a la caixa forta, heu d'actualitzar-la ara. Si continueu, es tancarà la sessió actual i heu de tornar a iniciar-la. És possible que les sessions obertes en altres dispositius continuen actives fins a una hora."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Inscripció automàtica"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Aquesta organització té una política empresarial que us inscriurà automàticament al restabliment de la contrasenya. La inscripció permetrà als administradors de l’organització canviar la vostra contrasenya mestra."
+  },
+  "selectFolder": {
+    "message": "Seleccioneu la carpeta..."
+  },
+  "ssoCompleteRegistration": {
+    "message": "Per completar la sessió amb SSO, configureu una contrasenya mestra per accedir i protegir la vostra caixa forta."
+  },
+  "hours": {
+    "message": "Hores"
+  },
+  "minutes": {
+    "message": "Minuts"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Les polítiques de l'organització afecten el temps d'espera de la caixa forta. El temps d'espera màxim permès d'aquesta és de $HOURS$ hores i $MINUTES$ minuts",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "vaultTimeoutToLarge": {
+    "message": "El temps d'espera de la caixa forta supera les restriccions establertes per la vostra organització."
+  },
+  "vaultExportDisabled": {
+    "message": "L'exportació de la caixa forta està desactivada"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Una o més polítiques d'organització us impedeixen exportar la vostra caixa forta."
+  },
+  "copyCustomFieldNameInvalidElement": {
+    "message": "No es pot identificar un element de formulari vàlid. Proveu d'inspeccionar l'HTML."
+  },
+  "copyCustomFieldNameNotUnique": {
+    "message": "No s'ha trobat cap identificador únic."
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ està utilitzant SSO amb un servidor autoallotjat de claus. Ja no es requereix una contrasenya mestra d'inici de sessió per als membres d'aquesta organització.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Abandona organització"
+  },
+  "removeMasterPassword": {
+    "message": "Suprimiu la contrasenya mestra"
+  },
+  "removedMasterPassword": {
+    "message": "S'ha suprimit la contrasenya mestra"
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "Segur que voleu abandonar aquesta organització?"
+  },
+  "leftOrganization": {
+    "message": "Heu deixat l'organització."
+  },
+  "toggleCharacterCount": {
+    "message": "Toggle character count"
+  },
+  "sessionTimeout": {
+    "message": "Your session has timed out. Please go back and try logging in again."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Exporting Personal Vault"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Only the personal vault items associated with $EMAIL$ will be exported. Organization vault items will not be included.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
   }
 }

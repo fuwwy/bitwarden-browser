@@ -88,14 +88,17 @@
   "generatePasswordCopied": {
     "message": "Membuat Kata Sandi (tersalin)"
   },
+  "copyElementIdentifier": {
+    "message": "Salin Nama Kolom Pilihan"
+  },
   "noMatchingLogins": {
     "message": "Tidak ada info masuk yang cocok."
   },
-  "vaultLocked": {
-    "message": "Brankas terkunci."
+  "unlockVaultMenu": {
+    "message": "Buka brankas Anda"
   },
-  "vaultLoggedOut": {
-    "message": "Brankas terkunci."
+  "loginToVaultMenu": {
+    "message": "Masuk ke brankas Anda"
   },
   "autoFillInfo": {
     "message": "Tidak ada info masuk yang tersedia untuk mengisi secara otomatis tab peramban saat ini."
@@ -118,8 +121,20 @@
   "continue": {
     "message": "Lanjutkan"
   },
+  "sendVerificationCode": {
+    "message": "Kirim kode verifikasi ke email Anda"
+  },
+  "sendCode": {
+    "message": "Kirim Kode"
+  },
+  "codeSent": {
+    "message": "Kode Terkirim!"
+  },
   "verificationCode": {
     "message": "Kode Verifikasi"
+  },
+  "confirmIdentity": {
+    "message": "Konfirmasi identitas Anda untuk melanjutkan."
   },
   "account": {
     "message": "Akun"
@@ -214,6 +229,18 @@
   "length": {
     "message": "Panjang"
   },
+  "uppercase": {
+    "message": "Huruf besar (A-Z)"
+  },
+  "lowercase": {
+    "message": "Huruf kecil (a-z)"
+  },
+  "numbers": {
+    "message": "Angka (0-9)"
+  },
+  "specialCharacters": {
+    "message": "karakter khusus (contoh.! @#$%^&*)"
+  },
   "numWords": {
     "message": "Jumlah Kata"
   },
@@ -305,8 +332,8 @@
   "browserNotSupportClipboard": {
     "message": "Peramban Anda tidak mendukung menyalin clipboard dengan mudah. Salin secara manual."
   },
-  "verifyMasterPassword": {
-    "message": "Verifikasi Kata Sandi Utama"
+  "verifyIdentity": {
+    "message": "Verifikasi Identitas Anda"
   },
   "yourVaultIsLocked": {
     "message": "Brankas Anda terkunci. Verifikasi kata sandi utama Anda untuk melanjutkan."
@@ -407,6 +434,9 @@
   },
   "verificationCodeRequired": {
     "message": "Kode verifikasi diperlukan."
+  },
+  "invalidVerificationCode": {
+    "message": "Kode verifikasi tidak valid"
   },
   "valueCopied": {
     "message": "$VALUE$ disalin",
@@ -556,9 +586,6 @@
   },
   "notificationAddSave": {
     "message": "Iya, Simpan Sekarang"
-  },
-  "notificationNeverSave": {
-    "message": "Jangan pernah untuk situs ini"
   },
   "disableChangedPasswordNotification": {
     "message": "Nonaktifkan Notifikasi Perubahan Kata Sandi"
@@ -773,6 +800,9 @@
   "disableAutoTotpCopyDesc": {
     "message": "Jika info masuk Anda memiliki kunci autentikasi yang menyertainya, kode verifikasi TOTP akan disalin secara otomatis ke clipboard Anda setiap kali Anda mengisi info masuk secara otomatis."
   },
+  "disableAutoBiometricsPrompt": {
+    "message": "Jangan minta biometrik saat dinyalakan."
+  },
   "premiumRequired": {
     "message": "Membutuhkan Keanggotaan Premium"
   },
@@ -950,8 +980,8 @@
   "commandLockVaultDesc": {
     "message": "Kunci brankas"
   },
-  "privateModeMessage": {
-    "message": "Sayangnya jendela ini tidak tersedia di mode pribadi untuk peramban ini."
+  "privateModeWarning": {
+    "message": "Dukungan mode pribadi bersifat eksperimental dan beberapa fitur terbatas."
   },
   "customFields": {
     "message": "Ruas Khusus"
@@ -976,6 +1006,14 @@
   },
   "cfTypeBoolean": {
     "message": "Boolean"
+  },
+  "cfTypeLinked": {
+    "message": "Terhubung",
+    "description": "This describes a field that is 'linked' (tied) to another field."
+  },
+  "linkedValue": {
+    "message": "Linked value",
+    "description": "This describes a value that is 'linked' (tied) to another value."
   },
   "popup2faCloseMessage": {
     "message": "Tindakan klik diluar jendela popup untuk memeriksa  kode verifikasi di dalam surel Anda akan menyebabkan popup ini ditutup. Apakah Anda ingin membuka popup ini di jendela baru sehingga terus tetap terbuka?"
@@ -1078,6 +1116,9 @@
   },
   "lastName": {
     "message": "Nama Belakang"
+  },
+  "fullName": {
+    "message": "Nama Lengkap"
   },
   "identityName": {
     "message": "Nama Identitas"
@@ -1302,12 +1343,6 @@
   },
   "invalidPin": {
     "message": "Kode PIN tidak valid."
-  },
-  "verifyPin": {
-    "message": "Verifikasi PIN"
-  },
-  "yourVaultIsLockedPinCode": {
-    "message": "Brankas Anda terkunci. Verifikasi kode PIN Anda untuk melanjutkan."
   },
   "unlockWithBiometrics": {
     "message": "Buka kunci dengan biometrik"
@@ -1752,5 +1787,102 @@
   },
   "emailVerificationRequiredDesc": {
     "message": "Anda harus memverifikasi email Anda untuk menggunakan fitur ini. Anda dapat memverifikasi email Anda di brankas web."
+  },
+  "updatedMasterPassword": {
+    "message": "Kata Sandi Utama Telah Diperbarui"
+  },
+  "updateMasterPassword": {
+    "message": "Perbarui Kata Sandi Utama"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Kata Sandi Utama Anda baru-baru ini diubah oleh administrator organisasi Anda. Untuk mengakses brankas tersebut, Anda diharuskan memperbarui Kata Sandi Utama Anda sekarang. Jika Anda melanjutkan, Anda akan keluar dari sesi saat ini, yang mana mengharuskan Anda untuk login kembali. Sesi yang aktif di perangkat lain akan tetap aktif selama satu jam kedepan."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Pendaftaran Otomatis"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Organisasi ini memiliki kebijakan perusahaan yang secara otomatis mendaftarkan Anda dalam pengaturan ulang kata sandi. Dengan mendaftar, akan memungkinkan administrator organisasi untuk mengubah kata sandi utama Anda."
+  },
+  "selectFolder": {
+    "message": "Pilih Folder..."
+  },
+  "ssoCompleteRegistration": {
+    "message": "Untuk menyelesaikan masuk dengan SSO, harap setel kata sandi utama untuk mengakses dan melindungi brankas Anda."
+  },
+  "hours": {
+    "message": "Jam"
+  },
+  "minutes": {
+    "message": "Menit"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Kebijakan organisasi Anda memengaruhi waktu tunggu brankas Anda. Batas maksimal Waktu Tunggu Brankas yang diizinkan adalah $HOURS$ jam dan $MINUTES$ menit",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Waktu tunggu brankas Anda melebihi batasan yang diatur organisasi Anda."
+  },
+  "vaultExportDisabled": {
+    "message": "Ekspor Brankas Dinonaktifkan"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Satu atau beberapa kebijakan organisasi mencegah Anda mengekspor brankas pribadi Anda."
+  },
+  "copyCustomFieldNameInvalidElement": {
+    "message": "Unable to identify a valid form element. Try inspecting the HTML instead."
+  },
+  "copyCustomFieldNameNotUnique": {
+    "message": "Tidak ada pengidentifikasi unik yang ditemukan."
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ is using SSO with a self-hosted key server. A master password is no longer required to log in for members of this organization.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Tinggalkan Organisasi"
+  },
+  "removeMasterPassword": {
+    "message": "Hapus Kata Sandi Utama"
+  },
+  "removedMasterPassword": {
+    "message": "Sandi utama dihapus."
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "Apakah Anda yakin ingin meninggalkan organisasi ini?"
+  },
+  "leftOrganization": {
+    "message": "Anda telah keluar dari organisasi."
+  },
+  "toggleCharacterCount": {
+    "message": "Toggle character count"
+  },
+  "sessionTimeout": {
+    "message": "Your session has timed out. Please go back and try logging in again."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Exporting Personal Vault"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Only the personal vault items associated with $EMAIL$ will be exported. Organization vault items will not be included.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
   }
 }

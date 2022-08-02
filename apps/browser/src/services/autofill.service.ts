@@ -283,7 +283,10 @@ export default class AutofillService implements AutofillServiceInterface {
     let username: AutofillField = null;
     const login = options.cipher.login;
 
-    if (!login.password || login.password === "") {
+    if (
+      (!login.password || login.password === "") &&
+      (!login.username || login.username === "" || options.skipUsernameOnlyFill)
+    ) {
       // No password for this login. Maybe they just wanted to auto-fill some custom fields?
       fillScript = this.setFillScriptForFocus(filledFields, fillScript);
       return fillScript;

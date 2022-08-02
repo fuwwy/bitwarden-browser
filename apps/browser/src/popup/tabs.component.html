@@ -1,4 +1,4 @@
-<div class="tab-page">
+<div [ngClass]="{ 'tab-page': showTabs }">
   <router-outlet></router-outlet>
   <nav class="tabs" *ngIf="showTabs">
     <ul>

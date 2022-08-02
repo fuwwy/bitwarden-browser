@@ -13,6 +13,7 @@ import { PasswordGeneratorPolicyOptions } from "@bitwarden/common/models/domain/
 @Directive()
 export class GeneratorComponent implements OnInit {
   @Input() comingFromAddEdit = false;
+  @Input() comingFromOverlay = false;
   @Input() type: string;
   @Output() onSelected = new EventEmitter<string>();
 

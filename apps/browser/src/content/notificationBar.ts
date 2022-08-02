@@ -406,7 +406,7 @@ document.addEventListener("DOMContentLoaded", (_) => {
           }
         }
       }
-      // TODO formless inputs
+      // TODO formless inputs (i.e. Aliexpress)
     });
   }
 
@@ -556,9 +556,12 @@ document.addEventListener("DOMContentLoaded", (_) => {
     });
     activeOverlays.push({ overlay: overlayElement, icon: icon });
     document.body.appendChild(overlayElement);
-    overlayElement.contentWindow.location = (chrome.extension.getURL("popup/index.html") +
-      "?uilocation=overlay#/tabs/" +
-      (type === "newPassword" ? "generator" : "current")) as any;
+
+    const newPw = type === "newPassword";
+    if (newPw) type = "password";
+    overlayElement.contentWindow.location =
+      chrome.extension.getURL("popup/index.html") +
+      `?uilocation=overlay#/tabs/${newPw ? "generator" : "current"}?type=${type}`;
   }
 
   function closeAllOverlays() {

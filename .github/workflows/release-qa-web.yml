@@ -1,0 +1,155 @@
+---
+name: QA - Web Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_extension:
+        description: "Image tag extension"
+        required: false
+
+env:
+  _QA_CLUSTER_RESOURCE_GROUP: "bw-env-qa"
+  _QA_CLUSTER_NAME: "bw-aks-qa"
+  _QA_K8S_NAMESPACE: "bw-qa"
+  _QA_K8S_APP_NAME: "bw-web"
+
+jobs:
+  deploy:
+    name: Deploy QA Web
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
+
+      - name: Setup
+        run: export PATH=$PATH:~/work/web/web
+
+      - name: Login to Azure
+        uses: Azure/login@ec3c14589bd3e9312b3cc8c41e6860e258df9010  # v1.1
+        with:
+          creds: ${{ secrets.AZURE_QA_KV_CREDENTIALS }}
+
+      - name: Retrieve secrets
+        id: retrieve-secrets
+        uses: Azure/get-keyvault-secrets@b5c723b9ac7870c022b8c35befe620b7009b336f  # v1
+        with:
+          keyvault: "bitwarden-qa-kv"
+          secrets: "qa-aks-kubectl-credentials"
+
+      - name: Login with qa-aks-kubectl-credentials SP
+        uses: Azure/login@ec3c14589bd3e9312b3cc8c41e6860e258df9010  # v1.1
+        with:
+          creds: ${{ env.qa-aks-kubectl-credentials }}
+
+      - name: Setup AKS access
+        run: |
+          echo "---az install---"
+          az aks install-cli --install-location ./kubectl --kubelogin-install-location ./kubelogin
+          echo "---az get-creds---"
+          az aks get-credentials -n $_QA_CLUSTER_NAME -g $_QA_CLUSTER_RESOURCE_GROUP
+
+      - name: Get image tag
+        id: image_tag
+        run: |
+          IMAGE_TAG=$(echo "${GITHUB_REF:11}" | sed "s#/#-#g")
+          TAG_EXTENSION=${{ github.event.inputs.image_extension }}
+
+          if [[ $TAG_EXTENSION ]]; then
+            IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
+          fi
+          echo "::set-output name=value::$IMAGE_TAG"
+
+      - name: Deploy Web image
+        env:
+          IMAGE_TAG: ${{ steps.image_tag.outputs.value }}
+        run: |
+          kubectl set image -n $_QA_K8S_NAMESPACE deployment/web web=bitwardenqa.azurecr.io/web:$IMAGE_TAG --record
+          kubectl rollout restart -n $_QA_K8S_NAMESPACE deployment/web
+          kubectl rollout status deployment/web -n $_QA_K8S_NAMESPACE
+
+  cfpages-deploy:
+    name: Deploy Web Vault to QA CloudFlare Pages branch
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Create GitHub deployment
+        uses: chrnorm/deployment-action@1b599fe41a0ef1f95191e7f2eec4743f2d7dfc48
+        id: deployment
+        with:
+          token: '${{ secrets.GITHUB_TOKEN }}'
+          environment-url: http://vault.qa.bitwarden.pw
+          environment: 'Web Vault - QA'
+          description: 'Deployment from branch ${{ github.ref_name }}'
+      
+      - name: Update deployment status to In Progress
+        uses: chrnorm/deployment-status@07b3930847f65e71c9c6802ff5a402f6dfb46b86
+        with:
+          token: '${{ secrets.GITHUB_TOKEN }}'
+          environment-url: http://vault.qa.bitwarden.pw
+          state: 'in_progress'
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+
+      - name: Checkout Repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
+
+      - name: Download latest cloud asset
+        uses: bitwarden/gh-actions/download-artifacts@c1fa8e09871a860862d6bbe36184b06d2c7e35a8
+        with:
+          workflow: build-web.yml
+          path: apps/web
+          workflow_conclusion: success
+          branch: ${{ github.ref_name }}
+          artifacts: web-*-cloud-COMMERCIAL.zip
+
+      # This should result in a build directory in the current working directory
+      - name: Unzip build asset
+        working-directory: apps/web
+        run: unzip web-*-cloud-COMMERCIAL.zip
+
+      - name: Checkout Repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
+        with:
+          ref: cf-pages-qa
+          path: deployment
+
+      - name: Setup git config
+        run: |
+          git config --global user.name "GitHub Action Bot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global url."https://github.com/".insteadOf ssh://git@github.com/
+          git config --global url."https://".insteadOf ssh://
+
+      - name: Deploy CloudFlare Pages
+        run: |
+          rm -rf ./*
+          cp -R ../apps/web/build/* .
+        working-directory: deployment
+
+      - name: Push new ver to cf-pages-qa
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git add .
+            git commit -m "Deploy ${{ github.ref_name }} to QA Cloudflare pages"
+            git push -u origin cf-pages-qa
+          else
+            echo "No changes to commit!";
+          fi
+        working-directory: deployment
+
+      - name: Update deployment status to Success
+        if: success()
+        uses: chrnorm/deployment-status@07b3930847f65e71c9c6802ff5a402f6dfb46b86
+        with:
+          token: '${{ secrets.GITHUB_TOKEN }}'
+          environment-url: http://vault.qa.bitwarden.pw
+          state: 'success'
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+
+      - name: Update deployment status to Failure
+        if: failure()
+        uses: chrnorm/deployment-status@07b3930847f65e71c9c6802ff5a402f6dfb46b86
+        with:
+          token: '${{ secrets.GITHUB_TOKEN }}'
+          environment-url: http://vault.qa.bitwarden.pw
+          state: 'failure'
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}

@@ -1,0 +1,18 @@
+<div class="center-content">
+  <div class="content">
+    <div class="logo-image"></div>
+    <p class="lead text-center">{{ "loginOrCreateNewAccount" | i18n }}</p>
+    <button type="button" class="btn primary block" routerLink="/login">
+      <b>{{ "login" | i18n }}</b>
+    </button>
+    <button type="button" (click)="launchSsoBrowser()" class="btn block">
+      <i class="bwi bwi-bank" aria-hidden="true"></i> {{ "enterpriseSingleSignOn" | i18n }}
+    </button>
+    <button type="button" class="btn block" routerLink="/register">
+      {{ "createAccount" | i18n }}
+    </button>
+  </div>
+</div>
+<button type="button" routerLink="/environment" class="settings-icon">
+  <i class="bwi bwi-cog-f bwi-lg" aria-hidden="true"></i><span>&nbsp;{{ "settings" | i18n }}</span>
+</button>

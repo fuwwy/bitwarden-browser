@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "es6",
+    "target": "ES2016",
+    "sourceMap": true,
+    "types": [],
+    "baseUrl": ".",
+    "paths": {
+      "tldjs": ["../../libs/common/src/misc/tldjs.noop"],
+      "@bitwarden/common/*": ["../../libs/common/src/*"],
+      "@bitwarden/angular/*": ["../../libs/angular/src/*"],
+      "@bitwarden/electron/*": ["../../libs/electron/src/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "preserveWhitespaces": true
+  },
+  "include": ["src"]
+}
